@@ -9,6 +9,7 @@ public class GuiFrame {
     public GuiFrame(String title) {
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setJMenuBar(buildMenuBar());
 
         JPanel upperPanel = buildUpperPanel();
         JPanel lowerPanel = buildlowerPanel();
@@ -46,5 +47,28 @@ public class GuiFrame {
         JPanel lowerPanel = new JPanel();
 
         return lowerPanel;
+    }
+
+    /**
+     * Build the menu bar
+     * @return The menu bar
+     */
+    private JMenuBar buildMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("File");
+
+        // Could add listeners here
+        JMenuItem menuItem1 = new JMenuItem("New Game");
+        JMenuItem menuItem2 = new JMenuItem("Quit Game");
+
+        menu.add(menuItem1);
+        menu.add(menuItem2);
+
+        JButton button = new JButton("Shop");
+
+        menuBar.add(menu);
+        menuBar.add(button);
+
+        return menuBar;
     }
 }
