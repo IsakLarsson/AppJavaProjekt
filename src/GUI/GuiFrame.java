@@ -8,14 +8,16 @@ public class GuiFrame {
 
     public GuiFrame(String title) {
         frame = new JFrame(title);
+        // Set the content-pane of the JFrame to an instance of main JPanel
+        frame.setContentPane(new GameWindow());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(buildMenuBar());
 
-        JPanel upperPanel = buildUpperPanel();
-        JPanel lowerPanel = buildlowerPanel();
+        //JPanel upperPanel = buildUpperPanel();
+        //JPanel lowerPanel = buildlowerPanel();
 
-        frame.add(upperPanel, BorderLayout.NORTH);
-        frame.add(lowerPanel, BorderLayout.CENTER);
+        //frame.add(upperPanel, BorderLayout.NORTH);
+        //frame.add(lowerPanel, BorderLayout.CENTER);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
     }
