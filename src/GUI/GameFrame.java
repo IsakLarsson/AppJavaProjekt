@@ -3,10 +3,10 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class GuiFrame {
+public class GameFrame {
     private JFrame frame;
 
-    public GuiFrame(String title) {
+    public GameFrame(String title) {
         frame = new JFrame(title);
         // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setContentPane(new GameWindow());

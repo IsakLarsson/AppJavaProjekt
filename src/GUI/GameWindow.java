@@ -22,34 +22,16 @@ public class GameWindow extends JPanel {
 
     // Constructor to initialize the UI components and game objects
     public GameWindow() {
-        // Initialize the game objects
-        gameInit();
-
+        
         // UI components
         canvas = new GameCanvas();
         canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         add(canvas);   // center of default BorderLayout
 
         // Other UI components such as button, score board, if any.
-        // ......
-
-        // Set up menu bar
 
     }
 
-    // ------ All the game related codes here ------
-
-    // Initialize all the game objects, run only once.
-    public void gameInit() { }
-
-    // Start and re-start the game.
-    public void gameStart() { }
-
-    // Shutdown the game, clean up code that runs only once.
-    public void gameShutdown() { }
-
-    // One step of the game.
-    public void gameUpdate() { }
 
     // Refresh the display after each step.
     // Use (Graphics g) as argument if you are not using Java 2D.
