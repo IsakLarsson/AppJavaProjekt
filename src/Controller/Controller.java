@@ -9,18 +9,19 @@ public class Controller {
         GameWindow gameWindow = new GameWindow();
         GameFrame gameFrame = new GameFrame("Test", gameWindow);
         gameFrame.show();
+
+
         Thread thread = new Thread(() -> {
-            for (int i=0; i < 150; i++) {
+            for (int i=0; i < 15; i++) {
                 gameWindow.update();
                 gameWindow.incrementPositions();
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
-
         thread.start();
 
 
