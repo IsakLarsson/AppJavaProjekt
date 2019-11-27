@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level1 lvl = "1">
+    <mapSize>20,20</mapSize>
     <playerPath pathType="playerPath">
-        Coordinates here
+                <!-- X,Y -->
+        <coordinates>0,0</coordinates>
+        <coordinates>1,0</coordinates>
+        <coordinates>2,0</coordinates>
+        <coordinates>3,0</coordinates>
+        <coordinates>4,0</coordinates>
+        <coordinates>5,0</coordinates>
+        <coordinates>6,0</coordinates>
+        <coordinates>7,0</coordinates>
+        <coordinates>8,0</coordinates>
+        <coordinates>9,0</coordinates>
     </playerPath>
+    <towerArea>
+        <coordinates>5,2</coordinates>
+        <coordinates>6,2</coordinates>
+        <coordinates>5,3</coordinates>
+        <coordinates>6,3</coordinates>
+    </towerArea>
+    <spawnArea>
+                <!-- X,Y (Kan orsaka knas då 0,0 överlappar i playerPath) -->
+        <coordinates>0,0</coordinates>
+    </spawnArea>
+
 
 </level1>
