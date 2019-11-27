@@ -1,11 +1,18 @@
 package Controller;
 
-import GUI.GuiFrame;
+import GUI.GameFrame;
+import GUI.GameWindow;
 
 public class Controller {
 
     public Controller(){
-        GuiFrame frame = new GuiFrame("Test");
-        frame.show();
+        GameWindow gameWindow = new GameWindow();
+        GameFrame gameFrame = new GameFrame("Test", gameWindow);
+
+
+
+
+
+        gameFrame.show();
     }
 }

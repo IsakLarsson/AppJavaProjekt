@@ -6,10 +6,10 @@ import java.awt.*;
 public class GameFrame {
     private JFrame frame;
 
-    public GameFrame(String title) {
+    public GameFrame(String title, GameWindow gameWindow) {
         frame = new JFrame(title);
         // Set the content-pane of the JFrame to an instance of main JPanel
-        frame.setContentPane(new GameWindow());
+        frame.setContentPane(gameWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(buildMenuBar());
 

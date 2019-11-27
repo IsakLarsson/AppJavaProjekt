@@ -7,18 +7,11 @@ import java.awt.event.KeyListener;
 
 public class GameWindow extends JPanel {
     // Define constants for the game
-    static final int CANVAS_WIDTH = 800;    // width and height of the drawing canvas
+    static final int CANVAS_WIDTH = 800;
     static final int CANVAS_HEIGHT = 600;
-    // ......
-
-    // Define instance variables for the game objects
-    // ......
-    // ......
 
     // Handle for the custom drawing panel
     private GameCanvas canvas;
-
-    //public static JMenuBar menuBar;    // the menu bar (if needed)
 
     // Constructor to initialize the UI components and game objects
     public GameWindow() {
@@ -27,9 +20,6 @@ public class GameWindow extends JPanel {
         canvas = new GameCanvas();
         canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         add(canvas);   // center of default BorderLayout
-
-        // Other UI components such as button, score board, if any.
-
     }
 
 
@@ -54,9 +44,6 @@ public class GameWindow extends JPanel {
                 break;
         }
     }
-
-    // Other methods
-    // ......
 
     // Custom drawing panel, written as an inner class.
     class GameCanvas extends JPanel implements KeyListener {
