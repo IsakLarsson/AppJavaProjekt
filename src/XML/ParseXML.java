@@ -19,9 +19,9 @@ public class ParseXML {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("tea.xml");
+            Document doc = builder.parse("src/XML/TestLevel.xml");
             Element level = doc.getDocumentElement();
-            NodeList teaList = level.getElementsByTagName("tea");
+            NodeList teaList = level.getElementsByTagName("playerPath");
 
             for (int i = 0; i < teaList.getLength(); i++) {
 
@@ -29,9 +29,9 @@ public class ParseXML {
 
                 if (tea.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) tea;
-                    String id = element.getAttribute("id");
+                    String id = element.getAttribute("pathType");
                     System.out.println(id);
-
+                    /*
                     NodeList info = element.getChildNodes();
 
                     for (int j = 0; j < info.getLength(); j++) {
@@ -42,6 +42,8 @@ public class ParseXML {
                             System.out.println(e.getTagName() + " : " + e.getTextContent());
                         }
                     }
+
+                     */
                 }
             }
         } catch (ParserConfigurationException e) {
