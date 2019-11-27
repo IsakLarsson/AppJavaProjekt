@@ -19,7 +19,7 @@ public class ParseXML {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("level.xml");
+            Document doc = builder.parse("tea.xml");
             Element level = doc.getDocumentElement();
             NodeList teaList = level.getElementsByTagName("tea");
 

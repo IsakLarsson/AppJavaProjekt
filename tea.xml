@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tealist>
+    <tea id="23">
+        <category>Kränkus blandningar</category>
+        <name>Earl Grey Cream</name>
+        <price>22</price>
+        <description>Ett lite sötare te med Earl Grey som bas.</description>
+    </tea>
+    <tea id="100">
+        <category>Kränkus blandningar</category>
+        <name>Svinhusblandning</name>
+        <price>22</price>
+        <description>Doftar inte svin. Välsmakande mustig citrus.
+        </description>
+    </tea>
+</tealist>
