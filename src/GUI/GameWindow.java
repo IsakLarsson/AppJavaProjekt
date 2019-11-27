@@ -5,10 +5,15 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static java.awt.Color.white;
+
 public class GameWindow extends JPanel {
     // Define constants for the game
     static final int CANVAS_WIDTH = 800;
     static final int CANVAS_HEIGHT = 600;
+
+    // Position x & y
+    int x,y;
 
     // Handle for the custom drawing panel
     private GameCanvas canvas;
@@ -22,10 +27,22 @@ public class GameWindow extends JPanel {
         add(canvas);   // center of default BorderLayout
     }
 
+    public void incrementPositions() {
+        this.x+=1;
+        this.y+=1;
+    }
 
     // Refresh the display after each step.
     // Use (Graphics g) as argument if you are not using Java 2D.
-    public void gameDraw(Graphics2D g2d) { }
+    public void gameDraw(Graphics g) {
+        g.setColor(white);
+        g.fill3DRect(x , y ,
+                15, 15, true);
+    }
+
+    public void update() {
+        repaint();
+    }
 
     // Process a key-pressed event.
     public void gameKeyPressed(int keyCode) {
@@ -58,12 +75,11 @@ public class GameWindow extends JPanel {
         // Called back by repaint().
         @Override
         public void paintComponent(Graphics g) {
-            Graphics2D g2d = (Graphics2D)g;  // if using Java 2D
-            super.paintComponent(g2d);       // paint background
+            super.paintComponent(g);       // paint background
             setBackground(Color.BLACK);      // may use an image for background
 
             // Draw the game objects
-            gameDraw(g2d);
+            gameDraw(g);
         }
 
         // KeyEvent handlers
