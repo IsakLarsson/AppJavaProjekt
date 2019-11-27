@@ -1,3 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GameMap type="Map">
-</GameMap>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Game UnitID="Farmer"/>
