@@ -1,11 +1,14 @@
 package GUI;
 
 import Unit.Farmer;
+import Unit.Tower;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Stack;
 
 import static java.awt.Color.white;
 
@@ -15,10 +18,11 @@ public class GameWindow extends JPanel {
     static final int CANVAS_HEIGHT = 600;
 
     // Position x & y
-    int x,y;
+    int farmerPosX, farmerPosY, towerPosX, towerPosY;
 
     // Units that needs to be updated
     Farmer farmer;
+    Tower tower;
 
     // Handle for the custom drawing panel
     private GameCanvas canvas;
@@ -32,19 +36,26 @@ public class GameWindow extends JPanel {
         add(canvas);   // center of default BorderLayout
 
         // Init units
-        farmer = new Farmer(x,y);
+        farmer = new Farmer();
+        tower = new Tower();
     }
 
-    public void incrementPositions() {
-        this.x+=1;
-        this.y+=1;
+    public void setPositions(ArrayList al) {
+        this.farmerPosX = (int) al.get(2);
+        this.farmerPosY = (int) al.get(3);
+        this.towerPosX = (int) al.get(0);
+        this.towerPosY = (int) al.get(1);
+
+
+
     }
 
     // Refresh the display after each step.
     // Use (Graphics g) as argument if you are not using Java 2D.
     public void gameDraw(Graphics g) {
-        // Update farmer
-        farmer.draw(g,x,y);
+        // Update units
+        farmer.draw(g, this.farmerPosX, this.farmerPosY);
+        tower.draw(g, this.towerPosX, this.towerPosY);
     }
 
     public void update() {
