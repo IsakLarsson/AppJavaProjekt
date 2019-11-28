@@ -7,12 +7,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Stack;
 
 import static java.awt.Color.white;
 
 public class GameWindow extends JPanel {
+
+    // An image
+    BufferedImage image;
+
     // Define constants for the game
     static final int CANVAS_WIDTH = 800;
     static final int CANVAS_HEIGHT = 600;
@@ -53,6 +58,9 @@ public class GameWindow extends JPanel {
     // Refresh the display after each step.
     // Use (Graphics g) as argument if you are not using Java 2D.
     public void gameDraw(Graphics g) {
+
+        // Draw a new image in the canvas
+        g.drawImage(image,0,0,this);
         // Update units
         farmer.draw(g, this.farmerPosX, this.farmerPosY);
         tower.draw(g, this.towerPosX, this.towerPosY);

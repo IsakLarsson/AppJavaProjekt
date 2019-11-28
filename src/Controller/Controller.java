@@ -2,6 +2,7 @@ package Controller;
 
 import GUI.GameFrame;
 import GUI.GameWindow;
+import Model.Model;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -13,7 +14,11 @@ public class Controller {
         GameFrame gameFrame = new GameFrame("Test", gameWindow);
         gameFrame.show();
 
-        // Skapa en tråd för att uppdatera GUI
+        while(gameIsRunning) {
+            Model model = new Model();
+        }
+
+        /* Skapa en tråd för att uppdatera GUI
         Thread thread = new Thread(() -> {
             //15 sekunder
             for (int i=0; i < 150; i++) {
@@ -34,7 +39,7 @@ public class Controller {
             }
         });
         thread.start();
-
+        */
 
 
 
