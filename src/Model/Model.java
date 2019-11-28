@@ -23,7 +23,7 @@ public class Model extends SwingWorker {
 
         // While game is running
         while (gameIsRunning) {
-            
+
         }
 
         publish();
