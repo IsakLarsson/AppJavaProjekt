@@ -27,7 +27,7 @@ public class Controller {
                 gameWindow.update();                //Uppdatera window
 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

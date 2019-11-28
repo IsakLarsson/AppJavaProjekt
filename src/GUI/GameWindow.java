@@ -41,10 +41,10 @@ public class GameWindow extends JPanel {
     }
 
     public void setPositions(ArrayList al) {
-        this.farmerPosX = (int) al.get(2);
-        this.farmerPosY = (int) al.get(3);
-        this.towerPosX = (int) al.get(0);
-        this.towerPosY = (int) al.get(1);
+        this.farmerPosX = (int) al.get(0);
+        this.farmerPosY = (int) al.get(1);
+        this.towerPosX = (int) al.get(2);
+        this.towerPosY = (int) al.get(3);
 
 
 
