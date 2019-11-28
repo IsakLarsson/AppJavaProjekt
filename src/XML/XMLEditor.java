@@ -34,7 +34,7 @@ public class XMLEditor {
      * @throws ParserConfigurationException
      * @throws TransformerException
      */
-    public void createLevel1() throws ParserConfigurationException, TransformerException {
+    public void createLevels() throws ParserConfigurationException, TransformerException {
         //Create documentBuilder - Can create documents
         DocumentBuilderFactory docBuildFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docBuildFactory.newDocumentBuilder();
