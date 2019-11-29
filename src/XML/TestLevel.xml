@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <levels>
-    <level1 lvl = "1">
+    <level1>
         <mapSize>20,20</mapSize>
-        <playerPath pathType="playerPath">
+        <playerPath>
             <!-- X,Y -->
             <coordinates>0,0</coordinates>
             <coordinates>1,0</coordinates>
