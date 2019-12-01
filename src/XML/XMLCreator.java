@@ -65,42 +65,48 @@ public class XMLCreator {
      * Create level 1
      */
     private void createLevel1() {
-        //Create document with documentBuilder and add a new element named Game to the document
+        //Create root-document with documentBuilder and add a new element named Game to the document
         doc = docBuilder.newDocument();
         Element levels = doc.createElement("Levels");
         doc.appendChild(levels);
 
+        //Root for level 1
         Element level1 = doc.createElement("Level1");
         levels.appendChild(level1);
 
+        //Sets mapSize of level 1
+        Element mapSize = doc.createElement("mapSize");
+        mapSize.appendChild(doc.createTextNode("20"));
+        level1.appendChild(mapSize);
+
+        //Sets coordinates for playerPath
         Element playerPath = doc.createElement("playerPath");
         level1.appendChild(playerPath);
-
         for (int i = 0; i < 20; i++){
             Element coordinates = doc.createElement("coordinates");
             coordinates.appendChild(doc.createTextNode(i + ",0"));
             playerPath.appendChild(coordinates);
         }
 
+        //Sets coordinates for towerArea
         Element towerArea = doc.createElement("towerArea");
         level1.appendChild(towerArea);
-
         for (int i = 0; i < 2; i++){
             Element coordinates = doc.createElement("coordinates");
             coordinates.appendChild(doc.createTextNode(i + ",1"));
             towerArea.appendChild(coordinates);
         }
 
+        //Sets coordinates for spawnArea
         Element spawnArea = doc.createElement("spawnArea");
         level1.appendChild(spawnArea);
-
         Element coordinates = doc.createElement("coordinates");
         coordinates.appendChild(doc.createTextNode("0,0"));
         spawnArea.appendChild(coordinates);
 
+        //Sets coordinates for goalArea
         Element goalArea = doc.createElement("goalArea");
         level1.appendChild(goalArea);
-
         coordinates = doc.createElement("coordinates");
         coordinates.appendChild(doc.createTextNode("0,19"));
         goalArea.appendChild(coordinates);
