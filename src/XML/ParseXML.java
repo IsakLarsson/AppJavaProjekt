@@ -49,9 +49,9 @@ public class ParseXML {
                 }
             }
 
-            tileMap = findPath(tileMap, level);
-            tileMap = findTowerArea(tileMap, level);
-            tileMap = findSpawnArea(tileMap, level);
+            findPath(level);
+            findTowerArea(level);
+            findSpawnArea(level);
 
 
             /*
@@ -96,12 +96,10 @@ public class ParseXML {
 
     /**
      * Finds cordinates for Path in XML file.
-     * @param tileMap Array to set to represent level.
      * @param level Element from which Path nodelist is found.
      * @return Update buildLevel array.
      */
-    private TileMap findPath(TileMap tileMap, Element level){
-
+    private void findPath(Element level){
 
         NodeList n = level.getElementsByTagName("playerPath");
         Node pa = n.item(0);
@@ -125,16 +123,14 @@ public class ParseXML {
                 }
             }
         }
-        return tileMap;
     }
 
     /**
      * Finds cordinates for TowerArea in XML file.
-     * @param tileMap Array to set to represent level.
      * @param level Element from which TowerArea nodelist is found.
      * @return Update buildLevel array.
      */
-    private TileMap findTowerArea(TileMap tileMap, Element level){
+    private void findTowerArea(Element level){
 
         NodeList p = level.getElementsByTagName("towerArea");
         Node pa = p.item(0);
@@ -158,16 +154,14 @@ public class ParseXML {
                 }
             }
         }
-        return tileMap;
     }
 
     /**
      * Finds cordinates for spawnArea in XML file.
-     * @param tileMap Array to set to represent level.
      * @param level Element from which SpawnArea nodelist is found.
      * @return Update buildLevel array.
      */
-    private TileMap findSpawnArea(TileMap tileMap, Element level){
+    private void findSpawnArea(Element level){
 
         NodeList p = level.getElementsByTagName("spawnArea");
         Node pa = p.item(0);
@@ -191,6 +185,5 @@ public class ParseXML {
                 }
             }
         }
-        return tileMap;
     }
 }
