@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<test>test</test>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="levels">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="level1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="mapSize">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="playerPath" type="xsd:int"/>
+                            <xsd:element name="towerArea" type="xsd:int"/>
+                            <xsd:element name="spawnArea" type="xsd:int"/>
+                            <xsd:element name="goalArea" type="xsd:int"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+
+
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
