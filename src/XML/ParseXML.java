@@ -1,5 +1,7 @@
 package XML;
 
+import GUI.Tile;
+import GUI.TileMap;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,6 +11,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.io.IOException;
 
 public class ParseXML {
@@ -33,26 +36,33 @@ public class ParseXML {
 
             int mapSize = getMapSize(level);
 
-            buildLevel = new int[mapSize][mapSize];
+            TileMap tileMap = new TileMap(mapSize, mapSize);
+
+
+
+            //buildLevel = new int[mapSize][mapSize];
 
             for(int i = 0; i < mapSize; i++){
                 for(int j = 0; j < mapSize; j++){
-                    buildLevel[i][j] = 0;
+                    Tile tile = new Tile(j,i,20,20, Color.BLACK);
+                    tileMap.addTile(tile);
                 }
             }
 
-            buildLevel = findPath(buildLevel, level);
-            buildLevel = findTowerArea(buildLevel, level);
-            buildLevel = findSpawnArea(buildLevel, level);
+            tileMap = findPath(tileMap, level);
+            tileMap = findTowerArea(tileMap, level);
+            tileMap = findSpawnArea(tileMap, level);
 
 
-
+            /*
             for(int i = 0; i < mapSize; i++){
                 System.out.println();
                 for(int j = 0; j < mapSize; j++){
                     System.out.print(buildLevel[j][i]);
                 }
             }
+
+             */
 
 
 
@@ -86,11 +96,11 @@ public class ParseXML {
 
     /**
      * Finds cordinates for Path in XML file.
-     * @param buildLevel Array to set to represent level.
+     * @param tileMap Array to set to represent level.
      * @param level Element from which Path nodelist is found.
      * @return Update buildLevel array.
      */
-    private int[][] findPath(int[][] buildLevel, Element level){
+    private TileMap findPath(TileMap tileMap, Element level){
 
 
         NodeList n = level.getElementsByTagName("playerPath");
@@ -110,20 +120,21 @@ public class ParseXML {
                     String[] tokens = str.split(",");
                     Integer X = Integer.valueOf(tokens[0]);
                     Integer Y = Integer.valueOf(tokens[1]);
-                    buildLevel[X][Y] = 1;
+                    Tile tile = new Tile(X, Y, 20, 20, Color.orange);
+                    tileMap.addTile(tile);
                 }
             }
         }
-        return buildLevel;
+        return tileMap;
     }
 
     /**
      * Finds cordinates for TowerArea in XML file.
-     * @param buildLevel Array to set to represent level.
+     * @param tileMap Array to set to represent level.
      * @param level Element from which TowerArea nodelist is found.
      * @return Update buildLevel array.
      */
-    private int[][] findTowerArea(int[][] buildLevel, Element level){
+    private TileMap findTowerArea(TileMap tileMap, Element level){
 
         NodeList p = level.getElementsByTagName("towerArea");
         Node pa = p.item(0);
@@ -142,20 +153,21 @@ public class ParseXML {
                     String[] tokens = str.split(",");
                     Integer X = Integer.valueOf(tokens[0]);
                     Integer Y = Integer.valueOf(tokens[1]);
-                    buildLevel[X][Y] = 2;
+                    Tile tile = new Tile(X, Y, 20, 20, Color.white);
+                    tileMap.addTile(tile);
                 }
             }
         }
-        return buildLevel;
+        return tileMap;
     }
 
     /**
      * Finds cordinates for spawnArea in XML file.
-     * @param buildLevel Array to set to represent level.
+     * @param tileMap Array to set to represent level.
      * @param level Element from which SpawnArea nodelist is found.
      * @return Update buildLevel array.
      */
-    private int[][] findSpawnArea(int[][] buildLevel, Element level){
+    private TileMap findSpawnArea(TileMap tileMap, Element level){
 
         NodeList p = level.getElementsByTagName("spawnArea");
         Node pa = p.item(0);
@@ -174,10 +186,11 @@ public class ParseXML {
                     String[] tokens = str.split(",");
                     Integer X = Integer.valueOf(tokens[0]);
                     Integer Y = Integer.valueOf(tokens[1]);
-                    buildLevel[X][Y] = 3;
+                    Tile tile = new Tile(X, Y, 20, 20, Color.magenta);
+                    tileMap.addTile(tile);
                 }
             }
         }
-        return buildLevel;
+        return tileMap;
     }
 }
