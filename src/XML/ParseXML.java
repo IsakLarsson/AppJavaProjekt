@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class ParseXML {
 
-    private int[][] buildLevel;
+    private TileMap tileMap;
 
     public TileMap parser() {
 
@@ -36,7 +36,7 @@ public class ParseXML {
 
             int mapSize = getMapSize(level);
 
-            TileMap tileMap = new TileMap(mapSize, mapSize);
+            tileMap = new TileMap(mapSize, mapSize);
 
 
 
