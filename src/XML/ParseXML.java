@@ -18,7 +18,7 @@ public class ParseXML {
 
     private int[][] buildLevel;
 
-    public int[][] parser() {
+    public TileMap parser() {
 
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -75,7 +75,7 @@ public class ParseXML {
             e.printStackTrace();
         }
 
-        return buildLevel;
+        return tileMap;
     }
 
     /**
