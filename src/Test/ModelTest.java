@@ -1,9 +1,6 @@
-package Test;
+/*package Test;
 
 import Model.Model;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class ModelTest {
 
@@ -12,4 +9,4 @@ public class ModelTest {
         int[][] path = {{5},{5},{5},{6}};
 
     }
-}
+}*/

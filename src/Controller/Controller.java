@@ -4,6 +4,7 @@ import GUI.GameFrame;
 import GUI.GameWindow;
 import Model.Model;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -14,15 +15,10 @@ public class Controller {
 
     public Controller(){
 
-        frames = new ArrayList<>();
-        Boolean gameIsRunning = true;
-        GameWindow gameWindow = new GameWindow();
-        GameFrame gameFrame = new GameFrame("Test", gameWindow);
-        gameFrame.show();
-
-        while(gameIsRunning) {
-            Model model = new Model(frames);
-        }
+        SwingUtilities.invokeLater(() -> {
+            GameFrame gui = new GameFrame("Anti-TD");
+            gui.show();
+        });
 
         /* Skapa en tråd för att uppdatera GUI
         Thread thread = new Thread(() -> {

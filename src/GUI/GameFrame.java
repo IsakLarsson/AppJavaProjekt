@@ -5,8 +5,10 @@ import java.awt.*;
 
 public class GameFrame {
     private JFrame frame;
+    private GameWindow gameWindow;
 
-    public GameFrame(String title, GameWindow gameWindow) {
+    public GameFrame(String title){
+        gameWindow = new GameWindow();
         frame = new JFrame(title);
         // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setContentPane(gameWindow);
@@ -36,7 +38,6 @@ public class GameFrame {
      */
     private JPanel buildUpperPanel() {
         JPanel upperPanel = new JPanel();
-
         return upperPanel;
     }
 
