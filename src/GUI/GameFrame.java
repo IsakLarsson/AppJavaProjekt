@@ -7,9 +7,11 @@ public class GameFrame {
     private JFrame frame;
     private GameWindow gameWindow;
 
-    public GameFrame(String title){
-        gameWindow = new GameWindow();
+    public GameFrame(String title, GameWindow gameWindow){
+
+        this.gameWindow = gameWindow;
         frame = new JFrame(title);
+
         // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setContentPane(gameWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
