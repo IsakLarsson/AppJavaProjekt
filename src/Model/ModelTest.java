@@ -22,4 +22,9 @@ class ModelTest {
         Assert.assertEquals(40, map.getMapData().length);
     }
 
+    @Test
+    public void testThatBufferedImageIsNotNull() {
+        Assert.assertNotNull(adapter.getImage());
+    }
+
 }
