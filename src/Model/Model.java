@@ -11,20 +11,17 @@ public class Model extends SwingWorker {
     // Arraylist of frames
     private ArrayList<BufferedImage> frames;
 
-    // Boolean that stops the game if needed
-    private Boolean gameIsRunning;
+    // Adapter to transfer data from model to gui
+    private ModelAdapter adapter;
 
-    public Model(ArrayList<BufferedImage> al) {
-        frames = al;
+    public Model(ArrayList<BufferedImage> al, ModelAdapter ma) {
+        this.frames = al;
+        this.adapter = ma;
     }
 
     @Override
     protected Object doInBackground() {
 
-        // While game is running
-        while (gameIsRunning) {
-
-        }
 
         publish();
         return null;

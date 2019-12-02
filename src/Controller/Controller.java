@@ -2,12 +2,11 @@ package Controller;
 
 import GUI.GameFrame;
 import GUI.GameWindow;
-import Model.Model;
+import Model.*;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class Controller {
 
@@ -17,10 +16,14 @@ public class Controller {
 
         SwingUtilities.invokeLater(() -> {
             frames = new ArrayList<>();
-            Boolean gameIsRunning = true;
             GameWindow gameWindow = new GameWindow();
             GameFrame gameFrame = new GameFrame("Test", gameWindow);
             gameFrame.show();
+
+            ModelAdapter adapter = new ModelAdapter(gameWindow);
+            Model model = new Model(frames,adapter);
+        
+
         });
 
 

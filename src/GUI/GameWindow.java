@@ -13,7 +13,7 @@ import java.util.Stack;
 
 import static java.awt.Color.white;
 
-public class GameWindow extends JPanel implements WindowInterface{
+public class GameWindow extends JPanel {
 
     // An image
     BufferedImage image;
@@ -33,7 +33,6 @@ public class GameWindow extends JPanel implements WindowInterface{
         add(canvas);   // center of default BorderLayout
     }
 
-    @Override
     public void setBufferedImage(BufferedImage bi) {
         this.image = bi;
     }
