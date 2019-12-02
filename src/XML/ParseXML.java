@@ -16,9 +16,9 @@ import java.io.IOException;
 
 public class ParseXML {
 
-    private int[][] buildLevel;
+    private TileMap tileMap;
 
-    public int[][] parser() {
+    public TileMap parser() {
 
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -36,7 +36,7 @@ public class ParseXML {
 
             int mapSize = getMapSize(level);
 
-            TileMap tileMap = new TileMap(mapSize, mapSize);
+            tileMap = new TileMap(mapSize, mapSize);
 
 
 
@@ -75,7 +75,7 @@ public class ParseXML {
             e.printStackTrace();
         }
 
-        return buildLevel;
+        return tileMap;
     }
 
     /**
