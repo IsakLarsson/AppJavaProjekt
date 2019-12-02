@@ -76,13 +76,13 @@ public class XMLCreator {
 
         //Sets mapSize of level 1
         Element mapSize = doc.createElement("mapSize");
-        mapSize.appendChild(doc.createTextNode("40"));
+        mapSize.appendChild(doc.createTextNode("10"));
         level1.appendChild(mapSize);
 
         //Sets coordinates for playerPath
         Element playerPath = doc.createElement("playerPath");
         level1.appendChild(playerPath);
-        for (int i = 0; i < 40; i++){
+        for (int i = 0; i < 10; i++){
             Element coordinates = doc.createElement("coordinates");
             coordinates.appendChild(doc.createTextNode(i + ",0"));
             playerPath.appendChild(coordinates);
