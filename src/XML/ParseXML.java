@@ -15,7 +15,7 @@ public class ParseXML {
 
     private int[][] buildLevel;
 
-    public ParseXML() {
+    public int[][] parser() {
 
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -64,6 +64,8 @@ public class ParseXML {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return buildLevel;
     }
 
     /**
