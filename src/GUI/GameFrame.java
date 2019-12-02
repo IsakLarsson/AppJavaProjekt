@@ -6,8 +6,8 @@ import java.awt.*;
 public class GameFrame {
     private JFrame frame;
     private GameWindow gameWindow;
-    private int XSIZE = 960;
-    private int YSIZE = 640;
+    private int XSIZE = 1000;
+    private int YSIZE = 600;
 
     public GameFrame(String title, GameWindow gameWindow){
 

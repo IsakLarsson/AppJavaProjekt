@@ -27,6 +27,25 @@ public class Model extends SwingWorker {
     @Override
     protected Object doInBackground() {
 
+        // Draws the level
+        drawLevel();
+
+        // Update every units position on the map
+        updatePositions();
+
+        adapter.setBufferedImage(image);
+        //publish();
+        return null;
+    }
+
+    @Override
+    protected void process(List chunks) {
+        for (Object o : chunks) {
+
+        }
+    }
+
+    private void drawLevel () {
         ParseXML xmlParser = new ParseXML();
         TileMap tileMap = xmlParser.parser();
         Graphics g = image.getGraphics();
@@ -41,23 +60,9 @@ public class Model extends SwingWorker {
                 g.setColor(tile.getColor());
             }
         }
-
-        adapter.setBufferedImage(image);
-        //publish();
-        return null;
     }
 
-    @Override
-    protected void process(List chunks) {
-        for (Object o : chunks) {
-
-        }
-    }
-
-    public void addStuff() {
+    public void updatePositions () {
 
     }
-
-    public void stopGame() {}
-
 }
