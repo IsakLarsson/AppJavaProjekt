@@ -10,8 +10,8 @@ public class GameWindow extends JPanel {
     private BufferedImage image;
 
     // Define constants for the game
-    static final int CANVAS_WIDTH = 960;
-    static final int CANVAS_HEIGHT = 640;
+    static final int CANVAS_WIDTH = 400;
+    static final int CANVAS_HEIGHT = 400;
 
     private TileMap tileMap;
     // Handler for the custom drawing panel
@@ -34,7 +34,7 @@ public class GameWindow extends JPanel {
     // Use (Graphics g) as argument if you are not using Java 2D.
     //Kanske ta in en buffered image och rita ut den
     public void drawGame(Graphics g) {
-        g.drawImage(image,0,0, Color.black, null);
+        g.drawImage(image,0,0, Color.BLACK, null);
     }
 
     public void update() {
