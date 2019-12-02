@@ -6,6 +6,8 @@ import java.awt.*;
 public class GameFrame {
     private JFrame frame;
     private GameWindow gameWindow;
+    private int XSIZE = 960;
+    private int YSIZE = 640;
 
     public GameFrame(String title, GameWindow gameWindow){
 
@@ -22,7 +24,7 @@ public class GameFrame {
 
         //frame.add(upperPanel, BorderLayout.NORTH);
         //frame.add(lowerPanel, BorderLayout.CENTER);
-        frame.setSize(800, 600);
+        frame.setSize(XSIZE, YSIZE);
         frame.setLocationRelativeTo(null);
     }
 

@@ -4,6 +4,6 @@
     <excludeFromCompile>
       <file url="file://$PROJECT_DIR$/src/Test/ModelTest.java" />
     </excludeFromCompile>
-    <bytecodeTargetLevel target="12" />
+    <bytecodeTargetLevel target="10" />
   </component>
 </project>
