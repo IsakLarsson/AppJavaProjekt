@@ -27,7 +27,7 @@ public class Controller {
             gameFrame.show();
 
             ModelAdapter adapter = new ModelAdapter(gameWindow);
-            Model model = new Model(frames, adapter);
+            Model model = new Model(adapter);
             try {
                 Thread.sleep(1000);
             }

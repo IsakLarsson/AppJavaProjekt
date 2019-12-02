@@ -12,13 +12,16 @@ import java.util.List;
 
 public class Model extends SwingWorker {
 
-    // Arraylist of frames
+    // Buffered image
     private BufferedImage image;
 
     // Adapter to transfer data from model to gui
     private ModelAdapter adapter;
 
-    public Model(ArrayList<BufferedImage> al, ModelAdapter ma) {
+    // Map of tiles in a 2d array
+    private TileMap tileMap;
+
+    public Model(ModelAdapter ma) {
         this.image = new BufferedImage(800,600,BufferedImage.TYPE_INT_ARGB);
         this.adapter = ma;
         doInBackground();
@@ -47,7 +50,7 @@ public class Model extends SwingWorker {
 
     private void drawLevel () {
         ParseXML xmlParser = new ParseXML();
-        TileMap tileMap = xmlParser.parser();
+        tileMap = xmlParser.parser();
         Graphics g = image.getGraphics();
 
         for(int i = 0; i < tileMap.getMapData().length; i++){
@@ -64,5 +67,9 @@ public class Model extends SwingWorker {
 
     public void updatePositions () {
 
+    }
+
+    public TileMap getTileMap() {
+        return tileMap;
     }
 }
