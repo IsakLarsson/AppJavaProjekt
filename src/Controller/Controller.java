@@ -18,18 +18,24 @@ public class Controller {
     public Controller(){
 
         SwingUtilities.invokeLater(() -> {
-            ParseXML xmlParser = new ParseXML();
-            tileMap = xmlParser.parser();
+            //ParseXML xmlParser = new ParseXML();
+            //tileMap = xmlParser.parser();
 
-            frames = new ArrayList<>();
-            GameWindow gameWindow = new GameWindow(tileMap);
+            //frames = new ArrayList<>();
+            GameWindow gameWindow = new GameWindow();
             GameFrame gameFrame = new GameFrame("Test", gameWindow);
             gameFrame.show();
 
             ModelAdapter adapter = new ModelAdapter(gameWindow);
-            Model model = new Model(frames,adapter);
-
+            Model model = new Model(frames, adapter);
+            try {
+                Thread.sleep(1000);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
             gameWindow.update();
+
 
         });
 
