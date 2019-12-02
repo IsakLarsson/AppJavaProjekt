@@ -19,6 +19,8 @@ public class Tile {
 
         position = new Position(xCoordinate, yCoordinate);
         this.color = color;
+        this.xSize = xSize;
+        this.ySize = ySize;
     }
 
     public int getxCoordinate() {
