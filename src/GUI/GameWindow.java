@@ -13,7 +13,7 @@ import java.util.Stack;
 
 import static java.awt.Color.white;
 
-public class GameWindow extends JPanel {
+public class GameWindow extends JPanel implements WindowInterface{
 
     // An image
     BufferedImage image;
@@ -33,6 +33,10 @@ public class GameWindow extends JPanel {
         add(canvas);   // center of default BorderLayout
     }
 
+    @Override
+    public void setBufferedImage(BufferedImage bi) {
+        this.image = bi;
+    }
 
     // Refresh the display after each step.
     // Use (Graphics g) as argument if you are not using Java 2D.
