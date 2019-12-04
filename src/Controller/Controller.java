@@ -3,6 +3,7 @@ package Controller;
 import GUI.GameFrame;
 import GUI.GameWindow;
 import Listeners.ButtonListener;
+import Listeners.MenuListener;
 import Model.*;
 
 
@@ -14,12 +15,20 @@ public class Controller {
     private GameFrame gameFrame;
 
     //
+    private MenuListener menuListener;
+
+    //
     private ButtonListener buttonListener;
+
+
 
     public Controller(){
 
         //
         SwingUtilities.invokeLater(() -> {
+
+            //
+            this.menuListener = new MenuListener(this);
 
             // An actionlistener for the spawn buttons
             this.buttonListener = new ButtonListener(this);
@@ -28,7 +37,7 @@ public class Controller {
             GameWindow gameWindow = new GameWindow();
 
             // A window gameFrame containing a menubar
-            gameFrame = new GameFrame("Game", gameWindow, this.buttonListener);
+            gameFrame = new GameFrame("Game", gameWindow, this.buttonListener, this.menuListener);
             gameFrame.setupListeners(buttonListener);
             // Show the gui
             gameFrame.show();
@@ -54,6 +63,6 @@ public class Controller {
     }
 
     public void openDialog(String title, String text) {
-        JOptionPane.showMessageDialog(gameFrame.getFrame(),title,text,JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
     }
 }
