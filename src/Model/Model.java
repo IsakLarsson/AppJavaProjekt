@@ -33,14 +33,13 @@ public class Model extends SwingWorker {
         // Draws the level
         drawLevel();
 
-        while(!gameOver) {
+
 
             // Update every units position on the map
             updatePositions();
 
             // Publish the image to process()
             publish(image);
-        }
 
 
 
