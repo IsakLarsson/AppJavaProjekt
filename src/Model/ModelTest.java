@@ -1,7 +1,6 @@
 package Model;
 
 import GUI.GameWindow;
-import GUI.TileMap;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,11 +14,11 @@ class ModelTest {
     /**
      * Tests that the size of the tile map is correct
      */
-    @Test
+    /*@Test
     public void testSizeOfTileMap() {
         TileMap map = model.getTileMap();
         assertEquals(40, map.getMapData().length);
-    }
+    }*/
 
     @Test
     public void testThatBufferedImageIsNotNull() {

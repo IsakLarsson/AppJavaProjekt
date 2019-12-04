@@ -13,7 +13,6 @@ public class GameWindow extends JPanel {
     static final int CANVAS_WIDTH = 400;
     static final int CANVAS_HEIGHT = 400;
 
-    private TileMap tileMap;
     // Handler for the custom drawing panel
     private GameCanvas canvas;
 

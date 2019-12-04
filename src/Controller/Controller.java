@@ -2,16 +2,13 @@ package Controller;
 
 import GUI.GameFrame;
 import GUI.GameWindow;
-import GUI.TileMap;
 import Listeners.ButtonListener;
 import Model.*;
+
 
 import javax.swing.*;
 
 public class Controller {
-
-    // Map with positions
-    private TileMap tileMap;
 
     // The gameFrame of the game
     private GameFrame gameFrame;

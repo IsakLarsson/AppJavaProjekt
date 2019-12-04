@@ -1,10 +1,12 @@
 package Model;
+
 import GUI.Tile;
-import GUI.TileMap;
-import XML.ParseXML;
+import XML.XMLParser;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model extends SwingWorker {
@@ -15,14 +17,11 @@ public class Model extends SwingWorker {
     // Adapter to transfer data from model to gui
     private ModelAdapter adapter;
 
-    // Map of tiles in a 2d array
-    private TileMap tileMap;
-
     // Boolean to determine when the worker stops working
     private Boolean gameOver = false;
 
     public Model(ModelAdapter ma) {
-        this.image = new BufferedImage(800,600,BufferedImage.TYPE_INT_ARGB);
+        this.image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
         this.adapter = ma;
         doInBackground();
     }
@@ -34,13 +33,11 @@ public class Model extends SwingWorker {
         drawLevel();
 
 
+        // Update every units position on the map
+        updatePositions();
 
-            // Update every units position on the map
-            updatePositions();
-
-            // Publish the image to process()
-            publish(image);
-
+        // Publish the image to process()
+        publish(image);
 
 
         return null;
@@ -58,20 +55,18 @@ public class Model extends SwingWorker {
         super.done();
     }
 
-    private void drawLevel () {
-        ParseXML xmlParser = new ParseXML();
-        tileMap = xmlParser.parser();
+    private void drawLevel() {
+        XMLParser xmlParser = new XMLParser();
+        ArrayList<Tile> tileMap = xmlParser.parseXML();
         Graphics g = image.getGraphics();
 
-        for(int i = 0; i < tileMap.getMapData().length; i++){
-            for(int j = 0; j < tileMap.getMapData().length; j++){
-                Tile tile = tileMap.getTile(i,j);
-                g.fillRect(tile.getxCoordinate()+(19*i),
-                        tile.getyCoordinate()+(19*j),
-                        tile.getxSize(),
-                        tile.getySize());
-                g.setColor(tile.getColor());
-            }
+        for (int i = 0; i < tileMap.size(); i++) {
+            Tile tile = tileMap.get(i);
+            g.setColor(tile.getColor());
+            g.fillRect(tile.getxCoordinate(), tile.getyCoordinate(),
+                    tile.getSize(),
+                    tile.getSize());
+
         }
     }
 
@@ -80,9 +75,6 @@ public class Model extends SwingWorker {
         this.gameOver = gameOver;
     }
 
-    public TileMap getTileMap() {
-        return tileMap;
-    }
 
     private void updatePositions() {
     }

@@ -7,20 +7,15 @@ import java.awt.*;
 public class Tile {
 
     private Position position;
-    private int xSize;
-    private int ySize;
-
+    private int size;
     private Color color;
 
     //add more attributes like path, towerarea, goal, start etc
 
-    public Tile(int xCoordinate, int yCoordinate, int xSize,
-                int ySize, Color color){
+    public Tile(int xCoordinate, int yCoordinate, int size){
 
-        position = new Position(xCoordinate, yCoordinate);
-        this.color = color;
-        this.xSize = xSize;
-        this.ySize = ySize;
+        position = new Position(xCoordinate * 20, yCoordinate*20);
+        this.size = size;
     }
 
     public int getxCoordinate() {
@@ -31,15 +26,15 @@ public class Tile {
         return position.getY();
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public Color getColor() {
         return color;
     }
 
-    public int getxSize() {
-        return xSize;
-    }
-
-    public int getySize() {
-        return ySize;
+    public void setColor(Color color) {
+        this.color = color;
     }
 }
