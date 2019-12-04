@@ -1,13 +1,10 @@
 package Model;
-
 import GUI.Tile;
 import GUI.TileMap;
 import XML.ParseXML;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Model extends SwingWorker {
@@ -21,6 +18,9 @@ public class Model extends SwingWorker {
     // Map of tiles in a 2d array
     private TileMap tileMap;
 
+    // Boolean to determine when the worker stops working
+    private Boolean gameOver = false;
+
     public Model(ModelAdapter ma) {
         this.image = new BufferedImage(800,600,BufferedImage.TYPE_INT_ARGB);
         this.adapter = ma;
@@ -33,18 +33,23 @@ public class Model extends SwingWorker {
         // Draws the level
         drawLevel();
 
-        // Update every units position on the map
-        updatePositions();
 
-        adapter.setBufferedImage(image);
-        //publish();
+
+            // Update every units position on the map
+            updatePositions();
+
+            // Publish the image to process()
+            publish(image);
+
+
+
         return null;
     }
 
     @Override
     protected void process(List chunks) {
         for (Object o : chunks) {
-
+            adapter.setBufferedImage((BufferedImage) o);
         }
     }
 
@@ -70,11 +75,16 @@ public class Model extends SwingWorker {
         }
     }
 
-    public void updatePositions () {
 
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     public TileMap getTileMap() {
         return tileMap;
     }
+
+    private void updatePositions() {
+    }
+
 }
