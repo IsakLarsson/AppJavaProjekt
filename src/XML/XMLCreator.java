@@ -86,6 +86,7 @@ public class XMLCreator {
         mapSize.appendChild(doc.createTextNode(mapSizeNr + ""));
         level1.appendChild(mapSize);
 
+        //Create needed area types
         createPathArea(10, level1);
         createTowerArea(2, level1, 5,2);
         createSpawnArea(level1);

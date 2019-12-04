@@ -1,66 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:element name="levels" >
-        <xsd:complexType>
-            <xsd:sequence>
-                <xsd:element name="level1" maxOccurs="1">
-
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="mapSize" type="xsd:int"/>
-                        </xsd:sequence>
-                    </xsd:complexType>
-
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="playerPath" minOccurs="1">
-                                <xsd:complexType>
-                                    <xsd:sequence>
-                                        <xsd:element name="coordinates" type="xsd:int" maxOccurs="unbounded"/>
-                                    </xsd:sequence>
-                                </xsd:complexType>
-                            </xsd:element>
-                        </xsd:sequence>
-                    </xsd:complexType>
-
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="towerArea">
-                                <xsd:complexType>
-                                    <xsd:sequence>
-                                        <xsd:element name="coordinates" type="xsd:int" maxOccurs="unbounded"/>
-                                    </xsd:sequence>
-                                </xsd:complexType>
-                            </xsd:element>
-                        </xsd:sequence>
-                    </xsd:complexType>
-
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="spawnArea">
-                                <xsd:complexType>
-                                    <xsd:sequence>
-                                        <xsd:element name="coordinates" type="xsd:int" maxOccurs="1" minOccurs="1"/>
-                                    </xsd:sequence>
-                                </xsd:complexType>
-                            </xsd:element>
-                        </xsd:sequence>
-                    </xsd:complexType>
-
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="goalArea">
-                                <xsd:complexType>
-                                    <xsd:sequence>
-                                        <xsd:element name="coordinates" type="xsd:int" maxOccurs="1" minOccurs="1"/>
-                                    </xsd:sequence>
-                                </xsd:complexType>
-                            </xsd:element>
-                        </xsd:sequence>
-                    </xsd:complexType>
-
-                </xsd:element>
-            </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
-</xsd:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Levels" type="LevelsType"/>
+  <xs:complexType name="TileType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Coordinates"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="AreaType" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="Level1Type">
+    <xs:sequence>
+      <xs:element type="xs:string" name="mapSize"/>
+      <xs:element type="TileType" name="Tile" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LevelsType">
+    <xs:sequence>
+      <xs:element type="Level1Type" name="Level1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
