@@ -5,25 +5,17 @@ import java.awt.*;
 
 public class GameFrame {
     private JFrame frame;
-    private GameWindow gameWindow;
     private int XSIZE = 1000;
     private int YSIZE = 600;
 
     public GameFrame(String title, GameWindow gameWindow){
 
-        this.gameWindow = gameWindow;
         frame = new JFrame(title);
 
         // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setContentPane(gameWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(buildMenuBar());
-
-        //JPanel upperPanel = buildUpperPanel();
-        //JPanel lowerPanel = buildlowerPanel();
-
-        //frame.add(upperPanel, BorderLayout.NORTH);
-        //frame.add(lowerPanel, BorderLayout.CENTER);
         frame.setSize(XSIZE, YSIZE);
         frame.setLocationRelativeTo(null);
     }
@@ -33,27 +25,6 @@ public class GameFrame {
      */
     public void show() {
         frame.setVisible(true);
-    }
-
-    /**
-     * Builds the upper panel
-     *
-     * @return The created panel
-     */
-    private JPanel buildUpperPanel() {
-        JPanel upperPanel = new JPanel();
-        return upperPanel;
-    }
-
-    /**
-     * Builds the lower panel
-     *
-     * @return The created panel
-     */
-    private JPanel buildlowerPanel() {
-        JPanel lowerPanel = new JPanel();
-
-        return lowerPanel;
     }
 
     /**
