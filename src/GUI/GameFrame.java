@@ -1,14 +1,17 @@
 package GUI;
 
+import Listeners.ButtonListener;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GameFrame {
     private JFrame frame;
+    private ButtonListener buttonListener;
     private int XSIZE = 1000;
     private int YSIZE = 600;
 
-    public GameFrame(String title, GameWindow gameWindow){
+    public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener){
 
         frame = new JFrame(title);
 
@@ -18,6 +21,8 @@ public class GameFrame {
         frame.setJMenuBar(buildMenuBar());
         frame.setSize(XSIZE, YSIZE);
         frame.setLocationRelativeTo(null);
+
+        this.buttonListener = buttonListener;
     }
 
     /**
@@ -59,6 +64,9 @@ public class GameFrame {
         JButton button2 = new JButton("Soldier");
         JButton button3 = new JButton("Teleporter");
 
+        button1.addActionListener(this.buttonListener);
+        button2.addActionListener(this.buttonListener);
+        button3.addActionListener(this.buttonListener);
 
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
@@ -68,5 +76,9 @@ public class GameFrame {
 
 
         return menuBar;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

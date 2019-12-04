@@ -3,28 +3,35 @@ package Controller;
 import GUI.GameFrame;
 import GUI.GameWindow;
 import GUI.TileMap;
+import Listeners.ButtonListener;
 import Model.*;
-import XML.ParseXML;
 
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Controller {
 
     // Map with positions
     private TileMap tileMap;
 
+    // The gameFrame of the game
+    private GameFrame gameFrame;
+
+    //
+    private ButtonListener buttonListener;
+
     public Controller(){
 
         //
         SwingUtilities.invokeLater(() -> {
 
+            // An actionlistener for the spawn buttons
+            this.buttonListener = new ButtonListener(this);
+
             // A panel that you draw on
             GameWindow gameWindow = new GameWindow();
 
-            // A window frame containing a menubar
-            GameFrame gameFrame = new GameFrame("Game", gameWindow);
+            // A window gameFrame containing a menubar
+            gameFrame = new GameFrame("Game", gameWindow, this.buttonListener);
 
             // Show the gui
             gameFrame.show();
@@ -47,5 +54,9 @@ public class Controller {
             gameWindow.update();
 
         });
+    }
+
+    public void openDialog(String title, String text) {
+        JOptionPane.showMessageDialog(gameFrame.getFrame(),title,text,JOptionPane.PLAIN_MESSAGE);
     }
 }
