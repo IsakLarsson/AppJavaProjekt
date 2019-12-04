@@ -11,6 +11,10 @@ public class GameFrame {
     private int XSIZE = 1000;
     private int YSIZE = 600;
 
+    JButton button1;
+    JButton button2;
+    JButton button3;
+
     public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener){
 
         frame = new JFrame(title);
@@ -60,13 +64,11 @@ public class GameFrame {
         helpMenu.add(menuItem5);
         helpMenu.add(menuItem6);
 
-        JButton button1 = new JButton("Farmer");
-        JButton button2 = new JButton("Soldier");
-        JButton button3 = new JButton("Teleporter");
+        button1 = new JButton("Farmer");
+        button2 = new JButton("Soldier");
+        button3 = new JButton("Teleporter");
 
-        button1.addActionListener(this.buttonListener);
-        button2.addActionListener(this.buttonListener);
-        button3.addActionListener(this.buttonListener);
+
 
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
@@ -76,6 +78,17 @@ public class GameFrame {
 
 
         return menuBar;
+    }
+
+    /**
+     * Sets up the button listener for the "run tests" button.
+     *
+     * @param buttonListener
+     */
+    public void setupListeners(ButtonListener buttonListener) {
+        button1.addActionListener(this.buttonListener);
+        button2.addActionListener(this.buttonListener);
+        button3.addActionListener(this.buttonListener);
     }
 
     public JFrame getFrame() {

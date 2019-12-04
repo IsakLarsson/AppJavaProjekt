@@ -29,7 +29,7 @@ public class Controller {
 
             // A window gameFrame containing a menubar
             gameFrame = new GameFrame("Game", gameWindow, this.buttonListener);
-
+            gameFrame.setupListeners(buttonListener);
             // Show the gui
             gameFrame.show();
 

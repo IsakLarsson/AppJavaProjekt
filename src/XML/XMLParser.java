@@ -44,7 +44,7 @@ public class XMLParser {
                 String tileAttribute = tile.getAttribute("AreaType");
 
                 NodeList coordinateList = tile.getElementsByTagName(
-                        "Coordinate");
+                        "Coordinates");
                 Node coordinate = coordinateList.item(0);
                 String str = coordinate.getTextContent();
                 String[] tokens = str.split(",");
