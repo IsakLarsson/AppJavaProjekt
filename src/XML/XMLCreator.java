@@ -13,6 +13,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 //TODO: Skapa metoder för olika levels
 //TODO: XML ska följa och valideras mha ett XML-Schema
@@ -28,6 +31,8 @@ public class XMLCreator {
     private DocumentBuilderFactory docBuildFactory;
     private DocumentBuilder docBuilder;
     private Document doc;
+    private int mapSizeNr = 20;
+    private ArrayList<Element> coordinatesArray;
 
     public XMLCreator() {
     }
@@ -43,6 +48,8 @@ public class XMLCreator {
      * @throws TransformerException - Error during transformation process
      */
     public void createLevels() throws ParserConfigurationException, TransformerException {
+        coordinatesArray = new ArrayList<>();
+
         //Create documentBuilder - Can create documents
         docBuildFactory = DocumentBuilderFactory.newInstance();
         docBuilder = docBuildFactory.newDocumentBuilder();
@@ -76,41 +83,81 @@ public class XMLCreator {
 
         //Sets mapSize of level 1
         Element mapSize = doc.createElement("mapSize");
-        mapSize.appendChild(doc.createTextNode("10"));
+        mapSize.appendChild(doc.createTextNode(mapSizeNr + ""));
         level1.appendChild(mapSize);
 
-        //Sets coordinates for playerPath
-        Element playerPath = doc.createElement("playerPath");
-        level1.appendChild(playerPath);
-        for (int i = 0; i < 10; i++){
-            Element coordinates = doc.createElement("coordinates");
-            coordinates.appendChild(doc.createTextNode(i + ",0"));
-            playerPath.appendChild(coordinates);
-        }
-
-        //Sets coordinates for towerArea
-        Element towerArea = doc.createElement("towerArea");
-        level1.appendChild(towerArea);
-        for (int i = 0; i < 2; i++){
-            Element coordinates = doc.createElement("coordinates");
-            coordinates.appendChild(doc.createTextNode(i + ",1"));
-            towerArea.appendChild(coordinates);
-        }
-
-        //Sets coordinates for spawnArea
-        Element spawnArea = doc.createElement("spawnArea");
-        level1.appendChild(spawnArea);
-        Element coordinates = doc.createElement("coordinates");
-        coordinates.appendChild(doc.createTextNode("0,0"));
-        spawnArea.appendChild(coordinates);
-
-        //Sets coordinates for goalArea
-        Element goalArea = doc.createElement("goalArea");
-        level1.appendChild(goalArea);
-        coordinates = doc.createElement("coordinates");
-        coordinates.appendChild(doc.createTextNode("0,19"));
-        goalArea.appendChild(coordinates);
-
+        createPathArea(10, level1);
+        createTowerArea(2, level1, 5,2);
+        createSpawnArea(level1);
+        createGoalArea(level1);
     }
 
+    /**
+     * Creates a path area with nrArea numbers of area
+     * @param nrArea Number of area tiles
+     * @param dest Destination, where the area should be inserted as a sub-element
+     */
+    private void createPathArea(int nrArea, Element dest) {
+        int i = 0;
+        for (; i < nrArea; i++){
+            Element areaType = doc.createElement("Tile");
+            areaType.setAttribute("AreaType", "Path");
+            dest.appendChild(areaType);
+            Element coordinates = doc.createElement("Coordinates");
+            coordinates.appendChild(doc.createTextNode(i + ",0"));
+            coordinatesArray.add(coordinates);
+            areaType.appendChild(coordinates);
+        }
+    }
+
+
+    /**
+     * Creates a tower area with nrArea numbers of area.
+     * Randomizes placement of tower areas.
+     * @param nrArea Number of area tiles
+     * @param dest Destination, where the area should be inserted as a sub-element
+     * @param max Maximum value on X/Y-axis
+     * @param min Minimum value on X/Y-axis
+     */
+    private void createTowerArea(int nrArea, Element dest, int max, int min) {
+        int i = 0;
+        for (; i < nrArea; i++){
+            //Randomize two values, X and Y, as coordinates for each area
+            int randX = ThreadLocalRandom.current().nextInt(min, max + 1);
+            int randY = ThreadLocalRandom.current().nextInt(min, max + 1);
+
+            Element areaType = doc.createElement("Tile");
+            areaType.setAttribute("AreaType", "TowerArea");
+            dest.appendChild(areaType);
+            Element coordinates = doc.createElement("Coordinates");
+            coordinates.appendChild(doc.createTextNode(randX + "," + randY));
+            areaType.appendChild(coordinates);
+        }
+    }
+
+    /**
+     * Creates a spawn area placed at the first path area coordinate.
+     * @param dest Destination, where the area should be inserted as a sub-element
+     */
+    private void createSpawnArea(Element dest) {
+        Element areaType = doc.createElement("Tile");
+        areaType.setAttribute("AreaType", "SpawnArea");
+        dest.appendChild(areaType);
+        Element coordinates = doc.createElement("Coordinates");
+        coordinates.appendChild(doc.createTextNode(coordinatesArray.get(0).getTextContent()));
+        areaType.appendChild(coordinates);
+    }
+
+    /**
+     * Creates a goal area placed at the last path area coordinate.
+     * @param dest Destination, where the area should be inserted as a sub-element
+     */
+    private void createGoalArea(Element dest) {
+        Element areaType = doc.createElement("Tile");
+        areaType.setAttribute("AreaType", "GoalArea");
+        dest.appendChild(areaType);
+        Element coordinates = doc.createElement("Coordinates");
+        coordinates.appendChild(doc.createTextNode(coordinatesArray.get(coordinatesArray.size()-1).getTextContent()));
+        areaType.appendChild(coordinates);
+    }
 }
