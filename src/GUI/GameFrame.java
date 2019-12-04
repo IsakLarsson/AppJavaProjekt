@@ -1,6 +1,7 @@
 package GUI;
 
 import Listeners.ButtonListener;
+import Listeners.MenuListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,14 +9,23 @@ import java.awt.*;
 public class GameFrame {
     private JFrame frame;
     private ButtonListener buttonListener;
+    private MenuListener menuListener;
     private int XSIZE = 1000;
     private int YSIZE = 600;
+
+    JMenuItem menuItem1;
+    JMenuItem menuItem2;
+    JMenuItem menuItem3;
+    JMenuItem menuItem4;
+    JMenuItem menuItem5;
+    JMenuItem menuItem6;
 
     JButton button1;
     JButton button2;
     JButton button3;
 
-    public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener){
+
+    public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener, MenuListener menuListener){
 
         frame = new JFrame(title);
 
@@ -26,6 +36,7 @@ public class GameFrame {
         frame.setSize(XSIZE, YSIZE);
         frame.setLocationRelativeTo(null);
 
+        this.menuListener = menuListener;
         this.buttonListener = buttonListener;
     }
 
@@ -45,10 +56,10 @@ public class GameFrame {
         JMenu fileMenu = new JMenu("File");
 
         // Could add listeners here
-        JMenuItem menuItem1 = new JMenuItem("New Game");
-        JMenuItem menuItem2 = new JMenuItem("Restart level");
-        JMenuItem menuItem3 = new JMenuItem("Pause");
-        JMenuItem menuItem4 = new JMenuItem("Quit");
+        menuItem1 = new JMenuItem("New Game");
+        menuItem2 = new JMenuItem("Restart level");
+        menuItem3 = new JMenuItem("Pause");
+        menuItem4 = new JMenuItem("Quit");
 
         fileMenu.add(menuItem1);
         fileMenu.add(menuItem2);
@@ -58,8 +69,8 @@ public class GameFrame {
         JMenu helpMenu = new JMenu("Help");
 
         // Could add listeners here
-        JMenuItem menuItem5 = new JMenuItem("About");
-        JMenuItem menuItem6 = new JMenuItem("Help");
+        menuItem5 = new JMenuItem("About");
+        menuItem6 = new JMenuItem("Help");
 
         helpMenu.add(menuItem5);
         helpMenu.add(menuItem6);
@@ -86,6 +97,11 @@ public class GameFrame {
      * @param buttonListener
      */
     public void setupListeners(ButtonListener buttonListener) {
+
+        //
+        menuItem5.addActionListener(this.menuListener);
+        menuItem6.addActionListener(this.menuListener);
+
         button1.addActionListener(this.buttonListener);
         button2.addActionListener(this.buttonListener);
         button3.addActionListener(this.buttonListener);
