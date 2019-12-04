@@ -53,6 +53,11 @@ public class Model extends SwingWorker {
         }
     }
 
+    @Override
+    protected void done() {
+        super.done();
+    }
+
     private void drawLevel () {
         ParseXML xmlParser = new ParseXML();
         tileMap = xmlParser.parser();
