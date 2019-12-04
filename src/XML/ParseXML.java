@@ -17,6 +17,7 @@ import java.io.IOException;
 public class ParseXML {
 
     private TileMap tileMap;
+    private int TILE_SIZE = 20;
 
     public TileMap parser() {
 
@@ -44,7 +45,7 @@ public class ParseXML {
 
             for(int i = 0; i < mapSize; i++){
                 for(int j = 0; j < mapSize; j++){
-                    Tile tile = new Tile(j,i,20,20, Color.BLACK);
+                    Tile tile = new Tile(j,i,TILE_SIZE,TILE_SIZE, Color.BLACK);
                     tileMap.addTile(tile);
                 }
             }
@@ -119,6 +120,7 @@ public class ParseXML {
                     Integer X = Integer.valueOf(tokens[0]);
                     Integer Y = Integer.valueOf(tokens[1]);
                     Tile tile = new Tile(X, Y, 20, 20, Color.orange);
+
                     tileMap.addTile(tile);
                 }
             }

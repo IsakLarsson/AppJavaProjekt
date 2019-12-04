@@ -2,6 +2,19 @@
 <Levels>
     <Level1>
         <mapSize>10</mapSize>
+        <Tile AreaType = "path">
+            <coordinate>0,0</coordinate>
+        </Tile>
+        <Tile AreaType = "path">
+            <coordinate>1,0</coordinate>
+        </Tile>
+        <Tile AreaType = "path">
+            <coordinate>2,0</coordinate>
+        </Tile>
+        <Tile AreaType = "path">
+            <coordinate>3,0</coordinate>
+        </Tile>
+
         <playerPath>
             <coordinates>0,0</coordinates>
             <coordinates>1,0</coordinates>
