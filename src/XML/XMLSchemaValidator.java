@@ -25,7 +25,7 @@ public class XMLSchemaValidator {
                 schema = factory.newSchema(new StreamSource("src\\XML\\XMLSchema.xsd"));
             }
             catch (SAXException e) {
-                JOptionPane.showMessageDialog(null, "hej");
+                JOptionPane.showMessageDialog(null, "Incorrect format for XML");
             }
             Validator val = null;
             if (schema != null) {
@@ -38,6 +38,7 @@ public class XMLSchemaValidator {
         catch (SAXParseException e) {
             JOptionPane.showMessageDialog(null, "Incorrect format for XML");
         }
+        JOptionPane.showMessageDialog(null, "Validator finished without errors");
     }
 }
 
