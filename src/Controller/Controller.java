@@ -48,13 +48,6 @@ public class Controller {
             // A model
             Worker worker = new Worker(adapter);
             worker.execute();
-            // Update the gui with 1 seconds intervals
-            try {
-                Thread.sleep(1000);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
 
 
         });
