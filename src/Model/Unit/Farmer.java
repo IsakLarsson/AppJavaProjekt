@@ -11,14 +11,14 @@ public class Farmer implements Unit {
     private int size = 10;
 
     //Position
-    private int x,y;
+    //   private int x,y;
 
     public Farmer() {
     }
 
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int x, int y) {
         g.setColor(white);
         g.fillOval(x, y, size, size);
     }

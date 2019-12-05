@@ -18,7 +18,7 @@ public class Tower implements Unit {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int x, int y) {
         g.setColor(red);
         g.fillRect(xCord * size, yCord * size,
                 size, size);

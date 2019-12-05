@@ -21,7 +21,7 @@ public class ButtonListener implements ActionListener {
 
         switch (s) {
             case "Farmer":
-                controller.openDialog(s, "This is a farmer");
+                controller.spawnUnit(s);
                 break;
             case "Soldier":
                 break;
