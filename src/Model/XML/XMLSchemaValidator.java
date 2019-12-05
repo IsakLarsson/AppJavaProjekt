@@ -21,7 +21,7 @@ public class XMLSchemaValidator {
             Schema schema = null;
 
             try {
-                schema = factory.newSchema(new StreamSource("src\\Model.XML\\XMLSchema.xsd"));
+                schema = factory.newSchema(new StreamSource("src\\Model\\XML\\XMLSchema.xsd"));
             }
             catch (SAXException e) {
                 JOptionPane.showMessageDialog(null, "Incorrect format for Model.XML");
