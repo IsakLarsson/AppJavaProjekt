@@ -19,8 +19,6 @@ public class Worker extends SwingWorker {
     // XML File
     XMLParser xmlParser;
 
-    // Frame class that creates images
-    Frame frame = new Frame();
 
     // Level image
     private BufferedImage level;
@@ -35,7 +33,7 @@ public class Worker extends SwingWorker {
     private boolean gameOver = false;
 
     public Worker(ModelAdapter ma) {
-        level = frame.createImage();
+        level = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
         adapter = ma;
     }
 
@@ -56,16 +54,11 @@ public class Worker extends SwingWorker {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("HEJ1");
             Tile tile = queue.poll();
-            System.out.println("HEJ2");
-            if (tile != null) {
-                x = tile.getxCoordinate();
-            }
-            System.out.println("HEJ3");
-            if (tile != null) {
-                y = tile.getyCoordinate();
-            }
+
+            x = tile.getxCoordinate();
+            y = tile.getyCoordinate();
+
             System.out.println(x + ", " + y);
             // Publish the image to process()
             publish(updatePositions(x, y));
