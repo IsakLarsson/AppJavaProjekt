@@ -35,9 +35,9 @@ public class Controller {
 
             // A panel that you draw on
             GameWindow gameWindow = new GameWindow();
-
             // A window gameFrame containing a menubar
-            gameFrame = new GameFrame("Game", gameWindow, this.buttonListener, this.menuListener);
+            gameFrame = new GameFrame("Game", gameWindow, buttonListener,
+                    menuListener);
             gameFrame.setupListeners(buttonListener);
             // Show the gui
             gameFrame.show();
@@ -46,7 +46,7 @@ public class Controller {
             ModelAdapter adapter = new ModelAdapter(gameWindow);
 
             // A model
-            Model model = new Model(adapter);
+            Worker worker = new Worker(adapter);
 
             // Update the gui with 1 seconds intervals
             try {

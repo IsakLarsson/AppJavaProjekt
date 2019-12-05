@@ -26,7 +26,7 @@ public class XMLParser {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("src/Model.XML/Levels.xml");
+            Document doc = builder.parse("src\\Model\\XML\\Levels.xml");
             Element element = doc.getDocumentElement();
 
             NodeList lvl = element.getElementsByTagName("Level1");
@@ -39,26 +39,9 @@ public class XMLParser {
 
 
             for (int i = 0; i < tileList.getLength(); i++){
-                Node readTile = tileList.item(i);
-                Element tile = (Element)readTile;
-                String tileAttribute = tile.getAttribute("AreaType");
-
-                NodeList coordinateList = tile.getElementsByTagName(
-                        "Coordinates");
-                Node coordinate = coordinateList.item(0);
-                String str = coordinate.getTextContent();
-                String[] tokens = str.split(",");
-                int X = Integer.valueOf(tokens[0]);
-                int Y = Integer.valueOf(tokens[1]);
-
-                Class<?> tileClass = Class.forName("Model.XML."+ tileAttribute);
-                Constructor tileConstructor =
-                        tileClass.getDeclaredConstructor(int.class, int.class
-                                    , int.class);
-                Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
+                Object tileObject = getTile(tileList, i);
                 tileMap.add((Tile) tileObject);
             }
-
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -66,21 +49,61 @@ public class XMLParser {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
 
         return tileMap;
     }
 
+    /**
+     * Gets objects from a list of nodes and creates tile objects via
+     * java reflection based on their atrribute names and returns a created
+     * object
+     * @param tileList the NodeList to read from
+     * @param index the index to get the node from
+     * @return An object created from a Tile class
+     */
+    private Object getTile(NodeList tileList, int index) {
+        try {
+            Node readTile = tileList.item(index);
+            Element tile = (Element)readTile;
+            String tileAttribute = tile.getAttribute("AreaType");
+
+            NodeList coordinateList = tile.getElementsByTagName(
+                    "Coordinates");
+            Node coordinate = coordinateList.item(0);
+            String str = coordinate.getTextContent();
+            String[] tokens = str.split(",");
+            int X = Integer.valueOf(tokens[0]);
+            int Y = Integer.valueOf(tokens[1]);
+
+            Class<?> tileClass =
+                    Class.forName("Model.XML.Area."+ tileAttribute);
+            Constructor tileConstructor =
+                    tileClass.getDeclaredConstructor(int.class, int.class
+                            , int.class);
+            Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
+
+            return tileObject;
+
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Reads the size of the map from the XML file
+     * @param level
+     * @return an integer with the mapsize.
+     */
     private int getMapSize(Element level) {
         NodeList sizeOfMap = level.getElementsByTagName("mapSize");
         Node ms = sizeOfMap.item(0);

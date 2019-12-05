@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model extends SwingWorker {
+public class Worker extends SwingWorker {
 
     // Buffered image
     private BufferedImage image;
@@ -20,7 +20,7 @@ public class Model extends SwingWorker {
     // Boolean to determine when the worker stops working
     private Boolean gameOver = false;
 
-    public Model(ModelAdapter ma) {
+    public Worker(ModelAdapter ma) {
         this.image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
         this.adapter = ma;
         doInBackground();
@@ -66,7 +66,6 @@ public class Model extends SwingWorker {
             g.fillRect(tile.getxCoordinate(), tile.getyCoordinate(),
                     tile.getSize(),
                     tile.getSize());
-
         }
     }
 

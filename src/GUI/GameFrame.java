@@ -10,8 +10,6 @@ public class GameFrame {
     private JFrame frame;
     private ButtonListener buttonListener;
     private MenuListener menuListener;
-    private int XSIZE = 1000;
-    private int YSIZE = 600;
 
     JMenuItem menuItem1;
     JMenuItem menuItem2;
@@ -33,12 +31,13 @@ public class GameFrame {
         frame.setContentPane(gameWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(buildMenuBar());
-        frame.setSize(XSIZE, YSIZE);
+        frame.setSize(gameWindow.getDimension());
         frame.setLocationRelativeTo(null);
 
         this.menuListener = menuListener;
         this.buttonListener = buttonListener;
     }
+
 
     /**
      * Helpmethod for showing the gui

@@ -9,7 +9,7 @@ class ModelTest {
 
     private GameWindow gameWindow = new GameWindow();
     private ModelAdapter adapter = new ModelAdapter(gameWindow);
-    private Model model = new Model(adapter);
+    private Worker worker = new Worker(adapter);
 
     /**
      * Tests that the size of the tile map is correct
