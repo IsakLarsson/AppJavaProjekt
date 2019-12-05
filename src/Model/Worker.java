@@ -53,8 +53,8 @@ public class Worker extends SwingWorker {
         // Update every units position on the map
 
         //TODO add animation
-
-        for (int i = 1; i < 10; i++) {
+        int queuesize = queue.size();
+        for (int i = 1; i < queuesize; i++) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
