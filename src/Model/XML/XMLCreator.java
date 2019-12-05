@@ -30,7 +30,6 @@ public class XMLCreator {
     private DocumentBuilder docBuilder;
     private Document doc;
     private int mapSizeNr = 20;
-    private ArrayList<Element> coordinatesArray;
 
     public XMLCreator() {
     }
@@ -46,8 +45,6 @@ public class XMLCreator {
      * @throws TransformerException - Error during transformation process
      */
     public void createLevels() throws ParserConfigurationException, TransformerException {
-        coordinatesArray = new ArrayList<>();
-
         //Create documentBuilder - Can create documents
         docBuildFactory = DocumentBuilderFactory.newInstance();
         docBuilder = docBuildFactory.newDocumentBuilder();
@@ -85,10 +82,10 @@ public class XMLCreator {
         level1.appendChild(mapSize);
 
         //Create needed area types
+        createSpawnArea(level1,0,0);
         createPathArea(10, level1);
+        createGoalArea(level1, 10, 0);
         createTowerArea(2, level1, 5,2);
-        createSpawnArea(level1);
-        createGoalArea(level1);
     }
 
     /**
@@ -97,14 +94,13 @@ public class XMLCreator {
      * @param dest Destination, where the area should be inserted as a sub-element
      */
     private void createPathArea(int nrArea, Element dest) {
-        int i = 0;
+        int i = 1;
         for (; i < nrArea; i++){
             Element areaType = doc.createElement("Tile");
             areaType.setAttribute("AreaType", "Path");
             dest.appendChild(areaType);
             Element coordinates = doc.createElement("Coordinates");
             coordinates.appendChild(doc.createTextNode(i + ",0"));
-            coordinatesArray.add(coordinates);
             areaType.appendChild(coordinates);
         }
     }
@@ -138,12 +134,12 @@ public class XMLCreator {
      * Creates a spawn area placed at the first path area coordinate.
      * @param dest Destination, where the area should be inserted as a sub-element
      */
-    private void createSpawnArea(Element dest) {
+    private void createSpawnArea(Element dest, int x, int y) {
         Element areaType = doc.createElement("Tile");
         areaType.setAttribute("AreaType", "SpawnArea");
         dest.appendChild(areaType);
         Element coordinates = doc.createElement("Coordinates");
-        coordinates.appendChild(doc.createTextNode(coordinatesArray.get(0).getTextContent()));
+        coordinates.appendChild(doc.createTextNode(x + "," + y));
         areaType.appendChild(coordinates);
     }
 
@@ -151,12 +147,12 @@ public class XMLCreator {
      * Creates a goal area placed at the last path area coordinate.
      * @param dest Destination, where the area should be inserted as a sub-element
      */
-    private void createGoalArea(Element dest) {
+    private void createGoalArea(Element dest, int x, int y) {
         Element areaType = doc.createElement("Tile");
         areaType.setAttribute("AreaType", "GoalArea");
         dest.appendChild(areaType);
         Element coordinates = doc.createElement("Coordinates");
-        coordinates.appendChild(doc.createTextNode(coordinatesArray.get(coordinatesArray.size()-1).getTextContent()));
+        coordinates.appendChild(doc.createTextNode(x + "," + y));
         areaType.appendChild(coordinates);
     }
 }

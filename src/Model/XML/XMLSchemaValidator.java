@@ -9,7 +9,7 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.IOException;
 
-public class XMLSchemaValidator {
+public class XMLSchemaValidator { //Ta bort main och ersätt den med en publik metod som ska anropas vid validation
 
     public static void main(String[] args) throws IOException, SAXException {
         try {
