@@ -22,7 +22,7 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int x, int y) {
 
     }
 
@@ -45,6 +45,7 @@ public class Soldier implements Unit {
         return speed;
     }
 
+    @Override
     public Image getImage(){
         return image;
     }

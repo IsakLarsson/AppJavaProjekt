@@ -58,4 +58,8 @@ public class Controller {
     public void openDialog(String title, String text) {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
     }
+
+    public void spawnUnit (String s) {
+        
+    }
 }

@@ -1,6 +1,7 @@
 package Model;
 
 import GUI.GameWindow;
+import Model.XML.Area.Tile;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,8 +22,14 @@ class ModelTest {
     }*/
 
     @Test
-    public void testThatBufferedImageIsNotNull() {
+    public void testThatLevelImageIsNotNull() {
         assertNotNull(adapter.getImage());
     }
 
+    @Test
+    public void testQueueElementsIsNotNull () {
+        for (Tile t : worker.getQueue()) {
+            assertNotNull(t);
+        }
+    }
 }
