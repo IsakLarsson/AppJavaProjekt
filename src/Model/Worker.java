@@ -17,8 +17,10 @@ public class Worker extends SwingWorker {
     int x = 10, y = 10;
 
     // XML File
-    XMLParser xmlParser;
+    private XMLParser xmlParser;
 
+    // Queue of tiles
+    private Queue<Tile> queue;
 
     // Level image
     private BufferedImage level;
@@ -33,18 +35,22 @@ public class Worker extends SwingWorker {
     private boolean gameOver = false;
 
     public Worker(ModelAdapter ma) {
-        level = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+
+        // Draws the level
+        drawLevel();
+        // Get thw path queue
+        queue = xmlParser.getPathQueue();
+
+        // Save the adapter
         adapter = ma;
     }
 
     @Override
     protected Object doInBackground() {
 
-        // Draws the level
-        drawLevel();
+
 
         // Update every units position on the map
-        Queue<Tile> queue = xmlParser.getPathQueue();
 
         //TODO add animation
 
@@ -54,12 +60,17 @@ public class Worker extends SwingWorker {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            //Get a tile from the queue
             Tile tile = queue.poll();
 
+            // Get x and y positions
             x = tile.getxCoordinate();
             y = tile.getyCoordinate();
 
+            // Print positions to console
             System.out.println(x + ", " + y);
+
             // Publish the image to process()
             publish(updatePositions(x, y));
         }
@@ -80,8 +91,9 @@ public class Worker extends SwingWorker {
     }
 
     private void drawLevel() {
-
+        level = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
         xmlParser = new XMLParser();
+
         ArrayList<Tile> tileMap = xmlParser.parseXML();
         Graphics g = level.getGraphics();
 
@@ -113,5 +125,9 @@ public class Worker extends SwingWorker {
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
+
+    public Queue<Tile> getQueue() {
+        return this.queue;
     }
 }
