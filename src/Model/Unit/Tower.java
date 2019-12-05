@@ -7,18 +7,33 @@ import static java.awt.Color.red;
 public class Tower implements Unit {
 
     //Position
-    int x,y;
+    private int size = 20;
+    private int dmg = 10;
+    private int x,y;
 
     public Tower() {
-        this.x = x;
-        this.y = y;
     }
 
     @Override
     public void draw(Graphics g, int x, int y) {
         g.setColor(red);
-        g.fillRect(x * UNITSIZE, y * UNITSIZE,
-                UNITSIZE, UNITSIZE);
+        g.fillRect(x * size, y * size,
+                size, size);
+    }
+
+    @Override
+    public void takeDMG(int DMG) {
+
+    }
+
+    @Override
+    public int getHp() {
+        return 0;
+    }
+
+    @Override
+    public int getDmg() {
+        return dmg;
     }
 
     public void drawProjectile (Graphics g) {
