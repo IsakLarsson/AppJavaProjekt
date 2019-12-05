@@ -59,7 +59,7 @@ public class Controller {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
     }
 
-    public void spawnUnit () {
+    public void spawnUnit (String s) {
         
     }
 }
