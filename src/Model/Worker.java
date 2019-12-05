@@ -54,7 +54,7 @@ public class Worker extends SwingWorker {
 
         //TODO add animation
         int queuesize = queue.size();
-        for (int i = 1; i < queuesize; i++) {
+        for (int i = 0; i < queuesize; i++) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
