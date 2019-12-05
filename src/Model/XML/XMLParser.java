@@ -120,4 +120,8 @@ public class XMLParser {
 
         return Integer.valueOf(size);
     }
+
+    public Queue getPathQueue(){
+        return pathQueue;
+    }
 }
