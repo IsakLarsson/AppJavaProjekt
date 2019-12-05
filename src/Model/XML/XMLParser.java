@@ -14,11 +14,14 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class XMLParser {
 
     private ArrayList<Tile> tileMap;
     private int TILE_SIZE = 20;
+    private Queue<Tile> pathQueue;
 
     public ArrayList parseXML() {
 
@@ -64,6 +67,7 @@ public class XMLParser {
      */
     private Object getTile(NodeList tileList, int index) {
         try {
+            pathQueue = new LinkedList<>();
             Node readTile = tileList.item(index);
             Element tile = (Element)readTile;
             String tileAttribute = tile.getAttribute("AreaType");
@@ -82,6 +86,10 @@ public class XMLParser {
                     tileClass.getDeclaredConstructor(int.class, int.class
                             , int.class);
             Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
+
+            if(tileAttribute.equals("Path") || tileAttribute.equals("SpawnArea")){
+                pathQueue.add((Tile) tileObject);
+            }
 
             return tileObject;
 
