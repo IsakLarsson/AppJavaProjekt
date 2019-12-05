@@ -23,7 +23,6 @@ public class Worker extends SwingWorker {
     public Worker(ModelAdapter ma) {
         this.image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
         this.adapter = ma;
-        doInBackground();
     }
 
     @Override
@@ -35,7 +34,9 @@ public class Worker extends SwingWorker {
 
         // Update every units position on the map
         updatePositions();
-
+        Graphics testunit = image.getGraphics();
+        testunit.setColor(Color.MAGENTA);
+        testunit.fillOval(10,10,10,10);
         // Publish the image to process()
         publish(image);
 

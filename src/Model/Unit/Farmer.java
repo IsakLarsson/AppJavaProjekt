@@ -5,12 +5,10 @@ import java.awt.*;
 import static java.awt.Color.white;
 
 public class Farmer implements Unit {
-
-
     private int hp = 50;
     private int speed = 20;
     private int dmg = 1;
-    private int size = 20;
+    private int size = 10;
 
     //Position
     private int x,y;
@@ -18,9 +16,11 @@ public class Farmer implements Unit {
     public Farmer() {
     }
 
+
     @Override
     public void draw(Graphics g) {
-
+        g.setColor(white);
+        g.fillOval(x, y, size, size);
     }
 
     @Override

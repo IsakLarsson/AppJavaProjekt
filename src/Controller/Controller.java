@@ -47,7 +47,7 @@ public class Controller {
 
             // A model
             Worker worker = new Worker(adapter);
-
+            worker.execute();
             // Update the gui with 1 seconds intervals
             try {
                 Thread.sleep(1000);
@@ -56,8 +56,6 @@ public class Controller {
                 e.printStackTrace();
             }
 
-            // Update the gui
-            gameWindow.update();
 
         });
     }

@@ -29,7 +29,7 @@ public class XMLParser {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("src\\Model\\XML\\Levels.xml");
+            Document doc = builder.parse("src/Model/XML/Levels.xml");
             Element element = doc.getDocumentElement();
 
             NodeList lvl = element.getElementsByTagName("Level1");
