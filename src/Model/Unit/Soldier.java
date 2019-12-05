@@ -45,6 +45,7 @@ public class Soldier implements Unit {
         return speed;
     }
 
+    @Override
     public Image getImage(){
         return image;
     }

@@ -13,6 +13,8 @@ public interface Unit {
 
     int getDmg();
 
+    Image getImage();
+
 
 
 }

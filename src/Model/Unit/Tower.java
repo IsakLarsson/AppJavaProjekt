@@ -39,6 +39,11 @@ public class Tower implements Unit {
         return dmg;
     }
 
+    @Override
+    public Image getImage() {
+        return null;
+    }
+
     public void drawProjectile (Graphics g) {
 
     }
