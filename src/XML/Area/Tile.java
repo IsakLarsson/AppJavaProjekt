@@ -1,4 +1,4 @@
-package GUI;
+package XML.Area;
 
 import Model.Position;
 

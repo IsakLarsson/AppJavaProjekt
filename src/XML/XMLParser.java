@@ -1,6 +1,6 @@
 package XML;
 
-import GUI.Tile;
+import XML.Area.Tile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

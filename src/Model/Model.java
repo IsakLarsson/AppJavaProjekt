@@ -1,6 +1,6 @@
 package Model;
 
-import GUI.Tile;
+import XML.Area.Tile;
 import XML.XMLParser;
 
 import javax.swing.*;

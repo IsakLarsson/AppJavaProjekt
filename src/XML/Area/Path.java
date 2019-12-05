@@ -1,6 +1,4 @@
-package XML;
-
-import GUI.Tile;
+package XML.Area;
 
 import java.awt.*;
 
