@@ -1,4 +1,4 @@
-package Unit;
+package Model.Unit;
 
 import java.awt.*;
 

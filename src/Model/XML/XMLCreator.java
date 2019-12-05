@@ -1,6 +1,5 @@
-package XML;
+package Model.XML;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -14,11 +13,10 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 //TODO: Skapa metoder för olika levels
-//TODO: XML ska följa och valideras mha ett XML-Schema
+//TODO: Model.XML ska följa och valideras mha ett Model.XML-Schema
 //TODO: Win conditions
 //TODO: Flera möjliga vägsträckor
 //TODO: Alla resultat ska sparas central på en server mha av en databas
@@ -43,7 +41,7 @@ public class XMLCreator {
     }
 
     /**
-     * Creates a new XML-file named Levels.xml
+     * Creates a new Model.XML-file named Levels.xml
      * @throws ParserConfigurationException - Configuration error
      * @throws TransformerException - Error during transformation process
      */
@@ -58,10 +56,10 @@ public class XMLCreator {
         createLevel1();
 
         //Specify where the file should be created and the name of it
-        path = "src\\XML\\Levels.xml";
+        path = "src\\Model.XML\\Levels.xml";
         StreamResult streamRes = new StreamResult(new File(path));
 
-        //Transform code to XML-format and place it in given directory(see path)
+        //Transform code to Model.XML-format and place it in given directory(see path)
         TransformerFactory transformerFac = TransformerFactory.newInstance();
         Transformer transformer = transformerFac.newTransformer();
         DOMSource source = new DOMSource(doc);

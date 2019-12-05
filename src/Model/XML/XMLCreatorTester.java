@@ -1,4 +1,4 @@
-package XML;
+package Model.XML;
 import org.junit.jupiter.api.*;
 
 import javax.xml.parsers.ParserConfigurationException;

@@ -1,9 +1,8 @@
-package Unit;
+package Model.Unit;
 
 import java.awt.*;
 
 import static java.awt.Color.red;
-import static java.awt.Color.white;
 
 public class Tower implements Unit {
 

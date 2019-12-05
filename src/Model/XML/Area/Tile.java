@@ -1,4 +1,4 @@
-package XML.Area;
+package Model.XML.Area;
 
 import Model.Position;
 

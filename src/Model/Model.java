@@ -1,7 +1,7 @@
 package Model;
 
-import XML.Area.Tile;
-import XML.XMLParser;
+import Model.XML.Area.Tile;
+import Model.XML.XMLParser;
 
 import javax.swing.*;
 import java.awt.*;
