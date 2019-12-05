@@ -20,6 +20,8 @@ public class ModelAdapter {
     public void setBufferedImage(BufferedImage bi) {
         this.image = bi;
         gui.setBufferedImage(bi);
+        gui.update();
+        System.out.println("updated window");
     }
 
     public BufferedImage getImage() {

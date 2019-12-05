@@ -5,19 +5,40 @@ import java.awt.*;
 import static java.awt.Color.white;
 
 public class Farmer implements Unit {
+    private int hp = 50;
+    private int speed = 20;
+    private int dmg = 1;
+    private int size = 10;
 
     //Position
-    int x,y;
+    private int x,y;
 
     public Farmer() {
-        this.x = x;
-        this.y = y;
+    }
+
+
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(white);
+        g.fillOval(x, y, size, size);
     }
 
     @Override
-    public void draw(Graphics g, int x, int y) {
-        g.setColor(white);
-        g.fillRect(x, y,
-                UNITSIZE, UNITSIZE);
+    public void takeDMG(int DMG) {
+        hp = hp - DMG;
+    }
+
+    @Override
+    public int getHp() {
+        return hp;
+    }
+
+    @Override
+    public int getDmg() {
+        return dmg;
+    }
+
+    public int getSpeed(){
+        return speed;
     }
 }
