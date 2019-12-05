@@ -24,7 +24,7 @@ public class XMLParser {
     private Queue<Tile> pathQueue;
 
     public ArrayList parseXML() {
-
+        pathQueue = new LinkedList<>();
         tileMap = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -67,7 +67,6 @@ public class XMLParser {
      */
     private Object getTile(NodeList tileList, int index) {
         try {
-            pathQueue = new LinkedList<>();
             Node readTile = tileList.item(index);
             Element tile = (Element)readTile;
             String tileAttribute = tile.getAttribute("AreaType");

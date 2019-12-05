@@ -10,10 +10,14 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Worker extends SwingWorker {
 
     int x = 10, y = 10;
+
+    // XML File
+    XMLParser xmlParser;
 
     // Frame class that creates images
     Frame frame = new Frame();
@@ -42,7 +46,7 @@ public class Worker extends SwingWorker {
         drawLevel();
 
         // Update every units position on the map
-
+        Queue<Tile> queue = xmlParser.getPathQueue();
 
         //TODO add animation
 
@@ -52,8 +56,19 @@ public class Worker extends SwingWorker {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("HEJ1");
+            Tile tile = queue.poll();
+            System.out.println("HEJ2");
+            if (tile != null) {
+                x = tile.getxCoordinate();
+            }
+            System.out.println("HEJ3");
+            if (tile != null) {
+                y = tile.getyCoordinate();
+            }
+            System.out.println(x + ", " + y);
             // Publish the image to process()
-            publish(updatePositions(x*i,y*i));
+            publish(updatePositions(x, y));
         }
 
         return null;
@@ -72,7 +87,8 @@ public class Worker extends SwingWorker {
     }
 
     private void drawLevel() {
-        XMLParser xmlParser = new XMLParser();
+
+        xmlParser = new XMLParser();
         ArrayList<Tile> tileMap = xmlParser.parseXML();
         Graphics g = level.getGraphics();
 
