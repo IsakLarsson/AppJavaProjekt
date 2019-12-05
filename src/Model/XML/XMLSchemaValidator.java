@@ -9,7 +9,7 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.IOException;
 
-public class XMLSchemaValidator {
+public class XMLSchemaValidator { //Ta bort main och ersätt den med en publik metod som ska anropas vid validation
 
     public static void main(String[] args) throws IOException, SAXException {
         try {
@@ -21,7 +21,7 @@ public class XMLSchemaValidator {
             Schema schema = null;
 
             try {
-                schema = factory.newSchema(new StreamSource("src\\Model.XML\\XMLSchema.xsd"));
+                schema = factory.newSchema(new StreamSource("src\\Model\\XML\\XMLSchema.xsd"));
             }
             catch (SAXException e) {
                 JOptionPane.showMessageDialog(null, "Incorrect format for Model.XML");
