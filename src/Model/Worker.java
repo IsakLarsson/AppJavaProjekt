@@ -6,10 +6,20 @@ import Model.XML.XMLParser;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Worker extends SwingWorker {
+
+    int x = 10, y = 10;
+
+    // Frame class that creates images
+    Frame frame = new Frame();
+
+    // Level image
+    private BufferedImage level;
 
     // Buffered image
     private BufferedImage image;
@@ -21,7 +31,7 @@ public class Worker extends SwingWorker {
     private boolean gameOver = false;
 
     public Worker(ModelAdapter ma) {
-        image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        level = frame.createImage();
         adapter = ma;
     }
 
@@ -32,16 +42,19 @@ public class Worker extends SwingWorker {
         drawLevel();
 
         // Update every units position on the map
-        updatePositions();
+
 
         //TODO add animation
 
-        Graphics testunit = image.getGraphics();
-        testunit.setColor(Color.MAGENTA);
-        testunit.fillOval(10,10,10,10);
-        // Publish the image to process()
-        publish(image);
-
+        for (int i = 1; i < 10; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // Publish the image to process()
+            publish(updatePositions(x*i,y*i));
+        }
 
         return null;
     }
@@ -61,7 +74,7 @@ public class Worker extends SwingWorker {
     private void drawLevel() {
         XMLParser xmlParser = new XMLParser();
         ArrayList<Tile> tileMap = xmlParser.parseXML();
-        Graphics g = image.getGraphics();
+        Graphics g = level.getGraphics();
 
         for (int i = 0; i < tileMap.size(); i++) {
             Tile tile = tileMap.get(i);
@@ -78,7 +91,18 @@ public class Worker extends SwingWorker {
     }
 
 
-    private void updatePositions() {
+    private BufferedImage updatePositions(int x, int y) {
+        BufferedImage newImage = deepCopy(level);
+        Graphics testunit = newImage.getGraphics();
+        testunit.setColor(Color.MAGENTA);
+        testunit.fillOval(x,y,10,10);
+        return newImage;
     }
 
+    public static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
 }

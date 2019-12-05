@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class GameWindow extends JPanel {
 
-    // Image frame
+    // Model.Frame frame
     private BufferedImage image;
 
     // Define constants for the game
