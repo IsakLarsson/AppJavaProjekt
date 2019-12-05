@@ -13,6 +13,7 @@ public class GameWindow extends JPanel {
     static final int CANVAS_WIDTH = 400;
     static final int CANVAS_HEIGHT = 400;
     static final Dimension dimension = new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
+    private Color bg = new Color(34,139,34);
 
     // Handler for the custom drawing panel
     private GameCanvas canvas;
@@ -34,7 +35,7 @@ public class GameWindow extends JPanel {
     // Use (Graphics g) as argument if you are not using Java 2D.
     //Kanske ta in en buffered image och rita ut den
     public void drawGame(Graphics g) {
-        g.drawImage(image,0,0, Color.black, null);
+        g.drawImage(image,0,0, bg,null);
     }
 
     public void update() {
@@ -60,8 +61,6 @@ public class GameWindow extends JPanel {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);       // paint background
-            setBackground(Color.GREEN);      // may use an image for background
-
             // Draw the game objects
             drawGame(g);
         }

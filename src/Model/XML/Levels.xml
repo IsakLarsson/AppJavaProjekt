@@ -36,7 +36,7 @@
             <Coordinates>5,4</Coordinates>
         </Tile>
         <Tile AreaType="TowerArea">
-            <Coordinates>5,4</Coordinates>
+            <Coordinates>8,5</Coordinates>
         </Tile>
         <Tile AreaType="GoalArea">
             <Coordinates>9,0</Coordinates>

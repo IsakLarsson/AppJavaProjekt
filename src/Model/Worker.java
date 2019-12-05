@@ -18,11 +18,11 @@ public class Worker extends SwingWorker {
     private ModelAdapter adapter;
 
     // Boolean to determine when the worker stops working
-    private Boolean gameOver = false;
+    private boolean gameOver = false;
 
     public Worker(ModelAdapter ma) {
-        this.image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
-        this.adapter = ma;
+        image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        adapter = ma;
     }
 
     @Override
@@ -31,9 +31,11 @@ public class Worker extends SwingWorker {
         // Draws the level
         drawLevel();
 
-
         // Update every units position on the map
         updatePositions();
+
+        //TODO add animation
+
         Graphics testunit = image.getGraphics();
         testunit.setColor(Color.MAGENTA);
         testunit.fillOval(10,10,10,10);
@@ -71,7 +73,7 @@ public class Worker extends SwingWorker {
     }
 
 
-    public void setGameOver(Boolean gameOver) {
+    public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
 
