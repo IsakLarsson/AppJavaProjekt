@@ -6,18 +6,21 @@ import static java.awt.Color.red;
 
 public class Tower implements Unit {
 
-    //Position
+
     private int size = 20;
     private int dmg = 10;
-    private int x,y;
+    private int range = 50;
+    //Position
+    private int xCord;
+    private int yCord;
 
     public Tower() {
     }
 
     @Override
-    public void draw(Graphics g, int x, int y) {
+    public void draw(Graphics g) {
         g.setColor(red);
-        g.fillRect(x * size, y * size,
+        g.fillRect(xCord * size, yCord * size,
                 size, size);
     }
 

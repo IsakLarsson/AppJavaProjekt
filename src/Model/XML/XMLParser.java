@@ -14,19 +14,23 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class XMLParser {
 
     private ArrayList<Tile> tileMap;
     private int TILE_SIZE = 20;
+    private Queue<Tile> pathQueue;
 
     public ArrayList parseXML() {
 
         tileMap = new ArrayList<>();
+        pathQueue = new LinkedList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("src/Model.XML/Levels.xml");
+            Document doc = builder.parse("src/Model/XML/Levels.xml");
             Element element = doc.getDocumentElement();
 
             NodeList lvl = element.getElementsByTagName("Level1");
@@ -51,11 +55,14 @@ public class XMLParser {
                 int X = Integer.valueOf(tokens[0]);
                 int Y = Integer.valueOf(tokens[1]);
 
-                Class<?> tileClass = Class.forName("Model.XML."+ tileAttribute);
+                Class<?> tileClass = Class.forName("Model.XML.Area."+ tileAttribute);
                 Constructor tileConstructor =
                         tileClass.getDeclaredConstructor(int.class, int.class
                                     , int.class);
                 Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
+                if(tileAttribute.equals("Path") || tileAttribute.equals("SpawnArea")){
+                    pathQueue.add((Tile) tileObject);
+                }
                 tileMap.add((Tile) tileObject);
             }
 
@@ -88,5 +95,9 @@ public class XMLParser {
         String size = s.getTextContent();
 
         return Integer.valueOf(size);
+    }
+
+    public Queue getQueue(){
+        return pathQueue;
     }
 }

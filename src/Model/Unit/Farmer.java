@@ -19,10 +19,8 @@ public class Farmer implements Unit {
     }
 
     @Override
-    public void draw(Graphics g, int x, int y) {
-        g.setColor(white);
-        g.fillRect(x, y,
-                size, size);
+    public void draw(Graphics g) {
+
     }
 
     @Override

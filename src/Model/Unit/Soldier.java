@@ -1,5 +1,7 @@
 package Model.Unit;
 
+import java.awt.*;
+
 public class Soldier implements Unit {
 
     private int speed = 10;
@@ -11,7 +13,7 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public void draw(java.awt.Graphics g, int x, int y) {
+    public void draw(Graphics g) {
 
     }
 
