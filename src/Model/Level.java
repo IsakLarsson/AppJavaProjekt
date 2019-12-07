@@ -1,7 +1,9 @@
 package Model;
 
-import Model.XML.Area.Tile;
+import Model.XML.Area.*;
 import Model.XML.XMLParser;
+
+import java.awt.*;
 
 public class Level {
 
@@ -9,6 +11,7 @@ public class Level {
 
     public Level(){
         XMLParser parser = new XMLParser();
+        parser.parseXML();
         int size = parser.getMapSize();
 
         tileMap = new Tile[size][size];
@@ -17,7 +20,6 @@ public class Level {
                 tileMap[i][j] = new Tile(i, j, 20);
             }
         }
-
     }
 
     public void addTile(Tile tile){
@@ -30,6 +32,23 @@ public class Level {
         return tileMap[x][y];
     }
 
+    public boolean isPath(int x, int y){
 
+        Tile tile = getTile(x,y);
+        return tile.equals(new Path(x,y,20));
+        //return tileMap[x][y].getColor().equals(Color.orange);
+    }
+
+    public boolean isTower(int x, int y){
+        return tileMap[x][y].getColor().equals(Color.red);
+    }
+
+    public boolean isSpawn(int x, int y){
+        return tileMap[x][y].getColor().equals(Color.green);
+    }
+
+    public boolean isGoal(int x, int y){
+        return tileMap[x][y].getColor().equals(Color.pink);
+    }
 
 }
