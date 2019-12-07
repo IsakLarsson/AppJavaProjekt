@@ -2,8 +2,6 @@ package Model.XML;
 
 import java.sql.*;
 
-
-
 public class SQLHandler {
 
     public static void main(String[] args) {
@@ -52,14 +50,38 @@ public class SQLHandler {
 
                 //För att update:a:
                 //s.execute("UPDATE G2Game SET P_Id=420 WHERE P_Id=2");
-                //För att ta delete:a:  s.execute("DELETE FROM G2Game where P_Id=2");
+
+                //För att ta delete:a:
+                // s.execute("DELETE FROM G2Game where P_Id=2");
+
                 //För att inserta:
                 /*s.execute("INSERT into G2Game values " +
                         "(2,'Jönsson','Albin','BinkV','Umeå')");*/
 
-                ResultSet res = s.executeQuery("SELECT P_Id FROM G2Game");
+                ResultSet pID = s.executeQuery("SELECT P_Id FROM G2Game");
+                pID.next();
+                String str = pID.getString(1);
+                System.out.println(str);
 
+                ResultSet lastN = s.executeQuery("SELECT LastName FROM G2Game");
+                lastN.next();
+                str = lastN.getString(1);
+                System.out.println(str);
 
+                ResultSet firstN = s.executeQuery("SELECT FirstName FROM G2Game");
+                firstN.next();
+                str = firstN.getString(1);
+                System.out.println(str);
+
+                ResultSet address = s.executeQuery("SELECT Address FROM G2Game");
+                address.next();
+                str = address.getString(1);
+                System.out.println(str);
+
+                ResultSet city = s.executeQuery("SELECT City FROM G2Game");
+                city.next();
+                str = city.getString(1);
+                System.out.println(str);
 
             } catch (SQLException e) {
                 e.printStackTrace(); //Ta bort senare
