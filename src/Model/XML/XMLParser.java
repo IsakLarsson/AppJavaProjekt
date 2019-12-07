@@ -22,6 +22,7 @@ public class XMLParser {
     private ArrayList<Tile> tileMap;
     private int TILE_SIZE = 20;
     private Queue<Tile> pathQueue;
+    private int mapSize;
 
     public ArrayList parseXML() {
         pathQueue = new LinkedList<>();
@@ -38,7 +39,7 @@ public class XMLParser {
             Element level = (Element) l;
             NodeList tileList = level.getElementsByTagName("Tile");
 
-            int mapSize = getMapSize(level);
+            mapSize = getMapSize(level);
 
 
             for (int i = 0; i < tileList.getLength(); i++){
@@ -121,6 +122,11 @@ public class XMLParser {
     }
 
     public Queue getPathQueue(){
+
         return pathQueue;
+    }
+
+    public int getMapSize(){
+        return mapSize;
     }
 }
