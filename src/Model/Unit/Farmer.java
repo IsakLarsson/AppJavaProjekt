@@ -55,13 +55,18 @@ public class Farmer implements Unit {
 
     @Override
     public void move() {
-        x = x+1;
-        y = y+1;
+        x = x+speed;
     }
 
     public int getSpeed(){
         return speed;
     }
 
+    public int getX() {
+        return x;
+    }
 
+    public int getY() {
+        return y;
+    }
 }

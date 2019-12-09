@@ -14,20 +14,17 @@ public class Animator {
 
     public Animator() {
         unitList = new ArrayList<Unit>();
-        t = new Timer();
-        t.schedule(new TimerTask() {
+        lock = new Object();
 
-            @Override
-            public void run() {
-                synchronized(lock) {
-                    for(Unit unit : unitList) {
-                        unit.move();
-                    }
-                }
-
-            }}, 50, 50);
     }
 
+    public void run() {
+        synchronized (lock) {
+            for (Unit unit : unitList) {
+                unit.move();
+            }
+        }
+    }
     //Safe to call from any thread
     public void addUnit(Unit unit) {
         synchronized(lock) {
