@@ -12,15 +12,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-//TODO: Skapa metoder för olika levels
-//TODO: Model.XML ska följa och valideras mha ett Model.XML-Schema
 //TODO: Win conditions
 //TODO: Flera möjliga vägsträckor
-//TODO: Alla resultat ska sparas central på en server mha av en databas
-//TODO: Highscores baserad på tid, poäng etc.
 //TODO: Ska finnas banor med "växlar"
 //TODO: Speciella områden, ex. teleport
 
@@ -40,7 +35,7 @@ public class XMLCreator {
     }
 
     /**
-     * Creates a new Model.XML-file named Levels.xml
+     * Creates a new Levels.XML-file named Levels.xml
      * @throws ParserConfigurationException - Configuration error
      * @throws TransformerException - Error during transformation process
      */
@@ -56,7 +51,7 @@ public class XMLCreator {
         path = "src\\Model\\XML\\Levels.xml";
         StreamResult streamRes = new StreamResult(new File(path));
 
-        //Transform code to Model.XML-format and place it in given directory(see path)
+        //Transform code to Levels.XML-format and place it in given directory(see path)
         TransformerFactory transformerFac = TransformerFactory.newInstance();
         Transformer transformer = transformerFac.newTransformer();
         DOMSource source = new DOMSource(doc);
@@ -89,6 +84,11 @@ public class XMLCreator {
     }
 
     /**
+     * Create level 2
+     */
+    private void createLevel2() {}
+
+    /**
      * Creates a path area with nrArea numbers of area
      * @param nrArea Number of area tiles
      * @param dest Destination, where the area should be inserted as a sub-element
@@ -104,7 +104,6 @@ public class XMLCreator {
             areaType.appendChild(coordinates);
         }
     }
-
 
     /**
      * Creates a tower area with nrArea numbers of area.

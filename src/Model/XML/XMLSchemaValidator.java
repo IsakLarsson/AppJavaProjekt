@@ -9,33 +9,29 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.IOException;
 
-public class XMLSchemaValidator { //Ta bort main och ersätt den med en publik metod som ska anropas vid validation
+public class XMLSchemaValidator {
+    private Schema schema;
+    private SchemaFactory factory;
 
-    public static void main(String[] args) throws IOException, SAXException {
+    public XMLSchemaValidator() {
+        String schemaLang = "http://www.w3.org/2001/XMLSchema";
+        factory = SchemaFactory.newInstance(schemaLang);
+        Schema schema = null;
+    }
+
+    public void validateXML() {
         try {
-            // define the type of schema - we use W3C:
-            String schemaLang = "http://www.w3.org/2001/XMLSchema";
-            // get validation driver:
-            SchemaFactory factory = SchemaFactory.newInstance(schemaLang);
-            // create schema by reading it from an XSD file:
-            Schema schema = null;
-
-            try {
-                schema = factory.newSchema(new StreamSource("src\\Model\\XML\\XMLSchema.xsd"));
-            }
-            catch (SAXException e) {
-                JOptionPane.showMessageDialog(null, "Incorrect format for Model.XML");
-            }
+            schema = factory.newSchema(new StreamSource("src\\Model\\XML\\XMLSchema.xsd"));
             Validator val = null;
             if (schema != null) {
                 val = schema.newValidator();
             }
             if (val != null) {
-                val.validate(new StreamSource("src\\Model.XML\\Levels.xml"));
+                val.validate(new StreamSource("src\\Model\\XML\\Levels.xml"));
             }
         }
-        catch (SAXParseException e) {
-            JOptionPane.showMessageDialog(null, "Incorrect format for Model.XML");
+        catch (SAXException | IOException e) {
+            JOptionPane.showMessageDialog(null, "Incorrect format for Levels.XML");
         }
         JOptionPane.showMessageDialog(null, "Validator finished without errors");
     }
