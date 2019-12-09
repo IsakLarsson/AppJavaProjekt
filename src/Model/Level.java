@@ -4,11 +4,16 @@ import Model.XML.Area.*;
 import Model.XML.XMLParser;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Level {
 
     private Tile[][] tileMap;
-    private int towerRange = 100;
+    private LinkedList<Path> path;
+    private SpawnArea spawnArea;
+    private GoalArea goalArea;
+    private ArrayList<TowerArea> towerAreas;
 
     public Level(int mapSize){
         tileMap = new Tile[mapSize][mapSize];
@@ -17,20 +22,44 @@ public class Level {
                 tileMap[i][j] = new FillArea(i,j,20);
             }
         }
+        path = new LinkedList<>();
+        towerAreas = new ArrayList<>();
     }
 
     public void addTile(Tile tile){
-        int x = tile.getxCoordinate();
-        int y = tile.getyCoordinate();
-        tileMap[x][y] = tile;
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public void addPath(Path tile){
+        path.add(tile);
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public void addSpawn(SpawnArea tile){
+        spawnArea = tile;
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public void addTowerArea(TowerArea tile){
+        towerAreas.add(tile);
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public void addGoalArea(GoalArea tile){
+        goalArea = tile;
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public ArrayList<TowerArea> getTowerAreas(){
+        return towerAreas;
+    }
+
+    public GoalArea getGoalArea(){
+        return goalArea;
     }
 
     public Tile getTile(int x, int y){
         return tileMap[x][y];
-    }
-
-    public int getTowerRange(){
-        return towerRange;
     }
 
     public int getMapSize(){
@@ -51,5 +80,9 @@ public class Level {
 
     public boolean isGoal(int x, int y){
         return tileMap[x][y].getColor().equals(Color.pink);
+    }
+
+    public Tile getSpawn(){
+        return spawnArea;
     }
 }

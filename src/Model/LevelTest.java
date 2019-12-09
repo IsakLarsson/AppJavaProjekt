@@ -30,14 +30,9 @@ public class LevelTest {
     }
 
     @Test
-    public void getTowerRangeTest(){
-        Assertions.assertEquals(100, level.getTowerRange());
-    }
-
-    @Test
     public void addTileTest(){
         Path path = new Path(1,0,20);
-        level.addTile(path);
+        level.addPath(path);
         Assertions.assertEquals(path, level.getTile(1,0));
     }
 

@@ -89,16 +89,16 @@ public class XMLParser {
             Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
             switch (tileAttribute){
                 case "Path":
-                    map.addTile((Path) tileObject);
+                    map.addPath((Path) tileObject);
                     break;
                 case "SpawnArea":
-                    map.addTile((SpawnArea) tileObject);
+                    map.addSpawn((SpawnArea) tileObject);
                     break;
                 case "TowerArea":
-                    map.addTile((TowerArea) tileObject);
+                    map.addTowerArea((TowerArea) tileObject);
                     break;
                 case "GoalArea":
-                    map.addTile((GoalArea) tileObject);
+                    map.addGoalArea((GoalArea) tileObject);
                     break;
                 default:
                     map.addTile((Tile) tileObject);
