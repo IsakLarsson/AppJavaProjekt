@@ -21,7 +21,7 @@ public class Controller {
 
     //
     private ButtonListener buttonListener;
-    private int updateInterval = 1000;
+    private int updateInterval = 50;
 
 
     public Controller(){
