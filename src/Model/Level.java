@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class Level {
 
     private Tile[][] tileMap;
-    private LinkedList<Path> path;
+    private LinkedList<Tile> path;
     private SpawnArea spawnArea;
     private GoalArea goalArea;
     private ArrayList<TowerArea> towerAreas;
@@ -24,6 +24,10 @@ public class Level {
         }
         path = new LinkedList<>();
         towerAreas = new ArrayList<>();
+    }
+
+    public LinkedList<Tile> getPath() {
+        return path;
     }
 
     public void addTile(Tile tile){
