@@ -14,7 +14,7 @@ public class Level {
         tileMap = new Tile[mapSize][mapSize];
         for(int i = 0; i < mapSize; i++){
             for(int j = 0; j < mapSize; j++){
-                tileMap[i][j] = new Tile(i,j,20);
+                tileMap[i][j] = new FillArea(i,j,20);
             }
         }
     }
