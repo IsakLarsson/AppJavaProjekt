@@ -14,7 +14,8 @@ public class Game extends Thread{
     private BufferedImage image;
 
     public Game(GameWindow gui){
-        level = new Level();
+        XMLParser parser = new XMLParser();
+        level = parser.parseXML();
         modelAdapter = new ModelAdapter(gui);
 
     }
@@ -37,7 +38,6 @@ public class Game extends Thread{
                 BufferedImage.TYPE_INT_ARGB);
 
         Graphics g = gameImage.getGraphics();
-        Level map = new Level();
 
         for (int i = 0; i < level.getMapSize(); i++) {
             for (int j = 0; j < level.getMapSize(); j++){
