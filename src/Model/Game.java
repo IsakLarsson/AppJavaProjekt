@@ -2,6 +2,7 @@ package Model;
 
 import GUI.GameWindow;
 import Model.Unit.Farmer;
+import Model.Unit.Unit;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 
@@ -10,15 +11,21 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Game extends Thread {
+    private List<Unit> unitList;
     private ModelAdapter modelAdapter;
     private Level level;
-    private BufferedImage gameImage;
+    private BufferedImage backgroundImage;
+    private BufferedImage updatedImage;
     private int updateInterval;
 
     public Game(ModelAdapter adapter, int updateInterval) {
         XMLParser parser = new XMLParser();
+        unitList = new ArrayList<>();
         level = parser.parseXML();
         modelAdapter = adapter;
         this.updateInterval = updateInterval;
@@ -30,21 +37,22 @@ public class Game extends Thread {
         drawMap();
 
         Farmer farmer = new Farmer();
-        Animator animator = new Animator();
+        Farmer farmer2 = new Farmer();
+        Animator animator = new Animator(unitList);
         animator.addUnit(farmer);
 
         Timer t = new Timer(updateInterval, (e) -> {
             //move everything
 
-            Graphics g = gameImage.getGraphics();
+            Graphics g = backgroundImage.getGraphics();
             animator.run();
 
             //update image
-            farmer.draw(g, farmer.getX(), farmer.getY());
+            drawUnits();
 
 
             //Send image to adapter
-            modelAdapter.setBufferedImage(gameImage);
+            modelAdapter.setBufferedImage(updatedImage);
         });
         t.setRepeats(true);
         t.start();
@@ -52,9 +60,9 @@ public class Game extends Thread {
     }
 
     public void drawMap() {
-        gameImage = new BufferedImage(400, 400,
+        backgroundImage = new BufferedImage(400, 400,
                 BufferedImage.TYPE_INT_ARGB);
-        Graphics g = gameImage.getGraphics();
+        Graphics g = backgroundImage.getGraphics();
 
         for (int i = 0; i < level.getMapSize(); i++) {
             for (int j = 0; j < level.getMapSize(); j++) {
@@ -69,19 +77,20 @@ public class Game extends Thread {
         }
     }
 
-    private BufferedImage updatePositions(int x, int y) {
-        BufferedImage newImage = deepCopy(gameImage);
-        Graphics testunit = newImage.getGraphics();
-        testunit.setColor(Color.MAGENTA);
-        testunit.fillOval(x,y,10,10);
-        return newImage;
-    }
 
     public static BufferedImage deepCopy(BufferedImage bi) {
         ColorModel cm = bi.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
+
+    public void drawUnits(){
+        updatedImage = deepCopy(backgroundImage);
+        Graphics newGraphics = updatedImage.getGraphics();
+        for(Unit unit : unitList){
+            unit.draw(newGraphics, unit.getX(), unit.getY());
+        }
     }
 
 }

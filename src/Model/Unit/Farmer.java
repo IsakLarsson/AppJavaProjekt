@@ -30,8 +30,7 @@ public class Farmer implements Unit {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        g.setColor(white);
-        g.fillOval(x, y, size, size);
+        g.drawImage(image, x, y, null);
     }
 
     public void takeDMG(int DMG) {

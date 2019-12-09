@@ -40,6 +40,16 @@ public class Soldier implements Unit {
         return dmg;
     }
 
+    @Override
+    public int getX() {
+        return 0;
+    }
+
+    @Override
+    public int getY() {
+        return 0;
+    }
+
     public int getSpeed(){
         return speed;
     }

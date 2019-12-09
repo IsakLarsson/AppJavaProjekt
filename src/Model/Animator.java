@@ -12,8 +12,8 @@ public class Animator {
     private Timer t;
     private Object lock;
 
-    public Animator() {
-        unitList = new ArrayList<Unit>();
+    public Animator(List unitList) {
+        this.unitList = unitList;
         lock = new Object();
 
     }
@@ -25,6 +25,7 @@ public class Animator {
             }
         }
     }
+
     //Safe to call from any thread
     public void addUnit(Unit unit) {
         synchronized(lock) {

@@ -11,6 +11,10 @@ public interface Unit {
 
     int getDmg();
 
+    int getX();
+
+    int getY();
+
     Image getImage();
 
     void move();
