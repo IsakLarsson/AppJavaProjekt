@@ -3,6 +3,7 @@ package Model;
 import GUI.GameWindow;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,9 +11,9 @@ import java.awt.image.BufferedImage;
 public class Game extends Thread{
     ModelAdapter modelAdapter;
     Level level;
+    private BufferedImage image;
 
     public Game(GameWindow gui){
-        XMLParser parser = new XMLParser();
         level = new Level();
         modelAdapter = new ModelAdapter(gui);
 
@@ -20,10 +21,18 @@ public class Game extends Thread{
 
     @Override
     public void run() {
-        drawGame();
+        drawMap();
+
+        //move everything
+
+        //update image
+
+        //Send image to adapter
+        modelAdapter.setBufferedImage(image);
+
     }
 
-    public void drawGame(){
+    public void drawMap(){
         BufferedImage gameImage = new BufferedImage(400, 400,
                 BufferedImage.TYPE_INT_ARGB);
 
