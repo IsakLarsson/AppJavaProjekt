@@ -27,7 +27,6 @@ public class Controller {
     public Controller(){
         Object lock = new Object();
 
-        //TODO Nya tråder UTANFÖR invoke later
         SwingUtilities.invokeLater(() -> {
             //
             menuListener = new MenuListener();

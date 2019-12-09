@@ -1,12 +1,15 @@
 package Model;
 
 import GUI.GameWindow;
+import Model.Unit.Farmer;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 public class Game extends Thread {
     private ModelAdapter modelAdapter;
@@ -26,19 +29,25 @@ public class Game extends Thread {
     public void run() {
         drawMap();
 
+        Farmer farmer = new Farmer();
+        Animator animator = new Animator();
+        animator.addUnit(farmer);
+
         Timer t = new Timer(updateInterval, (e) -> {
             //move everything
 
+            Graphics g = gameImage.getGraphics();
+            animator.run();
+
             //update image
+            farmer.draw(g, farmer.getX(), farmer.getY());
+
 
             //Send image to adapter
-
-
             modelAdapter.setBufferedImage(gameImage);
         });
         t.setRepeats(true);
         t.start();
-
 
     }
 
@@ -58,6 +67,21 @@ public class Game extends Thread {
                         tile.getSize());
             }
         }
+    }
+
+    private BufferedImage updatePositions(int x, int y) {
+        BufferedImage newImage = deepCopy(gameImage);
+        Graphics testunit = newImage.getGraphics();
+        testunit.setColor(Color.MAGENTA);
+        testunit.fillOval(x,y,10,10);
+        return newImage;
+    }
+
+    public static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 
 }

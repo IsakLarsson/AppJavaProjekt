@@ -39,6 +39,11 @@ public class Tower implements Unit {
         return null;
     }
 
+    @Override
+    public void move() {
+
+    }
+
     public void drawProjectile (Graphics g) {
 
     }

@@ -13,6 +13,5 @@ public interface Unit {
 
     Image getImage();
 
-
-
+    void move();
 }
