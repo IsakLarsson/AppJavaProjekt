@@ -48,4 +48,9 @@ public class Soldier implements Unit {
     public Image getImage(){
         return image;
     }
+
+    @Override
+    public void move() {
+
+    }
 }

@@ -15,7 +15,7 @@ public class Farmer implements Unit {
     private int size = 10;
 
     //Position
-    //   private int x,y;
+    private int x,y;
 
     public Farmer() {
         try {
@@ -51,6 +51,12 @@ public class Farmer implements Unit {
     @Override
     public Image getImage() {
         return image;
+    }
+
+    @Override
+    public void move() {
+        x = x+1;
+        y = y+1;
     }
 
     public int getSpeed(){

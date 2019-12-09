@@ -1,6 +1,7 @@
 package Model;
 
 import GUI.GameWindow;
+import Model.Unit.Farmer;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 
@@ -28,17 +29,18 @@ public class Game extends Thread {
 
         Timer t = new Timer(updateInterval, (e) -> {
             //move everything
+            Animator animator = new Animator();
+            //Farmer farmer = new Farmer();
+            //farmer.draw();
 
             //update image
 
             //Send image to adapter
 
-
             modelAdapter.setBufferedImage(gameImage);
         });
         t.setRepeats(true);
         t.start();
-
 
     }
 
