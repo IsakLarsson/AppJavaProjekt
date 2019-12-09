@@ -10,15 +10,11 @@ public class Level {
     private Tile[][] tileMap;
     private int towerRange = 100;
 
-    public Level(){
-        XMLParser parser = new XMLParser();
-        parser.parseXML();
-        int size = parser.getMapSize();
-
-        tileMap = new Tile[size][size];
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                tileMap[i][j] = new Tile(i, j, 20);
+    public Level(int mapSize){
+        tileMap = new Tile[mapSize][mapSize];
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                tileMap[i][j] = new FillArea(i,j,20);
             }
         }
     }
@@ -35,6 +31,10 @@ public class Level {
 
     public int getTowerRange(){
         return towerRange;
+    }
+
+    public int getMapSize(){
+        return tileMap.length;
     }
 
     public boolean isPath(int x, int y){

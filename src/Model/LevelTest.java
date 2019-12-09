@@ -12,7 +12,7 @@ public class LevelTest {
 
     @BeforeEach
     public void beforeEach(){
-        level = new Level();
+        level = new Level(20);
     }
 
     @Test
@@ -31,13 +31,15 @@ public class LevelTest {
 
     @Test
     public void addTileTest(){
-        Tile path = new Path(1,0,20);
+        Path path = new Path(1,0,20);
         level.addTile(path);
         Assertions.assertEquals(path, level.getTile(1,0));
     }
 
     @Test
     public void ifCordIsPathTest(){
+        Path path = new Path(1,0,20);
+        level.addTile(path);
         boolean test = level.isPath(1,0);
         Assertions.assertTrue(test);
     }
@@ -59,4 +61,5 @@ public class LevelTest {
         boolean test = level.isGoal(10,0);
         Assertions.assertTrue(test);
     }
+
 }
