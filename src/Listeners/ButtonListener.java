@@ -7,10 +7,9 @@ import java.awt.event.ActionListener;
 public class ButtonListener implements ActionListener {
 
     //
-    private Controller controller;
 
-    public ButtonListener(Controller controller) {
-        this.controller = controller;
+    public ButtonListener() {
+
     }
 
     @Override
@@ -21,7 +20,7 @@ public class ButtonListener implements ActionListener {
 
         switch (s) {
             case "Farmer":
-                controller.spawnUnit(s);
+
                 break;
             case "Soldier":
                 break;

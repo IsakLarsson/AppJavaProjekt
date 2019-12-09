@@ -17,6 +17,7 @@ public class Controller {
 
     //
     private MenuListener menuListener;
+    private ModelAdapter adapter;
 
     //
     private ButtonListener buttonListener;
@@ -29,10 +30,10 @@ public class Controller {
 
         SwingUtilities.invokeLater(() -> {
             //
-            this.menuListener = new MenuListener(this);
+            menuListener = new MenuListener();
 
             // An actionlistener for the spawn buttons
-            this.buttonListener = new ButtonListener(this);
+            buttonListener = new ButtonListener();
 
             // A panel that you draw on
             // A window gameFrame containing a menubar
@@ -44,15 +45,22 @@ public class Controller {
             gameFrame.show();
 
             // An adapter that acts a middlehand between the gui and the model
-            //ModelAdapter adapter = new ModelAdapter(gameWindow);
+            //adapter = new ModelAdapter(gameWindow);
             // A model
             //Worker worker = new Worker(adapter);
             //worker.execute();
 
 
         });
-
-        Game game = new Game(gameWindow);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        adapter = new ModelAdapter(gameWindow);
+        //TODO synka denna del med invokelater, annars hinner guit inte
+        // initialiseras innan game.run körs ----> nullpointer
+        Game game = new Game(adapter);
         game.run();
     }
 

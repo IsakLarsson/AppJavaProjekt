@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
 public class MenuListener implements ActionListener {
 
     //
-    private Controller controller;
 
-    public MenuListener(Controller controller) {
-        this.controller = controller;
+    public MenuListener(){
+
     }
 
     @Override
@@ -22,7 +21,7 @@ public class MenuListener implements ActionListener {
 
         switch (s) {
             case "Help":
-                controller.openDialog(s, "How to play the game");
+                //controller.openDialog(s, "How to play the game");
                 break;
             case "About":
                 break;

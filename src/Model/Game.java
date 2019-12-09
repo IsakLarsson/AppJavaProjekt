@@ -13,10 +13,10 @@ public class Game extends Thread{
     Level level;
     private BufferedImage gameImage;
 
-    public Game(GameWindow gui){
+    public Game(ModelAdapter adapter){
         XMLParser parser = new XMLParser();
         level = parser.parseXML();
-        modelAdapter = new ModelAdapter(gui);
+        modelAdapter = adapter;
 
     }
 
