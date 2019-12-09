@@ -21,7 +21,7 @@ public class Farmer implements Unit {
         try {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Farmer.png"));
-            image = image.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(15,20,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

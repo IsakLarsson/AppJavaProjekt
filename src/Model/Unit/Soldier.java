@@ -23,7 +23,7 @@ public class Soldier implements Unit {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-
+        g.drawImage(image, x, y,null);
     }
 
     public void takeDMG(int DMG) {
