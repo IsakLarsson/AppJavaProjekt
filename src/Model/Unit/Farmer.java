@@ -34,7 +34,6 @@ public class Farmer implements Unit {
         g.fillOval(x, y, size, size);
     }
 
-    @Override
     public void takeDMG(int DMG) {
         hp = hp - DMG;
     }

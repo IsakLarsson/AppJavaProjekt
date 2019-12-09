@@ -25,11 +25,6 @@ public class Tower implements Unit {
     }
 
     @Override
-    public void takeDMG(int DMG) {
-
-    }
-
-    @Override
     public int getHp() {
         return 0;
     }
