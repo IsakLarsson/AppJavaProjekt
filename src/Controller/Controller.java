@@ -25,9 +25,9 @@ public class Controller {
 
 
     public Controller(){
+        Object lock = new Object();
 
         //TODO Nya tråder UTANFÖR invoke later
-
         SwingUtilities.invokeLater(() -> {
             //
             menuListener = new MenuListener();
@@ -49,14 +49,19 @@ public class Controller {
             // A model
             //Worker worker = new Worker(adapter);
             //worker.execute();
-
+            synchronized (lock){
+                lock.notify();
+            }
 
         });
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (lock){
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                //Skriv lämpligt fel
+            }
         }
+
         adapter = new ModelAdapter(gameWindow);
         //TODO synka denna del med invokelater, annars hinner guit inte
         // initialiseras innan game.run körs ----> nullpointer

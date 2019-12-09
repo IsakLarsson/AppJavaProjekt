@@ -4,7 +4,6 @@ import Listeners.ButtonListener;
 import Listeners.MenuListener;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GameFrame {
     private JFrame frame;
