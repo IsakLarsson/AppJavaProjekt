@@ -44,10 +44,10 @@ public class Controller {
             gameFrame.show();
 
             // An adapter that acts a middlehand between the gui and the model
-            ModelAdapter adapter = new ModelAdapter(gameWindow);
+            //ModelAdapter adapter = new ModelAdapter(gameWindow);
             // A model
-            Worker worker = new Worker(adapter);
-            worker.execute();
+            //Worker worker = new Worker(adapter);
+            //worker.execute();
 
 
         });

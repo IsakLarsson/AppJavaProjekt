@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Game extends Thread{
     ModelAdapter modelAdapter;
     Level level;
-    private BufferedImage image;
+    private BufferedImage gameImage;
 
     public Game(GameWindow gui){
         XMLParser parser = new XMLParser();
@@ -29,14 +29,13 @@ public class Game extends Thread{
         //update image
 
         //Send image to adapter
-        modelAdapter.setBufferedImage(image);
+        modelAdapter.setBufferedImage(gameImage);
 
     }
 
     public void drawMap(){
-        BufferedImage gameImage = new BufferedImage(400, 400,
+        gameImage = new BufferedImage(400, 400,
                 BufferedImage.TYPE_INT_ARGB);
-
         Graphics g = gameImage.getGraphics();
 
         for (int i = 0; i < level.getMapSize(); i++) {
