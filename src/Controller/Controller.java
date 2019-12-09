@@ -21,7 +21,7 @@ public class Controller {
 
     //
     private ButtonListener buttonListener;
-
+    private int updateInterval = 1000;
 
 
     public Controller(){
@@ -54,19 +54,20 @@ public class Controller {
             }
 
         });
+
         synchronized (lock){
             try {
                 lock.wait();
+                adapter = new ModelAdapter(gameWindow);
+                //TODO synka denna del med invokelater, annars hinner guit inte
+                // initialiseras innan game.run körs ----> nullpointer
+                Game game = new Game(adapter, updateInterval);
+                game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
             }
         }
 
-        adapter = new ModelAdapter(gameWindow);
-        //TODO synka denna del med invokelater, annars hinner guit inte
-        // initialiseras innan game.run körs ----> nullpointer
-        Game game = new Game(adapter);
-        game.run();
     }
 
 
