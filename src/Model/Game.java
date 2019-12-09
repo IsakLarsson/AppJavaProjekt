@@ -3,7 +3,6 @@ package Model;
 import GUI.GameWindow;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
-import org.junit.jupiter.params.provider.EnumSource;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -43,7 +42,7 @@ public class Game extends Thread{
 
                 Tile tile = level.getTile(i,j);
                 g.setColor(tile.getColor());
-                g.fillRect(tile.getxCoordinate(), tile.getyCoordinate(),
+                g.fillRect(tile.getxCoordinate() + i*20, tile.getyCoordinate() + j*20,
                         tile.getSize(),
                         tile.getSize());
             }

@@ -38,10 +38,7 @@ public class Level {
     }
 
     public boolean isPath(int x, int y){
-
-        Tile tile = getTile(x,y);
-        return tile.equals(new Path(x,y,20));
-        //return tileMap[x][y].getColor().equals(Color.orange);
+        return tileMap[x][y].getColor().equals(Color.orange);
     }
 
     public boolean isTower(int x, int y){
@@ -55,5 +52,4 @@ public class Level {
     public boolean isGoal(int x, int y){
         return tileMap[x][y].getColor().equals(Color.pink);
     }
-
 }

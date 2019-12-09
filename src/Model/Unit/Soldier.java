@@ -26,7 +26,6 @@ public class Soldier implements Unit {
 
     }
 
-    @Override
     public void takeDMG(int DMG) {
         hp = hp - DMG;
     }

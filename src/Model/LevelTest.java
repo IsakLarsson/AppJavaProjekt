@@ -1,7 +1,7 @@
 package Model;
 
-import Model.XML.Area.Path;
-import Model.XML.Area.Tile;
+import Model.Unit.Tower;
+import Model.XML.Area.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +30,11 @@ public class LevelTest {
     }
 
     @Test
+    public void getTowerRangeTest(){
+        Assertions.assertEquals(100, level.getTowerRange());
+    }
+
+    @Test
     public void addTileTest(){
         Path path = new Path(1,0,20);
         level.addTile(path);
@@ -46,20 +51,33 @@ public class LevelTest {
 
     @Test
     public void ifCordIsTowerTest(){
+        TowerArea tower = new TowerArea(5,5,20);
+        level.addTile(tower);
         boolean test = level.isTower(5,5);
         Assertions.assertTrue(test);
     }
 
     @Test
     public void ifCordIsSpawnTest(){
+        SpawnArea tile = new SpawnArea(0,0,20);
+        level.addTile(tile);
         boolean test = level.isSpawn(0,0);
         Assertions.assertTrue(test);
     }
 
     @Test
     public void ifCordIsGoalTest(){
+        GoalArea tile = new GoalArea(10,0,20);
+        level.addTile(tile);
         boolean test = level.isGoal(10,0);
         Assertions.assertTrue(test);
+    }
+
+    @Test
+    public void ifCastIsCorrectTest(){
+        Path path = new Path(1,0,20);
+        level.addTile(path);
+        Assertions.assertEquals(path, level.getTile(1,0));
     }
 
 }
