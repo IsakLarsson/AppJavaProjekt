@@ -8,6 +8,7 @@ import java.awt.*;
 public class Level {
 
     private Tile[][] tileMap;
+    private int towerRange = 100;
 
     public Level(){
         XMLParser parser = new XMLParser();
@@ -30,6 +31,10 @@ public class Level {
 
     public Tile getTile(int x, int y){
         return tileMap[x][y];
+    }
+
+    public int getTowerRange(){
+        return towerRange;
     }
 
     public boolean isPath(int x, int y){

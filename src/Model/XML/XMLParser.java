@@ -1,5 +1,6 @@
 package Model.XML;
 
+import Model.Level;
 import Model.XML.Area.Tile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,14 +20,11 @@ import java.util.Queue;
 
 public class XMLParser {
 
-    private ArrayList<Tile> tileMap;
     private int TILE_SIZE = 20;
-    private Queue<Tile> pathQueue;
     private int mapSize;
 
-    public ArrayList parseXML() {
-        pathQueue = new LinkedList<>();
-        tileMap = new ArrayList<>();
+    public Level parseXML() {
+        Level map = new Level();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -44,7 +42,7 @@ public class XMLParser {
 
             for (int i = 0; i < tileList.getLength(); i++){
                 Object tileObject = getTile(tileList, i);
-                tileMap.add((Tile) tileObject);
+                map.addTile((Tile) tileObject);
             }
 
         } catch (ParserConfigurationException e) {
@@ -55,7 +53,7 @@ public class XMLParser {
             e.printStackTrace();
         }
 
-        return tileMap;
+        return map;
     }
 
     /**
@@ -87,9 +85,6 @@ public class XMLParser {
                             , int.class);
             Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
 
-            if(tileAttribute.equals("Path") || tileAttribute.equals("SpawnArea")){
-                pathQueue.add((Tile) tileObject);
-            }
 
             return tileObject;
 
@@ -121,10 +116,6 @@ public class XMLParser {
         return Integer.valueOf(size);
     }
 
-    public Queue getPathQueue(){
-
-        return pathQueue;
-    }
 
     public int getMapSize(){
         return mapSize;
