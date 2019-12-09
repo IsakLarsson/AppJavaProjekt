@@ -12,7 +12,7 @@ public class LevelTest {
 
     @BeforeEach
     public void beforeEach(){
-        level = new Level();
+        level = new Level(20);
     }
 
     @Test
@@ -59,4 +59,5 @@ public class LevelTest {
         boolean test = level.isGoal(10,0);
         Assertions.assertTrue(test);
     }
+
 }

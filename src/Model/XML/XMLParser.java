@@ -1,8 +1,7 @@
 package Model.XML;
 
 import Model.Level;
-import Model.XML.Area.Path;
-import Model.XML.Area.Tile;
+import Model.XML.Area.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -23,9 +22,9 @@ public class XMLParser {
 
     private int TILE_SIZE = 20;
     private int mapSize;
-    private Tile[][] tileMap;
+    private Level map;
 
-    public Tile[][] parseXML() {
+    public Level parseXML() {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -40,12 +39,11 @@ public class XMLParser {
             NodeList tileList = level.getElementsByTagName("Tile");
 
             mapSize = getMapSize(level);
-            tileMap = new Tile[mapSize][mapSize];
+
+            map = new Level(mapSize);
 
             for (int i = 0; i < tileList.getLength(); i++){
-                Object tileObject = getTile(tileList, i);
-                Tile tile = (Tile)tileObject;
-                tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+                getTile(tileList, i);
             }
 
 
@@ -58,7 +56,7 @@ public class XMLParser {
             e.printStackTrace();
         }
 
-        return tileMap;
+        return map;
     }
 
     /**
@@ -69,7 +67,7 @@ public class XMLParser {
      * @param index the index to get the node from
      * @return An object created from a Tile class
      */
-    private Tile getTile(NodeList tileList, int index) {
+    private void getTile(NodeList tileList, int index) {
         try {
             Node readTile = tileList.item(index);
             Element tile = (Element)readTile;
@@ -89,9 +87,22 @@ public class XMLParser {
                     tileClass.getDeclaredConstructor(int.class, int.class
                             , int.class);
             Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
-
-
-            return (Tile)tileObject;
+            switch (tileAttribute){
+                case "Path":
+                    map.addTile((Path) tileObject);
+                    break;
+                case "SpawnArea":
+                    map.addTile((SpawnArea) tileObject);
+                    break;
+                case "TowerArea":
+                    map.addTile((TowerArea) tileObject);
+                    break;
+                case "GoalArea":
+                    map.addTile((GoalArea) tileObject);
+                    break;
+                default:
+                    map.addTile((Tile) tileObject);
+            }
 
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -104,7 +115,6 @@ public class XMLParser {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     /**

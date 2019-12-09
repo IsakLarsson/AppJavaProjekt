@@ -10,9 +10,8 @@ public class Level {
     private Tile[][] tileMap;
     private int towerRange = 100;
 
-    public Level(){
-        XMLParser parser = new XMLParser();
-        tileMap = parser.parseXML();
+    public Level(int mapSize){
+        tileMap = new Tile[mapSize][mapSize];
     }
 
     public void addTile(Tile tile){
