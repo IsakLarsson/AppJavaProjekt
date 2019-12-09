@@ -24,7 +24,8 @@ public class Controller {
 
     public Controller(){
 
-        //
+        //TODO Nya tråder UTANFÖR invoke later, Klass för level, Ändra
+        // maprepresentationen
         SwingUtilities.invokeLater(() -> {
 
             //
@@ -44,9 +45,6 @@ public class Controller {
 
             // An adapter that acts a middlehand between the gui and the model
             ModelAdapter adapter = new ModelAdapter(gameWindow);
-
-
-
             // A model
             Worker worker = new Worker(adapter);
             worker.execute();

@@ -39,7 +39,6 @@ public class Worker extends SwingWorker {
         // Draws the level
         drawLevel();
         // Get thw path queue
-        queue = xmlParser.getPathQueue();
 
         // Save the adapter
         adapter = ma;
@@ -94,7 +93,7 @@ public class Worker extends SwingWorker {
         level = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
         xmlParser = new XMLParser();
 
-        ArrayList<Tile> tileMap = xmlParser.parseXML();
+        /*ArrayList<Tile> tileMap = xmlParser.parseXML();
         Graphics g = level.getGraphics();
 
         for (int i = 0; i < tileMap.size(); i++) {
@@ -103,7 +102,7 @@ public class Worker extends SwingWorker {
             g.fillRect(tile.getxCoordinate(), tile.getyCoordinate(),
                     tile.getSize(),
                     tile.getSize());
-        }
+        }*/
     }
 
 

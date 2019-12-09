@@ -12,15 +12,8 @@ public class Level {
 
     public Level(){
         XMLParser parser = new XMLParser();
-        parser.parseXML();
-        int size = parser.getMapSize();
+        tileMap = parser.parseXML();
 
-        tileMap = new Tile[size][size];
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                tileMap[i][j] = new Tile(i, j, 20);
-            }
-        }
     }
 
     public void addTile(Tile tile){

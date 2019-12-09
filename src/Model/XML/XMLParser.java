@@ -22,9 +22,10 @@ public class XMLParser {
 
     private int TILE_SIZE = 20;
     private int mapSize;
+    private Tile[][] tileMap;
 
-    public Level parseXML() {
-        Level map = new Level();
+    public Tile[][] parseXML() {
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -38,12 +39,15 @@ public class XMLParser {
             NodeList tileList = level.getElementsByTagName("Tile");
 
             mapSize = getMapSize(level);
+            tileMap = new Tile[mapSize][mapSize];
 
-
-            for (int i = 0; i < tileList.getLength(); i++){
-                Object tileObject = getTile(tileList, i);
-                map.addTile((Tile) tileObject);
+            for (int i = 0; i < mapSize; i++){
+                for (int j = 0; j < tileList.getLength(); j++){
+                    Object tileObject = getTile(tileList, i);
+                    tileMap[i][j] = (Tile) tileObject;
+                }
             }
+
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -53,7 +57,7 @@ public class XMLParser {
             e.printStackTrace();
         }
 
-        return map;
+        return tileMap;
     }
 
     /**
