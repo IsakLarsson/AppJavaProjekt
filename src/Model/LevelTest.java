@@ -31,13 +31,15 @@ public class LevelTest {
 
     @Test
     public void addTileTest(){
-        Tile path = new Path(1,0,20);
+        Path path = new Path(1,0,20);
         level.addTile(path);
         Assertions.assertEquals(path, level.getTile(1,0));
     }
 
     @Test
     public void ifCordIsPathTest(){
+        Path path = new Path(1,0,20);
+        level.addTile(path);
         boolean test = level.isPath(1,0);
         Assertions.assertTrue(test);
     }

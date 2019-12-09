@@ -12,6 +12,11 @@ public class Level {
 
     public Level(int mapSize){
         tileMap = new Tile[mapSize][mapSize];
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                tileMap[i][j] = new Tile(i,j,20);
+            }
+        }
     }
 
     public void addTile(Tile tile){
