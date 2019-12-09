@@ -13,6 +13,7 @@ public class Controller {
 
     // The gameFrame of the game
     private GameFrame gameFrame;
+    GameWindow gameWindow;
 
     //
     private MenuListener menuListener;
@@ -24,10 +25,9 @@ public class Controller {
 
     public Controller(){
 
-        //TODO Nya tråder UTANFÖR invoke later, Klass för level, Ändra
-        // maprepresentationen
-        SwingUtilities.invokeLater(() -> {
+        //TODO Nya tråder UTANFÖR invoke later
 
+        SwingUtilities.invokeLater(() -> {
             //
             this.menuListener = new MenuListener(this);
 
@@ -35,8 +35,8 @@ public class Controller {
             this.buttonListener = new ButtonListener(this);
 
             // A panel that you draw on
-            GameWindow gameWindow = new GameWindow();
             // A window gameFrame containing a menubar
+            gameWindow = new GameWindow();
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
                     menuListener);
             gameFrame.setupListeners(buttonListener);
@@ -51,7 +51,11 @@ public class Controller {
 
 
         });
+
+        Game game = new Game(gameWindow);
+        game.run();
     }
+
 
     public void openDialog(String title, String text) {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);

@@ -1,6 +1,7 @@
 package Model.XML;
 
 import Model.Level;
+import Model.XML.Area.Path;
 import Model.XML.Area.Tile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -41,12 +42,12 @@ public class XMLParser {
             mapSize = getMapSize(level);
             tileMap = new Tile[mapSize][mapSize];
 
-            for (int i = 0; i < mapSize; i++){
-                for (int j = 0; j < tileList.getLength(); j++){
-                    Object tileObject = getTile(tileList, i);
-                    tileMap[i][j] = (Tile) tileObject;
-                }
+            for (int i = 0; i < tileList.getLength(); i++){
+                Object tileObject = getTile(tileList, i);
+                Tile tile = (Tile)tileObject;
+                tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
             }
+
 
 
         } catch (ParserConfigurationException e) {
@@ -68,7 +69,7 @@ public class XMLParser {
      * @param index the index to get the node from
      * @return An object created from a Tile class
      */
-    private Object getTile(NodeList tileList, int index) {
+    private Tile getTile(NodeList tileList, int index) {
         try {
             Node readTile = tileList.item(index);
             Element tile = (Element)readTile;
@@ -90,7 +91,7 @@ public class XMLParser {
             Object tileObject = tileConstructor.newInstance(X,Y,TILE_SIZE);
 
 
-            return tileObject;
+            return (Tile)tileObject;
 
         } catch (InstantiationException e) {
             e.printStackTrace();

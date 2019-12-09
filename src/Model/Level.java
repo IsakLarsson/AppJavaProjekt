@@ -13,7 +13,6 @@ public class Level {
     public Level(){
         XMLParser parser = new XMLParser();
         tileMap = parser.parseXML();
-
     }
 
     public void addTile(Tile tile){
@@ -28,6 +27,10 @@ public class Level {
 
     public int getTowerRange(){
         return towerRange;
+    }
+
+    public int getMapSize(){
+        return tileMap.length;
     }
 
     public boolean isPath(int x, int y){

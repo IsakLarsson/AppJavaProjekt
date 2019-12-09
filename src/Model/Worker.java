@@ -90,19 +90,7 @@ public class Worker extends SwingWorker {
     }
 
     private void drawLevel() {
-        level = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
-        xmlParser = new XMLParser();
 
-        /*ArrayList<Tile> tileMap = xmlParser.parseXML();
-        Graphics g = level.getGraphics();
-
-        for (int i = 0; i < tileMap.size(); i++) {
-            Tile tile = tileMap.get(i);
-            g.setColor(tile.getColor());
-            g.fillRect(tile.getxCoordinate(), tile.getyCoordinate(),
-                    tile.getSize(),
-                    tile.getSize());
-        }*/
     }
 
 
