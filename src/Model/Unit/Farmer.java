@@ -1,8 +1,12 @@
 package Model.Unit;
 
+import Model.XML.Area.Tile;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static java.awt.Color.white;
 
@@ -13,6 +17,8 @@ public class Farmer implements Unit {
     private int speed = 20;
     private int dmg = 1;
     private int size = 10;
+    private LinkedList<Tile> tiles;
+    private Queue<Integer> queue;
 
     //Position
     private int x,y;
@@ -29,8 +35,21 @@ public class Farmer implements Unit {
 
 
     @Override
-    public void draw(Graphics g, int x, int y) {
-        g.drawImage(image, x, y, null);
+    public void setTileQueue(LinkedList<Tile> tiles) {
+        this.tiles = tiles;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        if (queue.size() > 1) {
+            g.drawImage(image, queue.poll(), queue.poll(), null);
+        }
+    }
+
+    @Override
+    public void move(Queue queue) {
+        this.queue = queue;
+        x = x+speed;
     }
 
     public void takeDMG(int DMG) {
@@ -52,11 +71,6 @@ public class Farmer implements Unit {
         return image;
     }
 
-    @Override
-    public void move() {
-        x = x+speed;
-    }
-
     public int getSpeed(){
         return speed;
     }
@@ -67,5 +81,9 @@ public class Farmer implements Unit {
 
     public int getY() {
         return y;
+    }
+
+    public LinkedList<Tile> getTiles() {
+        return tiles;
     }
 }

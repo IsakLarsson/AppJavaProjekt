@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Unit.Unit;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 
@@ -9,12 +10,16 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 public class Worker extends SwingWorker {
 
     int x = 10, y = 10;
+
+    // Queue of units that needs to be spawned
+    ArrayList<Unit> units;
 
     // XML File
     private XMLParser xmlParser;
@@ -38,7 +43,11 @@ public class Worker extends SwingWorker {
 
         // Draws the level
         drawLevel();
+
         // Get thw path queue
+
+        // Create the queue with units
+        units = new ArrayList<>();
 
         // Save the adapter
         adapter = ma;
@@ -59,6 +68,8 @@ public class Worker extends SwingWorker {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+
 
             //Get a tile from the queue
             Tile tile = queue.poll();
@@ -101,9 +112,16 @@ public class Worker extends SwingWorker {
 
     private BufferedImage updatePositions(int x, int y) {
         BufferedImage newImage = deepCopy(level);
-        Graphics testunit = newImage.getGraphics();
-        testunit.setColor(Color.MAGENTA);
-        testunit.fillOval(x,y,10,10);
+        Graphics g = newImage.getGraphics();
+
+        //
+        /*if (!units.isEmpty()) {
+            //units.poll().draw(g,x,y);
+        }*/
+
+        g.setColor(Color.MAGENTA);
+        g.fillOval(x,y,10,10);
+
         return newImage;
     }
 
@@ -116,5 +134,12 @@ public class Worker extends SwingWorker {
 
     public Queue<Tile> getQueue() {
         return this.queue;
+    }
+
+    public void addUnitsToList(Unit u) {
+
+        // Behöver skapa en ny queue för varje getQueue
+        //u.setTileQueue(queue);
+        units.add(u);
     }
 }

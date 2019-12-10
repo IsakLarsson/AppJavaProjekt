@@ -1,6 +1,10 @@
 package Model.Unit;
 
+import Model.XML.Area.Tile;
+
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static java.awt.Color.red;
 
@@ -17,11 +21,16 @@ public class Tower implements Unit {
     public Tower() {
     }
 
+
+
     @Override
-    public void draw(Graphics g, int x, int y) {
-        g.setColor(red);
-        g.fillRect(xCord * size, yCord * size,
-                size, size);
+    public void setTileQueue(LinkedList<Tile> tiles) {
+
+    }
+
+    @Override
+    public void draw(Graphics g) {
+
     }
 
     @Override
@@ -50,8 +59,13 @@ public class Tower implements Unit {
     }
 
     @Override
-    public void move() {
+    public void move(Queue q) {
 
+    }
+
+    @Override
+    public LinkedList<Tile> getTiles() {
+        return null;
     }
 
     public void drawProjectile (Graphics g) {

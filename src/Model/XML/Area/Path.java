@@ -9,4 +9,8 @@ public class Path extends Tile {
         setColor(Color.orange);
     }
 
+    public Path(Tile tile) {
+        super(tile.getxCoordinate(),tile.getyCoordinate(),tile.getSize());
+    }
+
 }

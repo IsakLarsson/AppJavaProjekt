@@ -10,7 +10,7 @@ public class Destination {
     }
 
     //TODO Path list måste innehålla spawnpoint då det är en den av pathen också
-    public Queue calculateQueue(LinkedList<Tile> tiles) {
+    public Queue<Integer> calculateQueue(LinkedList<Tile> tiles) {
 
         if (tiles == null) {
             return null;

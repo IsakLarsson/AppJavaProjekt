@@ -1,8 +1,12 @@
 package Model.Unit;
 
+import Model.XML.Area.Tile;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Soldier implements Unit {
 
@@ -21,13 +25,18 @@ public class Soldier implements Unit {
         }
     }
 
-    @Override
-    public void draw(Graphics g, int x, int y) {
-        g.drawImage(image, x, y,null);
-    }
-
     public void takeDMG(int DMG) {
         hp = hp - DMG;
+    }
+
+    @Override
+    public void setTileQueue(LinkedList<Tile> tiles) {
+
+    }
+
+    @Override
+    public void draw(Graphics g) {
+
     }
 
     @Override
@@ -60,7 +69,13 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public void move() {
+    public void move(Queue q) {
 
     }
+
+    @Override
+    public LinkedList<Tile> getTiles() {
+        return null;
+    }
+
 }

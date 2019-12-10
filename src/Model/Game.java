@@ -1,12 +1,11 @@
 package Model;
 
-import GUI.GameWindow;
 import Model.Unit.Farmer;
 import Model.Unit.Unit;
+import Model.XML.Area.Path;
 import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 import Model.XML.Area.Destination;
-import javafx.scene.control.skin.TextInputControlSkin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,37 +42,40 @@ public class Game extends Thread {
         Farmer farmer = new Farmer();
         Farmer farmer2 = new Farmer();
         Animator animator = new Animator(unitList);
-        animator.addUnit(farmer);
+        animator.addUnit(farmer, deepCopyList());
+        // Draw the map
+        drawMap();
+        System.out.println("Drew map yo");
 
         Timer t = new Timer(updateInterval, (e) -> {
 
-            drawMap();
+
 
             // Counts to 20 pixels for each tile.
             // When 20 is up, it gets the next tile
             if (index[0] == 20) {
-                System.out.println("HEJ1");
-                Destination destination = new Destination();
-                q = destination.calculateQueue(level.getPath());
+                System.out.println("Reached its destination, Next tile.");
+                destination = new Destination();
+                animator.run(destination);
+                //q = destination.calculateQueue(level.getPath());
                 index[0] = 0;
             }
 
-            if (q == null) {
-                // Path is empty
+            //Path queue is empty
+            if (animator.getQueue() == null) {
                 return;
             }
 
             //move everything
             Graphics g = backgroundImage.getGraphics();
-            animator.run(destination);
 
             //update image
             drawUnits();
 
-
             //Send image to adapter
             modelAdapter.setBufferedImage(updatedImage);
 
+            // Count for each pixel
             index[0]++;
         });
         t.setRepeats(true);
@@ -101,7 +103,7 @@ public class Game extends Thread {
     }
 
 
-    public static BufferedImage deepCopy(BufferedImage bi) {
+    public static BufferedImage deepCopyImage(BufferedImage bi) {
         ColorModel cm = bi.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
@@ -110,13 +112,21 @@ public class Game extends Thread {
 
     //TODO alla units behöver typ en egen path-list
     public void drawUnits(){
-        updatedImage = deepCopy(backgroundImage);
+        updatedImage = deepCopyImage(backgroundImage);
         Graphics newGraphics = updatedImage.getGraphics();
 
         for(Unit unit : unitList){
-            unit.draw(newGraphics, q.poll(), q.poll());
+            unit.draw(newGraphics);
 
         }
+    }
+
+    private LinkedList<Tile> deepCopyList() {
+        LinkedList<Tile> tilesCopy = new LinkedList<>();
+        for (Tile t : level.getPath()) {
+            tilesCopy.add(new Path(t));
+        }
+        return tilesCopy;
     }
 
 }

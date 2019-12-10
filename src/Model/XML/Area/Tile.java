@@ -14,7 +14,7 @@ public class Tile {
 
     public Tile(int xCoordinate, int yCoordinate, int size){
 
-        position = new Position(xCoordinate, yCoordinate);
+        this.position = new Position(xCoordinate, yCoordinate);
         this.size = size;
     }
 

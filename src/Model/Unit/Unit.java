@@ -1,11 +1,18 @@
 package Model.Unit;
 
+import Model.XML.Area.Tile;
+
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 public interface Unit {
 
 
-    void draw(Graphics g, int x, int y);
+    void setTileQueue(LinkedList<Tile> tiles);
+
+    void draw(Graphics g);
 
     int getHp();
 
@@ -17,5 +24,7 @@ public interface Unit {
 
     Image getImage();
 
-    void move();
+    void move(Queue q);
+
+    LinkedList<Tile> getTiles();
 }

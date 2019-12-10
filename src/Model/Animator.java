@@ -1,16 +1,16 @@
 package Model;
 
 import Model.Unit.Unit;
+import Model.XML.Area.Destination;
+import Model.XML.Area.Tile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Animator {
     private List<Unit> unitList;
     private Timer t;
     private Object lock;
+    private Queue<Integer> queue;
 
     public Animator(List unitList) {
         this.unitList = unitList;
@@ -18,20 +18,25 @@ public class Animator {
 
     }
 
-    public void run() {
+    public void run(Destination destination) {
         synchronized (lock) {
             for (Unit unit : unitList) {
-                unit.move();
+                queue = destination.calculateQueue(unit.getTiles());
+                unit.move(queue);
             }
         }
     }
 
     //Safe to call from any thread
-    public void addUnit(Unit unit) {
+    public void addUnit(Unit unit, LinkedList<Tile> tiles) {
         synchronized(lock) {
+            unit.setTileQueue(tiles);
             unitList.add(unit);
         }
     }
 
+    public Queue<Integer> getQueue() {
+        return queue;
+    }
 
 }
