@@ -34,8 +34,8 @@ public class Destination {
             direction = "horizontally";
         }
         else if (firstTile.getyCoordinate() < secondTile.getyCoordinate()) {
-            dest = secondTile.getyCoordinate(); // Samma sak här
-            start = firstTile.getyCoordinate();
+            dest = secondTile.getyCoordinate()*firstTile.getSize();
+            start = firstTile.getyCoordinate()*firstTile.getSize();
             direction = "vertically";
         }
 
