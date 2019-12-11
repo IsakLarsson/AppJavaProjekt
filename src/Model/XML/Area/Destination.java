@@ -28,13 +28,14 @@ public class Destination {
             return null;
         }
 
-        if (firstTile.getxCoordinate() < secondTile.getxCoordinate()) {
+        if (firstTile.getxCoordinate() < secondTile.getxCoordinate()
+                || firstTile.getxCoordinate() > secondTile.getxCoordinate()) {
             dest = secondTile.getxCoordinate()*firstTile.getSize();
             start = firstTile.getxCoordinate()*firstTile.getSize();
             direction = "horizontally";
         }
-        else if (firstTile.getyCoordinate() < secondTile.getyCoordinate()) {
-            System.out.println("VERTICALLY");
+        else if (firstTile.getyCoordinate() < secondTile.getyCoordinate()
+                || firstTile.getyCoordinate() > secondTile.getyCoordinate()) {
             dest = secondTile.getyCoordinate()*firstTile.getSize();
             start = firstTile.getyCoordinate()*firstTile.getSize();
             direction = "vertically";
@@ -54,6 +55,23 @@ public class Destination {
             }
 
             start++;
+            i++;
+        }
+
+        while (start > dest) {
+
+            System.out.println("TEST1: " + start + " " + dest);
+
+            if (direction.equals("horizontally")) {
+                q.add(start);
+                q.add(firstTile.getyCoordinate()*firstTile.getSize());
+            }
+            else {
+                q.add(firstTile.getxCoordinate()*firstTile.getSize());
+                q.add(start);
+            }
+
+            start--;
             i++;
         }
 
