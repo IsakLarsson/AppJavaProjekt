@@ -8,9 +8,7 @@ import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 import Model.XML.Area.Destination;
 
-import javax.crypto.spec.DESedeKeySpec;
 import javax.swing.*;
-import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -59,6 +57,7 @@ public class Game extends Thread {
 
         Timer t = new Timer(updateInterval, (e) -> {
 
+            //TODO Makes all the unit jump to the next tile. Index count only works for the first unit
             // Counts to 20 pixels for each tile.
             // When 20 is up, it gets the next tile
             if (index[0] == 20) {
