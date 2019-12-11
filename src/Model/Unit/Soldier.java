@@ -74,7 +74,7 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public LinkedList<Tile> getTiles() {
+    public LinkedList<Tile> getPath() {
         return null;
     }
 

@@ -26,5 +26,5 @@ public interface Unit {
 
     void move(Queue q);
 
-    LinkedList<Tile> getTiles();
+    LinkedList<Tile> getPath();
 }

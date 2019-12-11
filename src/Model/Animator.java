@@ -21,7 +21,7 @@ public class Animator {
     public void run(Destination destination) {
         synchronized (lock) {
             for (Unit unit : unitList) {
-                queue = destination.calculateQueue(unit.getTiles());
+                queue = destination.calculateQueue(unit.getPath());
                 unit.move(queue);
             }
         }
