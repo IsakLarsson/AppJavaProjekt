@@ -27,30 +27,26 @@ public class Game extends Thread {
     private BufferedImage updatedImage;
     private int updateInterval;
     private Animator animator;
-    Destination destination = new Destination();
-    java.util.Queue<Integer> q;
+    private Destination destination;
 
     public Game(ModelAdapter adapter, int updateInterval) {
-        XMLParser parser = new XMLParser();
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
+
+        XMLParser parser = new XMLParser();
         level = parser.parseXML();
+
+        // Adapter
         modelAdapter = adapter;
+
         this.updateInterval = updateInterval;
     }
 
     @Override
     public void run() {
-        final int[] index = {20};
-
         //TODO Spawn tower on tower area
         Tower tower = new Tower(100,40);
         towerList.add(tower);
-
-        /*Farmer farmer = new Farmer();
-        Farmer farmer2 = new Farmer();
-        animator.addUnit(farmer, deepCopyList());
-        */
 
         animator = new Animator(unitList);
 
@@ -59,7 +55,7 @@ public class Game extends Thread {
 
         //TODO When a unit arrives at goal area, the program crash
         Timer t = new Timer(updateInterval, (e) -> {
-            
+
 
             // If the position queue is empty, create a new one for the next tile
             for (Unit unit : unitList) {
@@ -72,7 +68,7 @@ public class Game extends Thread {
             //update image
             drawUnits();
 
-            // Shoot towers
+            // Shoot towers TODO Only shoot at one unit at a time
             Iterator<Unit> iterator = unitList.iterator();
             while(iterator.hasNext()) {
                 Unit unit = iterator.next();
