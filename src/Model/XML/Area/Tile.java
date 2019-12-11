@@ -9,6 +9,7 @@ public class Tile {
     private Position position;
     private int size;
     private Color color;
+    private Image texture;
 
     //add more attributes like path, towerarea, goal, start etc
 
@@ -36,5 +37,9 @@ public class Tile {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public Image getTexture() {
+        return texture;
     }
 }

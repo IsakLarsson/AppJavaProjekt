@@ -41,7 +41,6 @@ public class Game extends Thread {
 
     @Override
     public void run() {
-        final int[] index = {20};
 
         //TODO Spawn tower on tower area
         Tower tower = new Tower(100,40);
@@ -73,9 +72,6 @@ public class Game extends Thread {
                 }
             }
 
-            index[0] = 0;
-
-
             /*Path queue is empty
             if (animator.getQueue() == null) {
                 return;
@@ -97,8 +93,6 @@ public class Game extends Thread {
             //Send image to adapter
             modelAdapter.setBufferedImage(updatedImage);
 
-            // Count for each pixel
-            index[0]++;
         });
         t.setRepeats(true);
         t.start();
@@ -115,11 +109,14 @@ public class Game extends Thread {
             for (int j = 0; j < level.getMapSize(); j++) {
 
                 Tile tile = level.getTile(i, j);
+                g.drawImage(tile.getTexture(), tile.getxCoordinate() + i * (tile.getSize() - 1),
+                        tile.getyCoordinate() + j * (tile.getSize() - 1), null);
+                /*
                 g.setColor(tile.getColor());
                 g.fillRect(tile.getxCoordinate() + i * (tile.getSize() - 1),
                         tile.getyCoordinate() + j * (tile.getSize() - 1),
                         tile.getSize(),
-                        tile.getSize());
+                        tile.getSize());*/
             }
         }
 
@@ -143,7 +140,6 @@ public class Game extends Thread {
 
         for(Unit unit : unitList){
             unit.draw(newGraphics);
-
         }
     }
 
