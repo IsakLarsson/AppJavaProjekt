@@ -27,41 +27,34 @@ public class Game extends Thread {
     private BufferedImage updatedImage;
     private int updateInterval;
     private Animator animator;
-    Destination destination = new Destination();
-    java.util.Queue<Integer> q;
+    private Destination destination;
 
     public Game(ModelAdapter adapter, int updateInterval) {
-        XMLParser parser = new XMLParser();
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
+
+        XMLParser parser = new XMLParser();
         level = parser.parseXML();
+
+        // Adapter
         modelAdapter = adapter;
+
         this.updateInterval = updateInterval;
     }
 
     @Override
     public void run() {
-
         //TODO Spawn tower on tower area
         Tower tower = new Tower(100,40);
         towerList.add(tower);
-
-        /*Farmer farmer = new Farmer();
-        Farmer farmer2 = new Farmer();
-        animator.addUnit(farmer, deepCopyList());
-        */
 
         animator = new Animator(unitList);
 
         drawMap();
 
 
-        //TODO When a unit arrives at goal area, the program crash because the function to check this i within each unit's destination object
+        //TODO When a unit arrives at goal area, the program crash
         Timer t = new Timer(updateInterval, (e) -> {
-
-            //TODO Makes all the unit jump to the next tile. Index count only works for the first unit
-            // Counts to 20 pixels for each tile.
-            // When 20 is up, it gets the next tile
 
 
             // If the position queue is empty, create a new one for the next tile
@@ -72,15 +65,10 @@ public class Game extends Thread {
                 }
             }
 
-            /*Path queue is empty
-            if (animator.getQueue() == null) {
-                return;
-            }*/
-
             //update image
             drawUnits();
 
-            // Shoot towers
+            // Shoot towers TODO Only shoot at one unit at a time
             Iterator<Unit> iterator = unitList.iterator();
             while(iterator.hasNext()) {
                 Unit unit = iterator.next();
@@ -109,14 +97,11 @@ public class Game extends Thread {
             for (int j = 0; j < level.getMapSize(); j++) {
 
                 Tile tile = level.getTile(i, j);
-                g.drawImage(tile.getTexture(), tile.getxCoordinate() + i * (tile.getSize() - 1),
-                        tile.getyCoordinate() + j * (tile.getSize() - 1), null);
-                /*
                 g.setColor(tile.getColor());
                 g.fillRect(tile.getxCoordinate() + i * (tile.getSize() - 1),
                         tile.getyCoordinate() + j * (tile.getSize() - 1),
                         tile.getSize(),
-                        tile.getSize());*/
+                        tile.getSize());
             }
         }
 
@@ -140,6 +125,7 @@ public class Game extends Thread {
 
         for(Unit unit : unitList){
             unit.draw(newGraphics);
+
         }
     }
 
