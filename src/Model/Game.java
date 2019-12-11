@@ -28,6 +28,7 @@ public class Game extends Thread {
     private BufferedImage backgroundImage;
     private BufferedImage updatedImage;
     private int updateInterval;
+    private Animator animator;
     Destination destination = new Destination();
     java.util.Queue<Integer> q;
 
@@ -50,7 +51,7 @@ public class Game extends Thread {
 
         Farmer farmer = new Farmer();
         Farmer farmer2 = new Farmer();
-        Animator animator = new Animator(unitList);
+        animator = new Animator(unitList);
         animator.addUnit(farmer, deepCopyList());
 
         drawMap();
@@ -155,6 +156,12 @@ public class Game extends Thread {
             tilesCopy.add(new Path(t));
         }
         return tilesCopy;
+    }
+
+    public void spawn (Unit unit) {
+        animator.addUnit(unit,deepCopyList());
+        Destination destination = new Destination();
+        animator.run(destination, unit);
     }
 
 }

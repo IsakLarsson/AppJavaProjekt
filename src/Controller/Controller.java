@@ -5,6 +5,7 @@ import GUI.GameWindow;
 import Listeners.ButtonListener;
 import Listeners.MenuListener;
 import Model.*;
+import Model.Unit.Farmer;
 
 
 import javax.swing.*;
@@ -17,12 +18,16 @@ public class Controller {
 
     //
     private MenuListener menuListener;
+    private ButtonListener buttonListener;
+
+    //
     private ModelAdapter adapter;
 
     //
-    private ButtonListener buttonListener;
     private int updateInterval = 50;
 
+    //
+    private Game game;
 
     public Controller(){
         Object lock = new Object();
@@ -32,7 +37,7 @@ public class Controller {
             menuListener = new MenuListener();
 
             // An actionlistener for the spawn buttons
-            buttonListener = new ButtonListener();
+            buttonListener = new ButtonListener(this);
 
             // A panel that you draw on
             // A window gameFrame containing a menubar
@@ -58,7 +63,7 @@ public class Controller {
             try {
                 lock.wait();
                 adapter = new ModelAdapter(gameWindow);
-                Game game = new Game(adapter, updateInterval);
+                game = new Game(adapter, updateInterval);
                 game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
@@ -73,6 +78,16 @@ public class Controller {
     }
 
     public void spawnUnit (String s) {
-        
+        switch (s) {
+            case "Farmer":
+                Farmer farmer = new Farmer();
+                game.spawn(farmer);
+                break;
+            case "Soldier":
+                break;
+            case "Teleporter":
+                break;
+        }
+
     }
 }

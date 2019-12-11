@@ -18,6 +18,7 @@ public class Animator {
 
     }
 
+    //TODO Change name on this function
     public void run(Destination destination, Unit unit) {
         synchronized (lock) {
             queue = destination.calculateQueue(unit.getPath());

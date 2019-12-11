@@ -7,26 +7,18 @@ import java.awt.event.ActionListener;
 public class ButtonListener implements ActionListener {
 
     //
-
-    public ButtonListener() {
-
+    Controller controller;
+    //
+    public ButtonListener(Controller controller) {
+        this.controller = controller;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Button pressed");
         String s = e.getActionCommand();
-        System.out.println(s);
+        System.out.println("Button pressed " + s);
 
-        switch (s) {
-            case "Farmer":
-
-                break;
-            case "Soldier":
-                break;
-            case "Teleporter":
-                break;
-        }
+        controller.spawnUnit(s);
 
     }
 }
