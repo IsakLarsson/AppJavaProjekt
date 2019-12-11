@@ -57,13 +57,9 @@ public class Game extends Thread {
         drawMap();
 
 
-        //TODO When a unit arrives at goal area, the program crash because the function to check this i within each unit's destination object
+        //TODO When a unit arrives at goal area, the program crash
         Timer t = new Timer(updateInterval, (e) -> {
-
-            //TODO Makes all the unit jump to the next tile. Index count only works for the first unit
-            // Counts to 20 pixels for each tile.
-            // When 20 is up, it gets the next tile
-
+            
 
             // If the position queue is empty, create a new one for the next tile
             for (Unit unit : unitList) {
@@ -72,14 +68,6 @@ public class Game extends Thread {
                     animator.calculatePostitionQueue(destination, unit);
                 }
             }
-
-            index[0] = 0;
-
-
-            /*Path queue is empty
-            if (animator.getQueue() == null) {
-                return;
-            }*/
 
             //update image
             drawUnits();
@@ -97,8 +85,6 @@ public class Game extends Thread {
             //Send image to adapter
             modelAdapter.setBufferedImage(updatedImage);
 
-            // Count for each pixel
-            index[0]++;
         });
         t.setRepeats(true);
         t.start();
