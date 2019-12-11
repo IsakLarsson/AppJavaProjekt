@@ -11,7 +11,7 @@ public class Destination {
 
     //TODO Path list måste innehålla spawnpoint då det är en den av pathen också
     public Queue<Integer> calculateQueue(LinkedList<Tile> tiles) {
-
+        System.out.println("Starting...");
         if (tiles == null) {
             return null;
         }
@@ -34,6 +34,7 @@ public class Destination {
             direction = "horizontally";
         }
         else if (firstTile.getyCoordinate() < secondTile.getyCoordinate()) {
+            System.out.println("VERTICALLY");
             dest = secondTile.getyCoordinate()*firstTile.getSize();
             start = firstTile.getyCoordinate()*firstTile.getSize();
             direction = "vertically";
@@ -45,10 +46,10 @@ public class Destination {
 
             if (direction.equals("horizontally")) {
                 q.add(start);
-                q.add(firstTile.getyCoordinate());
+                q.add(firstTile.getyCoordinate()*firstTile.getSize());
             }
             else {
-                q.add(firstTile.getxCoordinate());
+                q.add(firstTile.getxCoordinate()*firstTile.getSize());
                 q.add(start);
             }
 
