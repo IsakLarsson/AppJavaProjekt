@@ -47,10 +47,12 @@ public class Game extends Thread {
         Tower tower = new Tower(100,40);
         towerList.add(tower);
 
-        Farmer farmer = new Farmer();
+        /*Farmer farmer = new Farmer();
         Farmer farmer2 = new Farmer();
-        animator = new Animator(unitList);
         animator.addUnit(farmer, deepCopyList());
+        */
+
+        animator = new Animator(unitList);
 
         drawMap();
 
@@ -61,22 +63,23 @@ public class Game extends Thread {
             //TODO Makes all the unit jump to the next tile. Index count only works for the first unit
             // Counts to 20 pixels for each tile.
             // When 20 is up, it gets the next tile
-            if (index[0] == 20) {
 
-                // Update the next tile destination for each unit
-                for (Unit unit : unitList) {
+
+            // If the position queue is empty, create a new one for the next tile
+            for (Unit unit : unitList) {
+                if (unit.getQueue().size() < 2) {
                     destination = new Destination();
-                    animator.run(destination, unit);
-                    //rätt
+                    animator.calculatePostitionQueue(destination, unit);
                 }
-
-                index[0] = 0;
             }
 
-            //Path queue is empty
+            index[0] = 0;
+
+
+            /*Path queue is empty
             if (animator.getQueue() == null) {
                 return;
-            }
+            }*/
 
             //update image
             drawUnits();
@@ -162,7 +165,7 @@ public class Game extends Thread {
     public void spawn (Unit unit) {
         animator.addUnit(unit,deepCopyList());
         Destination destination = new Destination();
-        animator.run(destination, unit);
+        animator.calculatePostitionQueue(destination, unit);
     }
 
 }

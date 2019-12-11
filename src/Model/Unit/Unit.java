@@ -29,4 +29,6 @@ public interface Unit {
     LinkedList<Tile> getPath();
 
     void setHp(int hp);
+
+    Queue getQueue();
 }

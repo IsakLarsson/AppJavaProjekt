@@ -83,4 +83,9 @@ public class Soldier implements Unit {
 
     }
 
+    @Override
+    public Queue getQueue() {
+        return null;
+    }
+
 }

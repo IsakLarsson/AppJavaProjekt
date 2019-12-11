@@ -93,4 +93,9 @@ public class Farmer implements Unit {
         this.hp = hp;
     }
 
+    @Override
+    public Queue getQueue() {
+        return this.queue;
+    }
+
 }
