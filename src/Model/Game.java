@@ -55,6 +55,7 @@ public class Game extends Thread {
         drawMap();
 
 
+        //TODO When a unit arrives at goal area, the program crash because the function to check this i within each unit's destination object
         Timer t = new Timer(updateInterval, (e) -> {
 
             //TODO Makes all the unit jump to the next tile. Index count only works for the first unit
