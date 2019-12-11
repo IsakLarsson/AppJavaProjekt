@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static java.awt.Color.RED;
 import static java.awt.Color.red;
 
 public class Tower {
     private int size = 20;
     private int dmg = 10;
-    private int range = 100;
+    private int range = 50;
     private Image image;
     //Position
     private int xCord;
@@ -37,11 +38,15 @@ public class Tower {
 
 
     public void shoot(Graphics graphics, Unit unit) {
-        double distance = (unit.getX()*unit.getX())+(unit.getY()*unit.getY());
+        double a = Math.abs(xCord-unit.getX());
+        double b = Math.abs(yCord-unit.getY());
+        double distance = a*a + b*b;
+
         distance = Math.sqrt(distance); //here’s the hypotenuse.
+        System.out.println("DISTANCE TO UNIT FROM TOWER: " + distance);
+        if (range >= distance) {
 
-        if (distance >= range) {
-
+            graphics.setColor(RED);
             graphics.drawLine(xCord,yCord,unit.getX(),unit.getY());
 
         }
@@ -82,9 +87,5 @@ public class Tower {
 
     public LinkedList<Tile> getTiles() {
         return null;
-    }
-
-    public void drawProjectile (Graphics g) {
-
     }
 }

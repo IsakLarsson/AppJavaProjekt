@@ -11,7 +11,6 @@ public class Destination {
 
     //TODO Path list måste innehålla spawnpoint då det är en den av pathen också
     public Queue<Integer> calculateQueue(LinkedList<Tile> tiles) {
-        System.out.println("Starting...");
         if (tiles == null) {
             return null;
         }
@@ -43,7 +42,7 @@ public class Destination {
 
         while (start < dest) {
 
-            System.out.println("TEST1: " + start + " " + dest);
+            //System.out.println("TEST1: " + start + " " + dest);
 
             if (direction.equals("horizontally")) {
                 q.add(start);
@@ -60,7 +59,7 @@ public class Destination {
 
         while (start > dest) {
 
-            System.out.println("TEST1: " + start + " " + dest);
+            //System.out.println("TEST1: " + start + " " + dest);
 
             if (direction.equals("horizontally")) {
                 q.add(start);
