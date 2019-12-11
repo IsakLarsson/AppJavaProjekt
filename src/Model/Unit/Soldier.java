@@ -69,7 +69,7 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public void move(Queue q) {
+    public void setPixelPositionQueue(Queue q) {
 
     }
 

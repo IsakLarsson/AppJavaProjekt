@@ -24,7 +24,7 @@ public interface Unit {
 
     Image getImage();
 
-    void move(Queue q);
+    void setPixelPositionQueue(Queue q);
 
     LinkedList<Tile> getPath();
 }

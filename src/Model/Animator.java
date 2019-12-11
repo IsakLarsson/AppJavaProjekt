@@ -22,7 +22,7 @@ public class Animator {
         synchronized (lock) {
             for (Unit unit : unitList) {
                 queue = destination.calculateQueue(unit.getPath());
-                unit.move(queue);
+                unit.setPixelPositionQueue(queue);
             }
         }
     }

@@ -42,14 +42,15 @@ public class Farmer implements Unit {
     @Override
     public void draw(Graphics g) {
         if (queue.size() > 1) {
-            g.drawImage(image, queue.poll(), queue.poll(), null);
+            x = queue.poll();
+            y = queue.poll();
+            g.drawImage(image, x, y, null);
         }
     }
 
     @Override
-    public void move(Queue queue) {
+    public void setPixelPositionQueue(Queue queue) {
         this.queue = queue;
-        x = x+speed;
     }
 
     public void takeDMG(int DMG) {

@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Unit.Farmer;
+import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.Path;
 import Model.XML.Area.Tile;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class Game extends Thread {
     private List<Unit> unitList;
+    private List<Tower> towerList;
     private ModelAdapter modelAdapter;
     private Level level;
     private BufferedImage backgroundImage;
@@ -29,6 +31,7 @@ public class Game extends Thread {
     public Game(ModelAdapter adapter, int updateInterval) {
         XMLParser parser = new XMLParser();
         unitList = new ArrayList<>();
+        towerList = new ArrayList<>();
         level = parser.parseXML();
         modelAdapter = adapter;
         this.updateInterval = updateInterval;
@@ -36,15 +39,19 @@ public class Game extends Thread {
 
     @Override
     public void run() {
-        drawMap();
         final int[] index = {20};
+
+        //TODO Spawn tower on tower area
+        Tower tower = new Tower(100,40);
+        towerList.add(tower);
+
         Farmer farmer = new Farmer();
         Farmer farmer2 = new Farmer();
         Animator animator = new Animator(unitList);
         animator.addUnit(farmer, deepCopyList());
-        // Draw the map
+
         drawMap();
-        System.out.println("Drew map yo");
+
 
         Timer t = new Timer(updateInterval, (e) -> {
 
@@ -63,11 +70,14 @@ public class Game extends Thread {
                 return;
             }
 
-            //move everything
-            Graphics g = backgroundImage.getGraphics();
 
             //update image
             drawUnits();
+
+            // Shoot towers
+            for (Unit unit : unitList) {
+                shootTowers(updatedImage.getGraphics(),unit);
+            }
 
             //Send image to adapter
             modelAdapter.setBufferedImage(updatedImage);
@@ -97,6 +107,11 @@ public class Game extends Thread {
                         tile.getSize());
             }
         }
+
+        for(Tower tower : towerList){
+            tower.draw(g);
+        }
+
     }
 
 
@@ -107,7 +122,6 @@ public class Game extends Thread {
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 
-    //TODO alla units behöver typ en egen path-list
     public void drawUnits(){
         updatedImage = deepCopyImage(backgroundImage);
         Graphics newGraphics = updatedImage.getGraphics();
@@ -115,6 +129,13 @@ public class Game extends Thread {
         for(Unit unit : unitList){
             unit.draw(newGraphics);
 
+        }
+    }
+
+    public void shootTowers(Graphics g, Unit u) {
+
+        for (Tower tower : towerList) {
+            tower.shoot(g,u);
         }
     }
 

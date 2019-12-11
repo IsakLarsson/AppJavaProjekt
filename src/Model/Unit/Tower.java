@@ -2,26 +2,50 @@ package Model.Unit;
 
 import Model.XML.Area.Tile;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import static java.awt.Color.red;
 
 public class Tower {
-
-
     private int size = 20;
     private int dmg = 10;
-    private int range = 50;
+    private int range = 100;
+    private Image image;
     //Position
     private int xCord;
     private int yCord;
 
-    public Tower() {
+    public Tower() {}
+
+    public Tower(int x, int y) {
+        this.xCord = x;
+        this.yCord = y;
+
+        try {
+            image = ImageIO.read(
+                    this.getClass().getResourceAsStream("/GUI/images/Farmer.png"));
+            image = image.getScaledInstance(15,20,Image.SCALE_SMOOTH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
+    public void shoot(Graphics graphics, Unit unit) {
+        double distance = (unit.getX()*unit.getX())+(unit.getY()*unit.getY());
+        distance = Math.sqrt(distance); //here’s the hypotenuse.
+
+        if (distance >= range) {
+
+            graphics.drawLine(xCord,yCord,unit.getX(),unit.getY());
+
+        }
+    }
 
     public void setTileQueue(LinkedList<Tile> tiles) {
 
@@ -29,7 +53,7 @@ public class Tower {
 
 
     public void draw(Graphics g) {
-
+        g.drawImage(image, xCord, yCord, null);
     }
 
     public int getHp() {
