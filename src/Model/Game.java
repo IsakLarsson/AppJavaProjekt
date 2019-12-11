@@ -67,6 +67,7 @@ public class Game extends Thread {
                 for (Unit unit : unitList) {
                     destination = new Destination();
                     animator.run(destination, unit);
+                    //rätt
                 }
 
                 index[0] = 0;
