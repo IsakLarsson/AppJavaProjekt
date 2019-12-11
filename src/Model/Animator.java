@@ -19,7 +19,7 @@ public class Animator {
     }
 
     //TODO Change name on this function
-    public void calculatePostitionQueue(Destination destination, Unit unit) {
+    public void calculatePositionQueue(Destination destination, Unit unit) {
         synchronized (lock) {
             Queue<Integer> queue = destination.calculateQueue(unit.getPath());
             unit.setPixelPositionQueue(queue);

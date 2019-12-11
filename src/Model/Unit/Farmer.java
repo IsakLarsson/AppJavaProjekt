@@ -41,7 +41,8 @@ public class Farmer implements Unit {
 
     @Override
     public void draw(Graphics g) {
-        if (queue.size() > 1) {
+        if (!queue.isEmpty()) {
+            System.out.println("HEJ");
             x = queue.poll();
             y = queue.poll();
             g.drawImage(image, x, y, null);

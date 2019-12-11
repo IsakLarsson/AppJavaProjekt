@@ -11,8 +11,9 @@ public class Destination {
 
     //TODO Path list måste innehålla spawnpoint då det är en den av pathen också
     public Queue<Integer> calculateQueue(LinkedList<Tile> tiles) {
-        if (tiles == null) {
-            return null;
+
+        if (tiles.isEmpty()) {
+            return q;
         }
 
         Tile firstTile = tiles.pop();
@@ -24,7 +25,7 @@ public class Destination {
 
         if (secondTile == null) {
             System.out.println("Game over??");
-            return null;
+            return q;
         }
 
         if (firstTile.getxCoordinate() < secondTile.getxCoordinate()

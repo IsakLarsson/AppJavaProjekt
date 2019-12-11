@@ -1,6 +1,5 @@
 package Model;
 
-import Model.Unit.Farmer;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.Path;
@@ -55,15 +54,6 @@ public class Game extends Thread {
 
         //TODO When a unit arrives at goal area, the program crash
         Timer t = new Timer(updateInterval, (e) -> {
-
-
-            // If the position queue is empty, create a new one for the next tile
-            for (Unit unit : unitList) {
-                if (unit.getQueue().size() < 2) {
-                    destination = new Destination();
-                    animator.calculatePostitionQueue(destination, unit);
-                }
-            }
 
             //update image
             drawUnits();
@@ -123,8 +113,21 @@ public class Game extends Thread {
         updatedImage = deepCopyImage(backgroundImage);
         Graphics newGraphics = updatedImage.getGraphics();
 
-        for(Unit unit : unitList){
+        for(Unit unit : unitList) {
+            if (unit.getQueue().isEmpty()) {
+                destination = new Destination();
+                animator.calculatePositionQueue(destination, unit);
+            }
+            System.out.println("Queue: " + unit.getQueue());
             unit.draw(newGraphics);
+
+            if (unit.getQueue() != null) {
+
+
+
+
+            }
+
 
         }
     }
@@ -147,7 +150,7 @@ public class Game extends Thread {
     public void spawn (Unit unit) {
         animator.addUnit(unit,deepCopyList());
         Destination destination = new Destination();
-        animator.calculatePostitionQueue(destination, unit);
+        animator.calculatePositionQueue(destination, unit);
     }
 
 }
