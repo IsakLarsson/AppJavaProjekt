@@ -59,6 +59,7 @@ public class Level {
     }
 
     public GoalArea getGoalArea(){
+        System.out.println("this is goal");
         return goalArea;
     }
 
