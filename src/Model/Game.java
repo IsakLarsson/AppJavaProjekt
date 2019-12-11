@@ -32,7 +32,6 @@ public class Game extends Thread {
         level = parser.parseXML();
         modelAdapter = adapter;
         this.updateInterval = updateInterval;
-
     }
 
     @Override
@@ -48,8 +47,6 @@ public class Game extends Thread {
         System.out.println("Drew map yo");
 
         Timer t = new Timer(updateInterval, (e) -> {
-
-
 
             // Counts to 20 pixels for each tile.
             // When 20 is up, it gets the next tile

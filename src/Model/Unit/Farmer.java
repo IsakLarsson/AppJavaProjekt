@@ -17,7 +17,7 @@ public class Farmer implements Unit {
     private int speed = 20;
     private int dmg = 1;
     private int size = 10;
-    private LinkedList<Tile> tiles;
+    private LinkedList<Tile> path;
     private Queue<Integer> queue;
 
     //Position
@@ -35,8 +35,8 @@ public class Farmer implements Unit {
 
 
     @Override
-    public void setTileQueue(LinkedList<Tile> tiles) {
-        this.tiles = tiles;
+    public void setTileQueue(LinkedList<Tile> path) {
+        this.path = path;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class Farmer implements Unit {
         return y;
     }
 
-    public LinkedList<Tile> getTiles() {
-        return tiles;
+    public LinkedList<Tile> getPath() {
+        return path;
     }
 }

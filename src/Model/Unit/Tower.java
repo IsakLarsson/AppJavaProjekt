@@ -8,7 +8,7 @@ import java.util.Queue;
 
 import static java.awt.Color.red;
 
-public class Tower implements Unit {
+public class Tower {
 
 
     private int size = 20;
@@ -23,47 +23,39 @@ public class Tower implements Unit {
 
 
 
-    @Override
     public void setTileQueue(LinkedList<Tile> tiles) {
 
     }
 
-    @Override
+
     public void draw(Graphics g) {
 
     }
 
-    @Override
     public int getHp() {
         return 0;
     }
 
-    @Override
     public int getDmg() {
         return dmg;
     }
 
-    @Override
     public int getX() {
         return 0;
     }
 
-    @Override
     public int getY() {
         return 0;
     }
 
-    @Override
     public Image getImage() {
         return null;
     }
 
-    @Override
     public void move(Queue q) {
 
     }
 
-    @Override
     public LinkedList<Tile> getTiles() {
         return null;
     }

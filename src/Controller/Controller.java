@@ -58,8 +58,6 @@ public class Controller {
             try {
                 lock.wait();
                 adapter = new ModelAdapter(gameWindow);
-                //TODO synka denna del med invokelater, annars hinner guit inte
-                // initialiseras innan game.run körs ----> nullpointer
                 Game game = new Game(adapter, updateInterval);
                 game.start();
             } catch (InterruptedException e) {
