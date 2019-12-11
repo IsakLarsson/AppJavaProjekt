@@ -27,4 +27,6 @@ public interface Unit {
     void setPixelPositionQueue(Queue q);
 
     LinkedList<Tile> getPath();
+
+    void setHp(int hp);
 }

@@ -78,4 +78,9 @@ public class Soldier implements Unit {
         return null;
     }
 
+    @Override
+    public void setHp(int hp) {
+
+    }
+
 }

@@ -12,8 +12,9 @@ import static java.awt.Color.white;
 
 public class Farmer implements Unit {
 
+    private Boolean hit;
     private Image image;
-    private int hp = 50;
+    private int hp = 500;
     private int speed = 20;
     private int dmg = 1;
     private int size = 10;
@@ -32,7 +33,6 @@ public class Farmer implements Unit {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void setTileQueue(LinkedList<Tile> path) {
@@ -87,4 +87,10 @@ public class Farmer implements Unit {
     public LinkedList<Tile> getPath() {
         return path;
     }
+
+    @Override
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
 }

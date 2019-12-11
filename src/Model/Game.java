@@ -8,12 +8,15 @@ import Model.XML.Area.Tile;
 import Model.XML.XMLParser;
 import Model.XML.Area.Destination;
 
+import javax.crypto.spec.DESedeKeySpec;
 import javax.swing.*;
+import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,10 +61,13 @@ public class Game extends Thread {
             // Counts to 20 pixels for each tile.
             // When 20 is up, it gets the next tile
             if (index[0] == 20) {
-                System.out.println("Reached its destination, Next tile.");
-                destination = new Destination();
-                animator.run(destination);
-                //q = destination.calculateQueue(level.getPath());
+
+                // Update the next tile destination for each unit
+                for (Unit unit : unitList) {
+                    destination = new Destination();
+                    animator.run(destination, unit);
+                }
+
                 index[0] = 0;
             }
 
@@ -70,13 +76,17 @@ public class Game extends Thread {
                 return;
             }
 
-
             //update image
             drawUnits();
 
             // Shoot towers
-            for (Unit unit : unitList) {
+            Iterator<Unit> iterator = unitList.iterator();
+            while(iterator.hasNext()) {
+                Unit unit = iterator.next();
                 shootTowers(updatedImage.getGraphics(),unit);
+                if (unit.getHp() <= 0) {
+                    iterator.remove();
+                }
             }
 
             //Send image to adapter

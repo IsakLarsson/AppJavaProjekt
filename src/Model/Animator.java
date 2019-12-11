@@ -18,12 +18,10 @@ public class Animator {
 
     }
 
-    public void run(Destination destination) {
+    public void run(Destination destination, Unit unit) {
         synchronized (lock) {
-            for (Unit unit : unitList) {
-                queue = destination.calculateQueue(unit.getPath());
-                unit.setPixelPositionQueue(queue);
-            }
+            queue = destination.calculateQueue(unit.getPath());
+            unit.setPixelPositionQueue(queue);
         }
     }
 
