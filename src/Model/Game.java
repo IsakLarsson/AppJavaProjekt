@@ -94,11 +94,9 @@ public class Game extends Thread {
             for (int j = 0; j < level.getMapSize(); j++) {
 
                 Tile tile = level.getTile(i, j);
-                g.setColor(tile.getColor());
-                g.fillRect(tile.getxCoordinate() + i * (tile.getSize() - 1),
-                        tile.getyCoordinate() + j * (tile.getSize() - 1),
-                        tile.getSize(),
-                        tile.getSize());
+
+                g.drawImage(tile.getTexture(), tile.getxCoordinate() + i * (tile.getSize() - 1),
+                        tile.getyCoordinate() + j * (tile.getSize() - 1),null);
             }
         }
 
