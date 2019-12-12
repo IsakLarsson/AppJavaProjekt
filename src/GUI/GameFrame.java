@@ -93,7 +93,7 @@ public class GameFrame {
     }
 
     /**
-     * Sets up the button listener for the "run tests" button.
+     * Sets up the button listener for the "calculatePostitionQueue tests" button.
      *
      * @param buttonListener
      */

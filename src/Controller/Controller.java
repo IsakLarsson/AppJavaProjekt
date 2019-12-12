@@ -36,6 +36,7 @@ public class Controller {
         Object lock = new Object();
 
         SwingUtilities.invokeLater(() -> {
+
             //
             menuListener = new MenuListener();
 
