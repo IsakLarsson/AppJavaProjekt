@@ -17,6 +17,7 @@ public class Tower {
     private int dmg = 10;
     private int range = 50;
     private Image image;
+    private Unit target;
     //Position
     private int xCord;
     private int yCord;
@@ -43,20 +44,38 @@ public class Tower {
         double distance = a*a + b*b;
 
         distance = Math.sqrt(distance); //here’s the hypotenuse.
-        System.out.println("DISTANCE TO UNIT FROM TOWER: " + distance);
+
+
+
+
+
+
+
         if (range >= distance) {
 
-            graphics.setColor(RED);
-            graphics.drawLine(xCord,yCord,unit.getX(),unit.getY());
+            if (target == null) {
 
-            unit.setHp(unit.getHp()-1);
+                target = unit;
 
+            }
+            else {
+
+                graphics.setColor(RED);
+                graphics.drawLine(xCord,yCord,target.getX(),target.getY());
+
+            }
+
+
+            target.setHp(unit.getHp()-1);
+
+        }
+        else {
+            target = null;
         }
     }
 
-    public void setTileQueue(LinkedList<Tile> tiles) {
 
-    }
+
 
 
     public void draw(Graphics g) {

@@ -33,16 +33,22 @@ public class Game extends Thread {
     private int timeCounter;
 
     public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
+
+        // Controller
         this.controller = controller;
+
+        // Array lists
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
 
+        // XML level
         XMLParser parser = new XMLParser();
         level = parser.parseXML();
 
         // Adapter
         this.modelAdapter = adapter;
 
+        // Update interval
         this.updateInterval = updateInterval;
     }
 
@@ -57,8 +63,6 @@ public class Game extends Thread {
 
         drawMap();
 
-
-        //TODO When a unit arrives at goal area, the program crash
         Timer t = new Timer(updateInterval, (e) -> {
 
             //update image
@@ -75,7 +79,6 @@ public class Game extends Thread {
             }
 
             income();
-            controller.setMoney(level.getMoney());
 
             //Send image to adapter
             modelAdapter.setBufferedImage(updatedImage);
@@ -121,32 +124,27 @@ public class Game extends Thread {
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 
+    //TODO needs iterator
     public void drawUnits(){
         updatedImage = deepCopyImage(backgroundImage);
         Graphics newGraphics = updatedImage.getGraphics();
 
-        for(Unit unit : unitList) {
+        Iterator<Unit> iterator = unitList.iterator();
+        while(iterator.hasNext()) {
+            Unit unit = iterator.next();
             if (unit.getQueue().isEmpty()) {
                 destination = new Destination();
                 animator.calculatePositionQueue(destination, unit);
             }
-            System.out.println("Queue: " + unit.getQueue());
+
             int dmg = unit.move(newGraphics);
             if(dmg > 0) {
                 level.dmgBase(dmg);
-                unitList.remove(unit);
-                if(unitList.isEmpty()){
+                iterator.remove();
+                /*if(unitList.isEmpty()){
                     break;
-                }
+                }*/
             }
-            if (unit.getQueue() != null) {
-
-
-
-
-            }
-
-
         }
     }
 
@@ -157,6 +155,7 @@ public class Game extends Thread {
             level.addMoney(1);
             timeCounter = 0;
         }
+        controller.setMoney(level.getMoney());
     }
 
     public void shootTowers(Graphics g, Unit u) {
