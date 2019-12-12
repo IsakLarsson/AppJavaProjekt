@@ -14,12 +14,19 @@ public class Soldier implements Unit {
     private int speed = 10;
     private int hp = 100;
     private int dmg = 5;
+    private int cost = 10;
+    private Queue<Integer> queue;
+    private LinkedList<Tile> path;
+    private Tile goal;
+
+
+    private int x,y;
 
     public Soldier(){
         try {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Gubbe.png"));
-            image = image.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(20,20,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,13 +37,19 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public void setTileQueue(LinkedList<Tile> tiles) {
-
+    public void setTileQueue(LinkedList<Tile> path) {
+        this.path = path;
     }
 
     @Override
     public void draw(Graphics g) {
+        if (queue.size() > 1) {
+            x = queue.poll();
+            y = queue.poll();
+            g.drawImage(image, x, y, null);
+        } else {
 
+        }
     }
 
     @Override
@@ -51,12 +64,12 @@ public class Soldier implements Unit {
 
     @Override
     public int getX() {
-        return 0;
+        return x;
     }
 
     @Override
     public int getY() {
-        return 0;
+        return y;
     }
 
     public int getSpeed(){
@@ -70,22 +83,31 @@ public class Soldier implements Unit {
 
     @Override
     public void setPixelPositionQueue(Queue q) {
-
+        this.queue = q;
     }
 
     @Override
     public LinkedList<Tile> getPath() {
-        return null;
+        return path;
     }
 
     @Override
     public void setHp(int hp) {
-
+        this.hp = hp;
     }
 
     @Override
     public Queue getQueue() {
-        return null;
+        return queue;
+    }
+
+    @Override
+    public void setGoal(Tile goal) {
+        this.goal = goal;
+    }
+
+    public int getCost(){
+        return cost;
     }
 
 }

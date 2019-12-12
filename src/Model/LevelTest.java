@@ -2,6 +2,7 @@ package Model;
 
 import Model.Unit.Tower;
 import Model.XML.Area.*;
+import Model.XML.XMLParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,43 +37,39 @@ public class LevelTest {
         Assertions.assertEquals(path, level.getTile(1,0));
     }
 
-    @Test
-    public void ifCordIsPathTest(){
-        Path path = new Path(1,0,20);
-        level.addTile(path);
-        boolean test = level.isPath(1,0);
-        Assertions.assertTrue(test);
-    }
-
-    @Test
-    public void ifCordIsTowerTest(){
-        TowerArea tower = new TowerArea(5,5,20);
-        level.addTile(tower);
-        boolean test = level.isTower(5,5);
-        Assertions.assertTrue(test);
-    }
-
-    @Test
-    public void ifCordIsSpawnTest(){
-        SpawnArea tile = new SpawnArea(0,0,20);
-        level.addTile(tile);
-        boolean test = level.isSpawn(0,0);
-        Assertions.assertTrue(test);
-    }
-
-    @Test
-    public void ifCordIsGoalTest(){
-        GoalArea tile = new GoalArea(10,0,20);
-        level.addTile(tile);
-        boolean test = level.isGoal(10,0);
-        Assertions.assertTrue(test);
-    }
 
     @Test
     public void ifCastIsCorrectTest(){
         Path path = new Path(1,0,20);
         level.addTile(path);
         Assertions.assertEquals(path, level.getTile(1,0));
+    }
+
+    @Test
+    public void setMoneyTest(){
+        XMLParser parser = new XMLParser();
+        level = parser.parseXML();
+        Assertions.assertEquals(100, level.getMoney());
+    }
+
+    @Test
+    public void setWinConditionTest(){
+        XMLParser parser = new XMLParser();
+        level = parser.parseXML();
+        Assertions.assertEquals(10, level.getWinCodition());
+    }
+
+    @Test
+    public void addMoneyTest(){
+        level.addMoney(20);
+        Assertions.assertEquals(20, level.getMoney());
+    }
+
+    @Test
+    public void buyTest(){
+        level.addMoney(50);
+        level.buyUnit(10);
+        Assertions.assertEquals(40,level.getMoney());
     }
 
 }

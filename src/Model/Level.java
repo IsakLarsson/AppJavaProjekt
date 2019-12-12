@@ -14,6 +14,8 @@ public class Level {
     private SpawnArea spawnArea;
     private GoalArea goalArea;
     private ArrayList<TowerArea> towerAreas;
+    private int money;
+    private int winCodition;
 
     public Level(int mapSize){
         tileMap = new Tile[mapSize][mapSize];
@@ -26,15 +28,13 @@ public class Level {
         towerAreas = new ArrayList<>();
     }
 
-    public LinkedList<Tile> getPath() {
-        return path;
-    }
+
 
     public void addTile(Tile tile){
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
-    public void addPath(Path tile){
+    public void addPath(Tile tile){
         path.add(tile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
@@ -54,12 +54,15 @@ public class Level {
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+    public LinkedList<Tile> getPath() {
+        return path;
+    }
+
     public ArrayList<TowerArea> getTowerAreas(){
         return towerAreas;
     }
 
     public GoalArea getGoalArea(){
-        System.out.println("this is goal");
         return goalArea;
     }
 
@@ -71,23 +74,28 @@ public class Level {
         return tileMap.length;
     }
 
-    public boolean isPath(int x, int y){
-        return tileMap[x][y].getColor().equals(Color.orange);
-    }
-
-    public boolean isTower(int x, int y){
-        return tileMap[x][y].getColor().equals(Color.red);
-    }
-
-    public boolean isSpawn(int x, int y){
-        return tileMap[x][y].getColor().equals(Color.green);
-    }
-
-    public boolean isGoal(int x, int y){
-        return tileMap[x][y].getColor().equals(Color.pink);
-    }
-
     public Tile getSpawn(){
         return spawnArea;
+    }
+
+    public void addMoney(int add){
+        money =+ add;
+    }
+
+    public int buyUnit(int unitCost){
+        money = money - unitCost;
+        return money;
+    }
+
+    public int getMoney(){
+        return money;
+    }
+
+    public void setWinCodition(int baseHp){
+        winCodition = baseHp;
+    }
+
+    public int getWinCodition(){
+        return winCodition;
     }
 }

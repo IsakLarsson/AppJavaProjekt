@@ -46,6 +46,14 @@ public class XMLParser {
                 getTile(tileList, i);
             }
 
+            NodeList list = level.getElementsByTagName("startMoney");
+            Node node = list.item(0);
+            map.addMoney(Integer.valueOf(node.getTextContent()));
+
+
+            list = level.getElementsByTagName("winCondition");
+            node = list.item(0);
+            map.setWinCodition(Integer.valueOf(node.getTextContent()));
 
 
         } catch (ParserConfigurationException e) {
@@ -93,12 +101,14 @@ public class XMLParser {
                     break;
                 case "SpawnArea":
                     map.addSpawn((SpawnArea) tileObject);
+                    map.addPath((Tile) tileObject);
                     break;
                 case "TowerArea":
                     map.addTowerArea((TowerArea) tileObject);
                     break;
                 case "GoalArea":
                     map.addGoalArea((GoalArea) tileObject);
+                    map.addPath((Tile) tileObject);
                     break;
                 default:
                     map.addTile((Tile) tileObject);

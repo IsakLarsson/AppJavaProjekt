@@ -31,4 +31,6 @@ public interface Unit {
     void setHp(int hp);
 
     Queue getQueue();
+
+    void setGoal(Tile goal);
 }

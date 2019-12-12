@@ -20,6 +20,7 @@ public class GameFrame {
     JButton button1;
     JButton button2;
     JButton button3;
+    JLabel bank;
 
 
     public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener, MenuListener menuListener){
@@ -77,6 +78,7 @@ public class GameFrame {
         button2 = new JButton("Soldier");
         button3 = new JButton("Teleporter");
 
+        bank = new JLabel("€: ");
 
 
         menuBar.add(fileMenu);
@@ -84,6 +86,7 @@ public class GameFrame {
         menuBar.add(button1);
         menuBar.add(button2);
         menuBar.add(button3);
+        menuBar.add(bank);
 
 
         return menuBar;
@@ -107,5 +110,9 @@ public class GameFrame {
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public JLabel getLabel(){
+        return bank;
     }
 }

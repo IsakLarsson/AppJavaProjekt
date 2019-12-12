@@ -6,6 +6,7 @@ import Listeners.ButtonListener;
 import Listeners.MenuListener;
 import Model.*;
 import Model.Unit.Farmer;
+import Model.Unit.Soldier;
 
 
 import javax.swing.*;
@@ -25,6 +26,8 @@ public class Controller {
 
     //
     private int updateInterval = 50;
+
+    private int bank;
 
     //
     private Game game;
@@ -63,13 +66,17 @@ public class Controller {
             try {
                 lock.wait();
                 adapter = new ModelAdapter(gameWindow);
-                game = new Game(adapter, updateInterval);
+                game = new Game(adapter, updateInterval,this);
                 game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
             }
         }
 
+    }
+
+    public void setMoney(int money){
+        gameFrame.getLabel().setText("€ " + money);
     }
 
 
@@ -81,9 +88,13 @@ public class Controller {
         switch (s) {
             case "Farmer":
                 Farmer farmer = new Farmer();
-                game.spawn(farmer);
+                bank = game.spawn(farmer, farmer.getCost());
+                gameFrame.getLabel().setText("€ " + bank);
                 break;
             case "Soldier":
+                Soldier soldier = new Soldier();
+                bank = game.spawn(soldier, soldier.getCost());
+                gameFrame.getLabel().setText("€ " + bank);
                 break;
             case "Teleporter":
                 break;

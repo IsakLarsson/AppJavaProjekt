@@ -1,9 +1,12 @@
 package Model;
 
+import Controller.Controller;
+import Model.Unit.Farmer;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.Path;
 import Model.XML.Area.Tile;
+import Model.XML.Area.TowerArea;
 import Model.XML.XMLParser;
 import Model.XML.Area.Destination;
 
@@ -25,10 +28,12 @@ public class Game extends Thread {
     private BufferedImage backgroundImage;
     private BufferedImage updatedImage;
     private int updateInterval;
+    private Controller controller;
     private Animator animator;
     private Destination destination;
 
-    public Game(ModelAdapter adapter, int updateInterval) {
+    public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
+        this.controller = controller;
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
 
@@ -36,7 +41,7 @@ public class Game extends Thread {
         level = parser.parseXML();
 
         // Adapter
-        modelAdapter = adapter;
+        this.modelAdapter = adapter;
 
         this.updateInterval = updateInterval;
     }
@@ -44,7 +49,8 @@ public class Game extends Thread {
     @Override
     public void run() {
         //TODO Spawn tower on tower area
-        Tower tower = new Tower(100,40);
+        ArrayList<TowerArea> towerAreas = level.getTowerAreas();
+        Tower tower = new Tower(towerAreas.get(0).getxCoordinate()*20,towerAreas.get(0).getyCoordinate()*20);
         towerList.add(tower);
 
         animator = new Animator(unitList);
@@ -82,6 +88,7 @@ public class Game extends Thread {
         backgroundImage = new BufferedImage(400, 400,
                 BufferedImage.TYPE_INT_ARGB);
         Graphics g = backgroundImage.getGraphics();
+        controller.setMoney(level.getMoney());
 
         for (int i = 0; i < level.getMapSize(); i++) {
             for (int j = 0; j < level.getMapSize(); j++) {
@@ -147,10 +154,16 @@ public class Game extends Thread {
         return tilesCopy;
     }
 
-    public void spawn (Unit unit) {
-        animator.addUnit(unit,deepCopyList());
-        Destination destination = new Destination();
-        animator.calculatePositionQueue(destination, unit);
+    public int spawn (Unit unit, int cost) {
+        if (level.getMoney() >= cost) {
+            level.buyUnit(cost);
+            animator.addUnit(unit, deepCopyList());
+            Destination destination = new Destination();
+            animator.calculatePositionQueue(destination, unit);
+            return level.getMoney();
+        } else {
+            return level.getMoney();
+        }
     }
 
 }

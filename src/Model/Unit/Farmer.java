@@ -14,7 +14,8 @@ public class Farmer implements Unit {
 
     private Boolean hit;
     private Image image;
-    private int hp = 500;
+    private int hp = 50;
+    private int cost = 10;
     private int speed = 20;
     private int dmg = 1;
     private int size = 10;
@@ -97,6 +98,15 @@ public class Farmer implements Unit {
     @Override
     public Queue getQueue() {
         return this.queue;
+    }
+
+    @Override
+    public void setGoal(Tile goal) {
+
+    }
+
+    public int getCost(){
+        return cost;
     }
 
 }
