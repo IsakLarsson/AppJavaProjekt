@@ -1,7 +1,6 @@
 package Model;
 
 import Controller.Controller;
-import Model.Unit.Farmer;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.Path;
@@ -31,6 +30,7 @@ public class Game extends Thread {
     private Controller controller;
     private Animator animator;
     private Destination destination;
+    private int timeCounter;
 
     public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
         this.controller = controller;
@@ -74,8 +74,15 @@ public class Game extends Thread {
                 }
             }
 
+            income();
+            controller.setMoney(level.getMoney());
+
             //Send image to adapter
             modelAdapter.setBufferedImage(updatedImage);
+
+            if(level.getWinCondition() <= 0){
+                System.out.println("YOU WON!!!");
+            }
 
         });
         t.setRepeats(true);
@@ -124,8 +131,14 @@ public class Game extends Thread {
                 animator.calculatePositionQueue(destination, unit);
             }
             System.out.println("Queue: " + unit.getQueue());
-            unit.draw(newGraphics);
-
+            int dmg = unit.move(newGraphics);
+            if(dmg > 0) {
+                level.dmgBase(dmg);
+                unitList.remove(unit);
+                if(unitList.isEmpty()){
+                    break;
+                }
+            }
             if (unit.getQueue() != null) {
 
 
@@ -134,6 +147,15 @@ public class Game extends Thread {
             }
 
 
+        }
+    }
+
+    //TODO: Pretty ugly solution but works
+    private void income(){
+        timeCounter++;
+        if(timeCounter == 20) {
+            level.addMoney(1);
+            timeCounter = 0;
         }
     }
 

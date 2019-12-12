@@ -116,7 +116,7 @@ public class Worker extends SwingWorker {
 
         //
         /*if (!units.isEmpty()) {
-            //units.poll().draw(g,x,y);
+            //units.poll().move(g,x,y);
         }*/
 
         g.setColor(Color.MAGENTA);

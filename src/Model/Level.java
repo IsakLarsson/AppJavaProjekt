@@ -1,9 +1,7 @@
 package Model;
 
 import Model.XML.Area.*;
-import Model.XML.XMLParser;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -15,7 +13,7 @@ public class Level {
     private GoalArea goalArea;
     private ArrayList<TowerArea> towerAreas;
     private int money;
-    private int winCodition;
+    private int winCondition;
 
     public Level(int mapSize){
         tileMap = new Tile[mapSize][mapSize];
@@ -39,6 +37,8 @@ public class Level {
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+
+    //TODO kan vara onödig
     public void addSpawn(SpawnArea tile){
         spawnArea = tile;
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
@@ -49,6 +49,8 @@ public class Level {
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+
+    //TODO kan vara onödig
     public void addGoalArea(GoalArea tile){
         goalArea = tile;
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
@@ -79,7 +81,7 @@ public class Level {
     }
 
     public void addMoney(int add){
-        money =+ add;
+        money = money + add;
     }
 
     public int buyUnit(int unitCost){
@@ -91,11 +93,14 @@ public class Level {
         return money;
     }
 
-    public void setWinCodition(int baseHp){
-        winCodition = baseHp;
+    public void dmgBase(int dmg){
+        winCondition = winCondition - dmg;
+    }
+    public void setWinCondition(int winCondition){
+        this.winCondition = winCondition;
     }
 
-    public int getWinCodition(){
-        return winCodition;
+    public int getWinCondition(){
+        return winCondition;
     }
 }

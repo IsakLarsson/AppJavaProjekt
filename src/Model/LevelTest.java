@@ -1,6 +1,5 @@
 package Model;
 
-import Model.Unit.Tower;
 import Model.XML.Area.*;
 import Model.XML.XMLParser;
 import org.junit.jupiter.api.Assertions;
@@ -56,7 +55,7 @@ public class LevelTest {
     public void setWinConditionTest(){
         XMLParser parser = new XMLParser();
         level = parser.parseXML();
-        Assertions.assertEquals(10, level.getWinCodition());
+        Assertions.assertEquals(10, level.getWinCondition());
     }
 
     @Test

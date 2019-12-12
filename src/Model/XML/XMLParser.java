@@ -14,9 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class XMLParser {
 
@@ -53,7 +50,7 @@ public class XMLParser {
 
             list = level.getElementsByTagName("winCondition");
             node = list.item(0);
-            map.setWinCodition(Integer.valueOf(node.getTextContent()));
+            map.setWinCondition(Integer.valueOf(node.getTextContent()));
 
 
         } catch (ParserConfigurationException e) {

@@ -12,7 +12,7 @@ public interface Unit {
 
     void setTileQueue(LinkedList<Tile> tiles);
 
-    void draw(Graphics g);
+    int move(Graphics g);
 
     int getHp();
 

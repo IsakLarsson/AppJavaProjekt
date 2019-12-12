@@ -26,7 +26,7 @@ public class Soldier implements Unit {
         try {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Gubbe.png"));
-            image = image.getScaledInstance(20,20,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(15,20,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,13 +42,14 @@ public class Soldier implements Unit {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public int move(Graphics g) {
         if (queue.size() > 1) {
             x = queue.poll();
             y = queue.poll();
             g.drawImage(image, x, y, null);
+            return 0;
         } else {
-
+            return dmg;
         }
     }
 

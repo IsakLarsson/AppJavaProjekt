@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static java.awt.Color.white;
-
 public class Farmer implements Unit {
 
     private Boolean hit;
@@ -41,12 +39,14 @@ public class Farmer implements Unit {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public int move(Graphics g) {
         if (!queue.isEmpty()) {
-            System.out.println("HEJ");
             x = queue.poll();
             y = queue.poll();
             g.drawImage(image, x, y, null);
+            return 0;
+        } else {
+            return dmg;
         }
     }
 

@@ -42,7 +42,7 @@ public class Controller {
             // An actionlistener for the spawn buttons
             buttonListener = new ButtonListener(this);
 
-            // A panel that you draw on
+            // A panel that you move on
             // A window gameFrame containing a menubar
             gameWindow = new GameWindow();
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
