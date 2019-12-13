@@ -56,16 +56,11 @@ public class Tower {
             if (target == null) {
 
                 target = unit;
-
-            }
-            else {
-
-                graphics.setColor(RED);
-                graphics.drawLine(xCord,yCord,target.getX(),target.getY());
-
+                
             }
 
-
+            graphics.setColor(RED);
+            graphics.drawLine(xCord,yCord,target.getX(),target.getY());
             target.setHp(unit.getHp()-1);
 
         }
