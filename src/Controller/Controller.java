@@ -10,6 +10,8 @@ import Model.Unit.Soldier;
 
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Controller {
 
@@ -32,16 +34,20 @@ public class Controller {
     //
     private Game game;
 
+    //
+    private Object lock;
+
+    //
+    private Boolean newGame = false;
+
     public Controller(){
-        Object lock = new Object();
+        lock = new Object();
 
         SwingUtilities.invokeLater(() -> {
 
-            //
-            menuListener = new MenuListener();
-
             // An actionlistener for the spawn buttons
             buttonListener = new ButtonListener(this);
+            menuListener = new MenuListener(this);
 
             // A panel that you move on
             // A window gameFrame containing a menubar
@@ -49,30 +55,34 @@ public class Controller {
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
                     menuListener);
             gameFrame.setupListeners(buttonListener);
+
             // Show the gui
             gameFrame.show();
-
-            // An adapter that acts a middlehand between the gui and the model
-            //adapter = new ModelAdapter(gameWindow);
-            // A model
-            //Worker worker = new Worker(adapter);
-            //worker.execute();
             synchronized (lock){
                 lock.notify();
             }
-
         });
 
         synchronized (lock){
             try {
                 lock.wait();
-                adapter = new ModelAdapter(gameWindow);
-                game = new Game(adapter, updateInterval,this);
-                game.start();
+                while (true) {
+                    System.out.println("Om den här printen inte är här fungerar inte New Game ??");
+                    if (newGame) {
+                        adapter = new ModelAdapter(gameWindow);
+                        game = new Game(adapter, updateInterval, this);
+                        game.start();
+                        break;
+                    }
+                }
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
             }
         }
+    }
+
+    public void startGame(Object lock) {
+
 
     }
 
@@ -100,6 +110,9 @@ public class Controller {
             case "Teleporter":
                 break;
         }
+    }
 
+    public void startNewGame() {
+        newGame = true;
     }
 }

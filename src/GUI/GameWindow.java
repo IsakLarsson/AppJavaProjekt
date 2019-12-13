@@ -15,6 +15,7 @@ public class GameWindow extends JPanel {
     static final Dimension dimension = new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
     private Color bg = new Color(34,139,34);
 
+
     // Handler for the custom drawing panel
     private GameCanvas canvas;
 
@@ -24,7 +25,6 @@ public class GameWindow extends JPanel {
         canvas = new GameCanvas();
         canvas.setPreferredSize(dimension);
         add(canvas);   // center of default BorderLayout
-        //this.tileMap = tileMap;
     }
 
     public void setBufferedImage(BufferedImage bi) {

@@ -56,7 +56,7 @@ public class Tower {
             if (target == null) {
 
                 target = unit;
-                
+
             }
 
             graphics.setColor(RED);

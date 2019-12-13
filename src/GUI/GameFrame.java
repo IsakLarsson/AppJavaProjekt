@@ -4,6 +4,8 @@ import Listeners.ButtonListener;
 import Listeners.MenuListener;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GameFrame {
     private JFrame frame;
@@ -44,6 +46,18 @@ public class GameFrame {
      */
     public void show() {
         frame.setVisible(true);
+
+        BufferedImage image = new BufferedImage(400, 400,
+                BufferedImage.TYPE_INT_ARGB);
+
+        image.getGraphics().setColor(Color.BLACK);
+        image.getGraphics().setFont(new Font("TimesRoman", Font.PLAIN, 150));
+        image.getGraphics().drawString("Press File -> New game, to start", 100, 150);
+
+        GameWindow window = (GameWindow) frame.getContentPane();
+
+        window.setBufferedImage(image);
+        window.update();
     }
 
     /**
@@ -54,7 +68,6 @@ public class GameFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
 
-        // Could add listeners here
         menuItem1 = new JMenuItem("New Game");
         menuItem2 = new JMenuItem("Restart level");
         menuItem3 = new JMenuItem("Pause");
@@ -67,7 +80,6 @@ public class GameFrame {
 
         JMenu helpMenu = new JMenu("Help");
 
-        // Could add listeners here
         menuItem5 = new JMenuItem("About");
         menuItem6 = new JMenuItem("Help");
 
@@ -98,6 +110,12 @@ public class GameFrame {
      * @param buttonListener
      */
     public void setupListeners(ButtonListener buttonListener) {
+
+        //
+        menuItem1.addActionListener(this.menuListener);
+        menuItem2.addActionListener(this.menuListener);
+        menuItem3.addActionListener(this.menuListener);
+        menuItem4.addActionListener(this.menuListener);
 
         //
         menuItem5.addActionListener(this.menuListener);
