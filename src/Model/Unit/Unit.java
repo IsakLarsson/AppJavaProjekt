@@ -22,7 +22,11 @@ public interface Unit {
 
     int getY();
 
+    int getCost();
+
     Image getImage();
+
+    void takeDMG(int dmg);
 
     void setPixelPositionQueue(Queue q);
 
@@ -32,5 +36,4 @@ public interface Unit {
 
     Queue getQueue();
 
-    void setGoal(Tile goal);
 }

@@ -58,6 +58,8 @@ public class Game extends Thread {
         ArrayList<TowerArea> towerAreas = level.getTowerAreas();
         Tower tower = new Tower(towerAreas.get(0).getxCoordinate()*20,towerAreas.get(0).getyCoordinate()*20);
         towerList.add(tower);
+        Tower tower1 = new Tower(towerAreas.get(1).getxCoordinate()*20,towerAreas.get(1).getyCoordinate()*20);
+        towerList.add(tower1);
 
         animator = new Animator(unitList);
 

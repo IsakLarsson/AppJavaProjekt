@@ -101,10 +101,6 @@ public class Farmer implements Unit {
     }
 
     @Override
-    public void setGoal(Tile goal) {
-
-    }
-
     public int getCost(){
         return cost;
     }

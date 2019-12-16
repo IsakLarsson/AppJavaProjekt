@@ -7,6 +7,7 @@ import Listeners.MenuListener;
 import Model.*;
 import Model.Unit.Farmer;
 import Model.Unit.Soldier;
+import Model.Unit.Teleporter;
 
 
 import javax.swing.*;
@@ -120,6 +121,9 @@ public class Controller {
                 gameFrame.getLabel().setText("€ " + bank);
                 break;
             case "Teleporter":
+                Teleporter teleporter = new Teleporter();
+                bank = game.spawn(teleporter, teleporter.getCost());
+                gameFrame.getLabel().setText("€ " + bank);
                 break;
         }
     }
