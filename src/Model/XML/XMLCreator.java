@@ -76,11 +76,20 @@ public class XMLCreator {
         mapSize.appendChild(doc.createTextNode(mapSizeNr + ""));
         level1.appendChild(mapSize);
 
+        //Set start money and win condition
+        setStartMoney(level1, 100);
+        setWinCondition(level1, 10);
+
         //Create needed area types
         createSpawnArea(level1,0,0);
-        createPathArea(10, level1);
-        createGoalArea(level1, 10, 0);
-        createTowerArea(2, level1, 5,2);
+        createHorizontalPathArea(level1, 9, 0, 0);
+        createVerticalPathArea(level1, 9, 9, 0);
+        createHorizontalPathArea(level1, 10, 9, 9);
+
+        createGoalArea(level1, 19, 9);
+        createTowerArea(level1, 3, 2);
+        createTowerArea(level1, 10, 4);
+
     }
 
     /**
@@ -89,18 +98,31 @@ public class XMLCreator {
     private void createLevel2() {}
 
     /**
-     * Creates a path area with nrArea numbers of area
+     * Starts at given StartX and StartY and produces nrArea numbers of areas
+     * in a horizontal direction.
      * @param nrArea Number of area tiles
      * @param dest Destination, where the area should be inserted as a sub-element
      */
-    private void createPathArea(int nrArea, Element dest) {
-        int i = 1;
-        for (; i < nrArea; i++){
+    private void createHorizontalPathArea(Element dest, int nrArea, int startX, int startY) {
+        int i = startX;
+        for (; i < (nrArea + startX); i++){
             Element areaType = doc.createElement("Tile");
             areaType.setAttribute("AreaType", "Path");
             dest.appendChild(areaType);
             Element coordinates = doc.createElement("Coordinates");
-            coordinates.appendChild(doc.createTextNode(i + ",0"));
+            coordinates.appendChild(doc.createTextNode(i + "," + startY));
+            areaType.appendChild(coordinates);
+        }
+    }
+
+    private void createVerticalPathArea(Element dest, int nrArea, int startX, int startY) {
+        int i = startY;
+        for (; i < (nrArea + startY); i++){
+            Element areaType = doc.createElement("Tile");
+            areaType.setAttribute("AreaType", "Path");
+            dest.appendChild(areaType);
+            Element coordinates = doc.createElement("Coordinates");
+            coordinates.appendChild(doc.createTextNode(startX + "," + i));
             areaType.appendChild(coordinates);
         }
     }
@@ -108,25 +130,17 @@ public class XMLCreator {
     /**
      * Creates a tower area with nrArea numbers of area.
      * Randomizes placement of tower areas.
-     * @param nrArea Number of area tiles
      * @param dest Destination, where the area should be inserted as a sub-element
-     * @param max Maximum value on X/Y-axis
-     * @param min Minimum value on X/Y-axis
+     * @param x X-Coordinate of tower area
+     * @param y Y-Coordinate of tower area
      */
-    private void createTowerArea(int nrArea, Element dest, int max, int min) {
-        int i = 0;
-        for (; i < nrArea; i++){
-            //Randomize two values, X and Y, as coordinates for each area
-            int randX = ThreadLocalRandom.current().nextInt(min, max + 1);
-            int randY = ThreadLocalRandom.current().nextInt(min, max + 1);
-
-            Element areaType = doc.createElement("Tile");
-            areaType.setAttribute("AreaType", "TowerArea");
-            dest.appendChild(areaType);
-            Element coordinates = doc.createElement("Coordinates");
-            coordinates.appendChild(doc.createTextNode(randX + "," + randY));
-            areaType.appendChild(coordinates);
-        }
+    private void createTowerArea(Element dest, int x, int y) {
+        Element areaType = doc.createElement("Tile");
+        areaType.setAttribute("AreaType", "TowerArea");
+        dest.appendChild(areaType);
+        Element coordinates = doc.createElement("Coordinates");
+        coordinates.appendChild(doc.createTextNode(x + "," + y));
+        areaType.appendChild(coordinates);
     }
 
     /**
@@ -153,5 +167,27 @@ public class XMLCreator {
         Element coordinates = doc.createElement("Coordinates");
         coordinates.appendChild(doc.createTextNode(x + "," + y));
         areaType.appendChild(coordinates);
+    }
+
+    /**
+     * Sets start money
+     * @param dest Destination, where the area should be inserted as a sub-element
+     * @param sMoney Start money
+     */
+    private void setStartMoney(Element dest, int sMoney) {
+        Element money = doc.createElement("startMoney");
+        dest.appendChild(money);
+        money.appendChild(doc.createTextNode(sMoney + ""));
+    }
+
+    /**
+     * Sets win condition
+     * @param dest Destination, where the area should be inserted as a sub-element
+     * @param wCondition Win condition
+     */
+    private void setWinCondition(Element dest, int wCondition) {
+        Element condition = doc.createElement("winCondition");
+        dest.appendChild(condition);
+        condition.appendChild(doc.createTextNode(wCondition + ""));
     }
 }
