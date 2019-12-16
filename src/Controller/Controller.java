@@ -8,6 +8,7 @@ import Model.*;
 import Model.Unit.Farmer;
 import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
+import Model.XML.XMLParser;
 
 
 import javax.swing.*;
@@ -39,9 +40,16 @@ public class Controller {
     //
     private Boolean newGame = false;
 
-    public Controller(){
+    //
+    String filePath;
+
+    public Controller(String filePath){
         lock = new Object();
         startObject = new Object();
+
+        this.filePath = filePath;
+        XMLParser parser = new XMLParser(filePath);
+        parser.parseXML();
 
         SwingUtilities.invokeLater(() -> {
 
@@ -53,7 +61,7 @@ public class Controller {
             // A window gameFrame containing a menubar
             gameWindow = new GameWindow();
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
-                    menuListener);
+                    menuListener, parser.getNumberOfLevels());
             gameFrame.setupListeners(buttonListener);
 
             // Show the gui
@@ -66,8 +74,8 @@ public class Controller {
         synchronized (lock){
             try {
                 lock.wait();
-                adapter = new ModelAdapter(gameWindow);
-                game = new Game(adapter, updateInterval, this);
+                adapter = new ModelAdapter(gameFrame);
+                game = new Game(adapter, updateInterval, filePath);
                 game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
@@ -114,8 +122,8 @@ public class Controller {
 
     public void startNewGame(String levelChoice) {
 
-        game.setLevelName(levelChoice);
         synchronized (lock){
+            game.setLevelName(levelChoice);
             game.setGameState(true);
         }
     }
