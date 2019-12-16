@@ -3,11 +3,8 @@ package Model;
 import Controller.Controller;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
-import Model.XML.Area.Path;
-import Model.XML.Area.Tile;
-import Model.XML.Area.TowerArea;
+import Model.XML.Area.*;
 import Model.XML.XMLParser;
-import Model.XML.Area.Destination;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,16 +52,10 @@ public class Game extends Thread {
 
     @Override
     public void run() {
-        //TODO Spawn tower on tower area
-        ArrayList<TowerArea> towerAreas = level.getTowerAreas();
-        for(int i = 0; i < towerAreas.size(); i++) {
-            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 20, towerAreas.get(i).getyCoordinate() * 20);
-            towerList.add(tower);
-        }
-
-
+        spawnTowers();
         animator = new Animator(unitList);
-
+        TeleportArea teleArea = new TeleportArea(4,0,20);
+        level.addPath(teleArea);
         drawMap();
 
         Timer t = new Timer(updateInterval, (e) -> {
@@ -90,6 +81,14 @@ public class Game extends Thread {
         });
         t.setRepeats(true);
         t.start();
+    }
+
+    private void spawnTowers() {
+        ArrayList<TowerArea> towerAreas = level.getTowerAreas();
+        for(int i = 0; i < towerAreas.size(); i++) {
+            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 20, towerAreas.get(i).getyCoordinate() * 20);
+            towerList.add(tower);
+        }
     }
 
     public void setGameState(Boolean gameState) {

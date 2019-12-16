@@ -1,11 +1,14 @@
 package Model.XML.Area;
 
 import java.awt.geom.Area;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Destination {
     private Queue<Integer> q;
+    private TeleportArea teleArea;
+
     public Destination() {
         q = new LinkedList<>();
     }
@@ -24,8 +27,10 @@ public class Destination {
         int start = 0;
         int i = 0;
 
+        //TODO här måste det till en big brain
         if (firstTile instanceof AreaEffect){
-
+            teleArea = (TeleportArea) firstTile;
+            teleArea.landOn(tiles);
         }
 
         if (secondTile == null) {

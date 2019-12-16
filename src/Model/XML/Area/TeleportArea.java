@@ -3,6 +3,7 @@ package Model.XML.Area;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class TeleportArea extends Tile implements AreaEffect {
     private Image texture;
@@ -13,7 +14,7 @@ public class TeleportArea extends Tile implements AreaEffect {
         try {
             texture = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Portal" +
-                            ".png"));
+                            ".jpg"));
             texture = texture.getScaledInstance(20,20,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
@@ -25,7 +26,8 @@ public class TeleportArea extends Tile implements AreaEffect {
     }
 
     @Override
-    public void landOn() {
-
+    public void landOn(LinkedList<Tile> tileList) {
+        System.out.println("landed on");
     }
+
 }
