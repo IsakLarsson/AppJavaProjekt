@@ -31,6 +31,7 @@ public class Game extends Thread {
     private Animator animator;
     private Destination destination;
     private int timeCounter;
+    private Boolean newGame = false;
 
     public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
 
@@ -56,10 +57,11 @@ public class Game extends Thread {
     public void run() {
         //TODO Spawn tower on tower area
         ArrayList<TowerArea> towerAreas = level.getTowerAreas();
-        Tower tower = new Tower(towerAreas.get(0).getxCoordinate()*20,towerAreas.get(0).getyCoordinate()*20);
-        towerList.add(tower);
-        Tower tower1 = new Tower(towerAreas.get(1).getxCoordinate()*20,towerAreas.get(1).getyCoordinate()*20);
-        towerList.add(tower1);
+        for(int i = 0; i < towerAreas.size(); i++) {
+            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 20, towerAreas.get(i).getyCoordinate() * 20);
+            towerList.add(tower);
+        }
+
 
         animator = new Animator(unitList);
 
@@ -67,26 +69,31 @@ public class Game extends Thread {
 
         Timer t = new Timer(updateInterval, (e) -> {
 
-            //update image
-            drawUnits();
+            if (newGame) {
+                //update image
+                drawUnits();
 
-            // Shoot towers
-            shootTowers();
+                // Shoot towers
+                shootTowers();
 
-            income();
+                //
+                income();
 
-            //Send image to adapter
-            modelAdapter.setBufferedImage(updatedImage);
+                //Send image to adapter
+                modelAdapter.setBufferedImage(updatedImage);
 
-            if(level.getWinCondition() <= 0){
-                System.out.println("YOU WON!!!");
+                //
+                if (level.getWinCondition() <= 0) {
+                    System.out.println("YOU WON!!!");
+                }
             }
-
         });
         t.setRepeats(true);
         t.start();
+    }
 
-
+    public void setNewGame(Boolean newGame) {
+        this.newGame = newGame;
     }
 
     private void shootTowers() {
@@ -190,5 +197,4 @@ public class Game extends Thread {
             return level.getMoney();
         }
     }
-
 }
