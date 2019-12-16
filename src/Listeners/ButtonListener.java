@@ -18,7 +18,16 @@ public class ButtonListener implements ActionListener {
         String s = e.getActionCommand();
         System.out.println("Button pressed " + s);
 
-        controller.spawnUnit(s);
-
+        switch (s) {
+            case "Teleport":
+                controller.teleportUnit();
+                break;
+            case "Split":
+                controller.splitPath();
+                break;
+            default:
+                controller.spawnUnit(s);
+                break;
+        }
     }
 }

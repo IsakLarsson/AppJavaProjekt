@@ -22,19 +22,24 @@ public class GameFrame {
     JButton button1;
     JButton button2;
     JButton button3;
+
     JLabel bank;
 
+    GameWindow gameWindow;
 
     public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener, MenuListener menuListener){
 
         frame = new JFrame(title);
 
+        this.gameWindow = gameWindow;
+
         // Set the content-pane of the JFrame to an instance of main JPanel
+        frame.setJMenuBar(buildMenuBar());
         frame.setContentPane(gameWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setJMenuBar(buildMenuBar());
         frame.setSize(gameWindow.getDimension());
         frame.setLocationRelativeTo(null);
+        frame.pack();
 
         this.menuListener = menuListener;
         this.buttonListener = buttonListener;
@@ -121,9 +126,14 @@ public class GameFrame {
         menuItem5.addActionListener(this.menuListener);
         menuItem6.addActionListener(this.menuListener);
 
+        //
         button1.addActionListener(this.buttonListener);
         button2.addActionListener(this.buttonListener);
         button3.addActionListener(this.buttonListener);
+
+        //
+        gameWindow.getButton1().addActionListener(this.buttonListener);
+        gameWindow.getButton2().addActionListener(this.buttonListener);
     }
 
     public JFrame getFrame() {

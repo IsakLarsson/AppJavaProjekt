@@ -99,6 +99,14 @@ public class Controller {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
     }
 
+    public void teleportUnit() {
+
+    }
+
+    public void splitPath() {
+
+    }
+
     public void spawnUnit (String s) {
         switch (s) {
             case "Farmer":

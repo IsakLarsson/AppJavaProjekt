@@ -2,9 +2,14 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class GameWindow extends JPanel {
+
+    // Buttons
+    JButton button1;
+    JButton button2;
 
     // Model.Frame frame
     private BufferedImage image;
@@ -20,10 +25,29 @@ public class GameWindow extends JPanel {
 
     // Constructor to initialize the UI components and game objects
     public GameWindow() {
+
+        //
+        setLayout(new BorderLayout());
+
         // UI components
         canvas = new GameCanvas();
         canvas.setPreferredSize(dimension);
         add(canvas);   // center of default BorderLayout
+
+        // Tool bar
+        add(buildToolBar(), BorderLayout.NORTH);
+    }
+
+    private JToolBar buildToolBar() {
+        JToolBar toolBar = new JToolBar();
+
+        button1 = new JButton("Teleport");
+        button2 = new JButton("Split");
+
+        toolBar.add(button1);
+        toolBar.add(button2);
+
+        return toolBar;
     }
 
     public void setBufferedImage(BufferedImage bi) {
@@ -45,6 +69,14 @@ public class GameWindow extends JPanel {
         Dimension frameDimension = new Dimension(CANVAS_WIDTH + 14,
                 CANVAS_HEIGHT);
         return frameDimension;
+    }
+
+    public JButton getButton1() {
+        return button1;
+    }
+
+    public JButton getButton2() {
+        return button2;
     }
 
     // Custom drawing panel, written as an inner class.
