@@ -68,7 +68,7 @@ public class Game extends Thread {
             //update image
             drawUnits();
 
-            // Shoot towers TODO Only shoot at one unit at a time
+            // Shoot towers
             shootTowers();
 
             income();

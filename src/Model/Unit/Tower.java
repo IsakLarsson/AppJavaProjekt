@@ -59,6 +59,10 @@ public class Tower {
                     target.getY() + 10);
             target.setHp(target.getHp()-1);
 
+            if (target.getHp() <= 0) {
+                target = null;
+            }
+
         }
         else {
             target = null;
