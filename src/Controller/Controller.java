@@ -68,6 +68,7 @@ public class Controller {
             try {
                 lock.wait();
                 startNewGame();
+                //TODO fix so we dont need this loop
                 while(true){
                     if (newGame) {
                         adapter = new ModelAdapter(gameWindow);
