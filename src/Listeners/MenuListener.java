@@ -21,9 +21,6 @@ public class MenuListener implements ActionListener {
         System.out.println(s);
 
         switch (s) {
-            case "New Game":
-                controller.startNewGame();
-                break;
             case "Restart level":
                 controller.restartLevel();
                 break;
@@ -39,7 +36,10 @@ public class MenuListener implements ActionListener {
             case "About":
                 controller.openDialog(s, "About the game");
                 break;
-            }
+        }
 
+        if (s.startsWith("Level")) {
+            controller.startNewGame(s);
+        }
     }
 }

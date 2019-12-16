@@ -19,17 +19,42 @@ public class XMLParser {
 
     private int TILE_SIZE = 20;
     private int mapSize;
+    private int numberOfLevels;
     private Level map;
+    private String levelName = "Level1";
+    private String filePath = "src/Model/XML/Levels.xml";
+
+    public XMLParser (String filePath, String levelName) {
+        this.filePath = filePath;
+        this.levelName = levelName;
+    }
+
+    public XMLParser (String filePath) {
+        this.filePath = filePath;
+    }
 
     public Level parseXML() {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("src/Model/XML/Levels.xml");
+            System.out.println("File: " + filePath);
+            Document doc = builder.parse(filePath);
             Element element = doc.getDocumentElement();
 
-            NodeList lvl = element.getElementsByTagName("Level1");
+            NodeList nodes = element.getChildNodes();
+            System.out.println(element.getNodeName() + " has "+nodes.getLength()+" children");
+            for(int i=0; i<nodes.getLength(); i++) {
+                Node n = nodes.item(i);
+                if (n.getNodeType() == Node.ELEMENT_NODE) {
+                    numberOfLevels++;
+                }
+                System.out.println("\t"+n.getNodeName());
+
+            }
+
+
+            NodeList lvl = element.getElementsByTagName(levelName);
             Node l = lvl.item(0);
 
             Element level = (Element) l;
@@ -141,5 +166,8 @@ public class XMLParser {
 
     public int getMapSize(){
         return mapSize;
+    }
+    public int getNumberOfLevels(){
+        return numberOfLevels;
     }
 }

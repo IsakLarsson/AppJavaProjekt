@@ -27,24 +27,24 @@ public class Game extends Thread {
     private BufferedImage backgroundImage;
     private BufferedImage updatedImage;
     private int updateInterval;
-    private Controller controller;
     private Animator animator;
     private Destination destination;
     private int timeCounter;
     private Boolean gameState = false;
+    private Boolean mapIsDrawn = false;
+    private String pathFile;
+    private String levelName;
 
-    public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
+    public Game(ModelAdapter adapter, int updateInterval, String pathFile) {
 
-        // Controller
-        this.controller = controller;
+        this.pathFile = pathFile;
+        System.out.println("PATHFILE: " + pathFile);
 
         // Array lists
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
 
-        // XML level
-        XMLParser parser = new XMLParser();
-        level = parser.parseXML();
+
 
         // Adapter
         this.modelAdapter = adapter;
@@ -56,20 +56,19 @@ public class Game extends Thread {
     @Override
     public void run() {
         //TODO Spawn tower on tower area
-        ArrayList<TowerArea> towerAreas = level.getTowerAreas();
-        for(int i = 0; i < towerAreas.size(); i++) {
-            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 20, towerAreas.get(i).getyCoordinate() * 20);
-            towerList.add(tower);
-        }
+
 
 
         animator = new Animator(unitList);
 
-        drawMap();
 
         Timer t = new Timer(updateInterval, (e) -> {
 
             if (gameState) {
+
+                // Draw map once
+                drawMap(levelName);
+
                 //update image
                 drawUnits();
 
@@ -107,11 +106,18 @@ public class Game extends Thread {
         }
     }
 
-    public void drawMap() {
+    public void drawMap(String levelName) {
+        if (mapIsDrawn) {
+            return;
+        }
+        // XML level
+        XMLParser parser = new XMLParser(pathFile, levelName);
+        this.level = parser.parseXML();
+
         backgroundImage = new BufferedImage(400, 400,
                 BufferedImage.TYPE_INT_ARGB);
         Graphics g = backgroundImage.getGraphics();
-        controller.setMoney(level.getMoney());
+        modelAdapter.setMoney(level.getMoney());
 
         for (int i = 0; i < level.getMapSize(); i++) {
             for (int j = 0; j < level.getMapSize(); j++) {
@@ -123,9 +129,18 @@ public class Game extends Thread {
             }
         }
 
+        ArrayList<TowerArea> towerAreas = level.getTowerAreas();
+        for(int i = 0; i < towerAreas.size(); i++) {
+            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 20,
+                    towerAreas.get(i).getyCoordinate() * 20);
+            towerList.add(tower);
+        }
+
         for(Tower tower : towerList){
             tower.draw(g);
         }
+
+        mapIsDrawn = true;
 
     }
 
@@ -154,9 +169,6 @@ public class Game extends Thread {
             if(dmg > 0) {
                 level.dmgBase(dmg);
                 iterator.remove();
-                /*if(unitList.isEmpty()){
-                    break;
-                }*/
             }
         }
     }
@@ -168,7 +180,7 @@ public class Game extends Thread {
             level.addMoney(1);
             timeCounter = 0;
         }
-        controller.setMoney(level.getMoney());
+        modelAdapter.setMoney(level.getMoney());
     }
 
     public void shootTowers(Graphics g, Unit u) {
@@ -196,5 +208,9 @@ public class Game extends Thread {
         } else {
             return level.getMoney();
         }
+    }
+
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 }

@@ -6,16 +6,19 @@ import Listeners.MenuListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class GameFrame {
     private JFrame frame;
     private ButtonListener buttonListener;
     private MenuListener menuListener;
+    private ArrayList<JMenuItem> levelList;
+
+    JMenu newGameMenu;
 
     JMenuItem menuItem1;
     JMenuItem menuItem2;
     JMenuItem menuItem3;
-    JMenuItem menuItem4;
     JMenuItem menuItem5;
     JMenuItem menuItem6;
 
@@ -27,11 +30,18 @@ public class GameFrame {
 
     GameWindow gameWindow;
 
-    public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener, MenuListener menuListener){
+    private int levelOptions;
+
+    public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener,
+                     MenuListener menuListener, int levelOptions){
 
         frame = new JFrame(title);
 
         this.gameWindow = gameWindow;
+        this.levelOptions = levelOptions;
+
+        //
+        createLevelList();
 
         // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setJMenuBar(buildMenuBar());
@@ -73,15 +83,17 @@ public class GameFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
 
-        menuItem1 = new JMenuItem("New Game");
-        menuItem2 = new JMenuItem("Restart level");
-        menuItem3 = new JMenuItem("Pause");
-        menuItem4 = new JMenuItem("Quit");
+        newGameMenu = new JMenu("New Game");
+        newGameMenu.add(createLevelMenu());
 
+        menuItem1 = new JMenuItem("Restart level");
+        menuItem2 = new JMenuItem("Pause");
+        menuItem3 = new JMenuItem("Quit");
+
+        fileMenu.add(newGameMenu);
         fileMenu.add(menuItem1);
         fileMenu.add(menuItem2);
         fileMenu.add(menuItem3);
-        fileMenu.add(menuItem4);
 
         JMenu helpMenu = new JMenu("Help");
 
@@ -96,7 +108,6 @@ public class GameFrame {
         button3 = new JButton("Teleporter");
 
         bank = new JLabel("€: ");
-
 
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
@@ -120,7 +131,6 @@ public class GameFrame {
         menuItem1.addActionListener(this.menuListener);
         menuItem2.addActionListener(this.menuListener);
         menuItem3.addActionListener(this.menuListener);
-        menuItem4.addActionListener(this.menuListener);
 
         //
         menuItem5.addActionListener(this.menuListener);
@@ -134,6 +144,30 @@ public class GameFrame {
         //
         gameWindow.getButton1().addActionListener(this.buttonListener);
         gameWindow.getButton2().addActionListener(this.buttonListener);
+
+        //
+        for (JMenuItem menuItem : levelList) {
+            menuItem.addActionListener(this.menuListener);
+        }
+    }
+
+    private void createLevelList() {
+        levelList = new ArrayList<>();
+        for (int i=1; i <= levelOptions; i++) {
+            System.out.println("Level " + i);
+            levelList.add(new JMenuItem("Level" + i));
+        }
+    }
+
+    private JMenu createLevelMenu() {
+        JMenu levelMenu = new JMenu();
+
+        for (JMenuItem menuItem : levelList) {
+            System.out.println("Added level");
+            levelMenu.add(menuItem);
+        }
+
+        return levelMenu;
     }
 
     public JFrame getFrame() {
@@ -142,5 +176,9 @@ public class GameFrame {
 
     public JLabel getLabel(){
         return bank;
+    }
+
+    public GameWindow getGameWindow() {
+        return gameWindow;
     }
 }

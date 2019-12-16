@@ -1,5 +1,6 @@
 package Model;
 
+import GUI.GameFrame;
 import GUI.GameWindow;
 import Model.XML.Area.Tile;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ModelTest {
 
     private GameWindow gameWindow = new GameWindow();
-    private ModelAdapter adapter = new ModelAdapter(gameWindow);
+    private GameFrame gameFrame = new GameFrame("",gameWindow,null,null, 1);
+    private ModelAdapter adapter = new ModelAdapter(gameFrame);
     private Worker worker = new Worker(adapter);
 
     /**

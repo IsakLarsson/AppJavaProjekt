@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DestinationTest {
 
     private Destination destination = new Destination();
-    private XMLParser parser = new XMLParser();
+    private XMLParser parser = new XMLParser("src/Model/XML/Levels.xml");
     private Level level = parser.parseXML();
 
     @Test

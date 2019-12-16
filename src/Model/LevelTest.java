@@ -46,14 +46,14 @@ public class LevelTest {
 
     @Test
     public void setMoneyTest(){
-        XMLParser parser = new XMLParser();
+        XMLParser parser = new XMLParser("src/Model/XML/Levels.xml");
         level = parser.parseXML();
         Assertions.assertEquals(100, level.getMoney());
     }
 
     @Test
     public void setWinConditionTest(){
-        XMLParser parser = new XMLParser();
+        XMLParser parser = new XMLParser("src/Model/XML/Levels.xml");
         level = parser.parseXML();
         Assertions.assertEquals(10, level.getWinCondition());
     }
