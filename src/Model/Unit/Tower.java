@@ -57,7 +57,7 @@ public class Tower {
             graphics.setColor(RED);
             graphics.drawLine(xCord + 10 ,yCord + 10,target.getX() + 10,
                     target.getY() + 10);
-            target.setHp(unit.getHp()-1);
+            target.setHp(target.getHp()-1);
 
         }
         else {
