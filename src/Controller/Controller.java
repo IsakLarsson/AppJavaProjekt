@@ -11,8 +11,6 @@ import Model.Unit.Teleporter;
 
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Controller {
 
@@ -120,6 +118,19 @@ public class Controller {
     }
 
     public void startNewGame() {
-        game.setNewGame(true);
+        game.setGameState(true);
+    }
+
+    public void restartLevel(){}
+    
+    public void pauseGame(){
+        game.setGameState(false);
+        int option = JOptionPane.showOptionDialog(null, "Hello", "Test", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+        if (option <= 0)  {
+            game.setGameState(true);
+        }
+
     }
 }

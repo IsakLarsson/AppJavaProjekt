@@ -24,10 +24,17 @@ public class MenuListener implements ActionListener {
             case "New Game":
                 controller.startNewGame();
                 break;
+            case "Restart level":
+                controller.restartLevel();
+                break;
+            case "Pause":
+                controller.pauseGame();
+                break;
             case "Help":
                 controller.openDialog(s, "How to play the game");
                 break;
             case "About":
+                controller.openDialog(s, "About the game");
                 break;
             }
 

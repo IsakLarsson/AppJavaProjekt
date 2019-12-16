@@ -31,7 +31,7 @@ public class Game extends Thread {
     private Animator animator;
     private Destination destination;
     private int timeCounter;
-    private Boolean newGame = false;
+    private Boolean gameState = false;
 
     public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
 
@@ -68,7 +68,7 @@ public class Game extends Thread {
 
         Timer t = new Timer(updateInterval, (e) -> {
 
-            if (newGame) {
+            if (gameState) {
                 //update image
                 drawUnits();
 
@@ -91,8 +91,8 @@ public class Game extends Thread {
         t.start();
     }
 
-    public void setNewGame(Boolean newGame) {
-        this.newGame = newGame;
+    public void setGameState(Boolean gameState) {
+        this.gameState = gameState;
     }
 
     private void shootTowers() {
