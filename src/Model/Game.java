@@ -69,14 +69,7 @@ public class Game extends Thread {
             drawUnits();
 
             // Shoot towers TODO Only shoot at one unit at a time
-            Iterator<Unit> iterator = unitList.iterator();
-            while(iterator.hasNext()) {
-                Unit unit = iterator.next();
-                shootTowers(updatedImage.getGraphics(),unit);
-                if (unit.getHp() <= 0) {
-                    iterator.remove();
-                }
-            }
+            shootTowers();
 
             income();
 
@@ -92,6 +85,17 @@ public class Game extends Thread {
         t.start();
 
 
+    }
+
+    private void shootTowers() {
+        Iterator<Unit> iterator = unitList.iterator();
+        while(iterator.hasNext()) {
+            Unit unit = iterator.next();
+            shootTowers(updatedImage.getGraphics(),unit);
+            if (unit.getHp() <= 0) {
+                iterator.remove();
+            }
+        }
     }
 
     public void drawMap() {

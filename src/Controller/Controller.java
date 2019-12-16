@@ -30,18 +30,19 @@ public class Controller {
     private int updateInterval = 50;
 
     private int bank;
-
     //
     private Game game;
 
     //
     private Object lock;
+    private Object startObject;
 
     //
     private Boolean newGame = false;
 
     public Controller(){
         lock = new Object();
+        startObject = new Object();
 
         SwingUtilities.invokeLater(() -> {
 
@@ -66,8 +67,8 @@ public class Controller {
         synchronized (lock){
             try {
                 lock.wait();
-                while (true) {
-                    System.out.println("Om den här printen inte är här fungerar inte New Game ??");
+                startNewGame();
+                while(true){
                     if (newGame) {
                         adapter = new ModelAdapter(gameWindow);
                         game = new Game(adapter, updateInterval, this);
@@ -75,6 +76,8 @@ public class Controller {
                         break;
                     }
                 }
+
+
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
             }

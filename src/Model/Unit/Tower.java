@@ -30,8 +30,9 @@ public class Tower {
 
         try {
             image = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images/Farmer.png"));
-            image = image.getScaledInstance(15,20,Image.SCALE_SMOOTH);
+                    this.getClass().getResourceAsStream("/GUI/images/Farmer" +
+                            ".png"));
+            image = image.getScaledInstance(20,20,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,12 +46,6 @@ public class Tower {
 
         distance = Math.sqrt(distance); //here’s the hypotenuse.
 
-
-
-
-
-
-
         if (range >= distance) {
 
             if (target == null) {
@@ -60,7 +55,8 @@ public class Tower {
             }
 
             graphics.setColor(RED);
-            graphics.drawLine(xCord,yCord,target.getX(),target.getY());
+            graphics.drawLine(xCord + 10 ,yCord + 10,target.getX() + 10,
+                    target.getY() + 10);
             target.setHp(unit.getHp()-1);
 
         }

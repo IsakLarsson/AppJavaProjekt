@@ -51,7 +51,7 @@ public class GameFrame {
                 BufferedImage.TYPE_INT_ARGB);
 
         image.getGraphics().setColor(Color.BLACK);
-        image.getGraphics().setFont(new Font("TimesRoman", Font.PLAIN, 150));
+        image.getGraphics().setFont(new Font("TimesRoman", Font.PLAIN, 200));
         image.getGraphics().drawString("Press File -> New game, to start", 100, 150);
 
         GameWindow window = (GameWindow) frame.getContentPane();
