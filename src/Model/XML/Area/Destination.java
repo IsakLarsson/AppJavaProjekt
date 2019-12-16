@@ -1,5 +1,6 @@
 package Model.XML.Area;
 
+import java.awt.geom.Area;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -22,6 +23,10 @@ public class Destination {
         int dest = 0;
         int start = 0;
         int i = 0;
+
+        if (firstTile instanceof AreaEffect){
+
+        }
 
         if (secondTile == null) {
             System.out.println("Game over??");
