@@ -75,11 +75,6 @@ public class Controller {
         }
     }
 
-    public void startGame(Object lock) {
-
-
-    }
-
     public void setMoney(int money){
         gameFrame.getLabel().setText("€ " + money);
     }
@@ -121,16 +116,23 @@ public class Controller {
         game.setGameState(true);
     }
 
-    public void restartLevel(){}
-    
+    public void restartLevel(){
+
+    }
+
     public void pauseGame(){
         game.setGameState(false);
-        int option = JOptionPane.showOptionDialog(null, "Hello", "Test", JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        int option = JOptionPane.showOptionDialog(null, "Game is paused. Press OK to continue",
+                "Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, null, null);
 
         if (option <= 0)  {
             game.setGameState(true);
         }
 
+    }
+
+    public void quitGame(){
+        System.exit(0);
     }
 }

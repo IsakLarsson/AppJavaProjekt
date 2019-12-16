@@ -30,6 +30,9 @@ public class MenuListener implements ActionListener {
             case "Pause":
                 controller.pauseGame();
                 break;
+            case "Quit":
+                controller.quitGame();
+                break;
             case "Help":
                 controller.openDialog(s, "How to play the game");
                 break;
