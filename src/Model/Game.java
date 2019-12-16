@@ -31,6 +31,7 @@ public class Game extends Thread {
     private Animator animator;
     private Destination destination;
     private int timeCounter;
+    private Boolean newGame = false;
 
     public Game(ModelAdapter adapter, int updateInterval, Controller controller) {
 
@@ -65,26 +66,31 @@ public class Game extends Thread {
 
         Timer t = new Timer(updateInterval, (e) -> {
 
-            //update image
-            drawUnits();
+            if (newGame) {
+                //update image
+                drawUnits();
 
-            // Shoot towers
-            shootTowers();
+                // Shoot towers
+                shootTowers();
 
-            income();
+                //
+                income();
 
-            //Send image to adapter
-            modelAdapter.setBufferedImage(updatedImage);
+                //Send image to adapter
+                modelAdapter.setBufferedImage(updatedImage);
 
-            if(level.getWinCondition() <= 0){
-                System.out.println("YOU WON!!!");
+                //
+                if (level.getWinCondition() <= 0) {
+                    System.out.println("YOU WON!!!");
+                }
             }
-
         });
         t.setRepeats(true);
         t.start();
+    }
 
-
+    public void setNewGame(Boolean newGame) {
+        this.newGame = newGame;
     }
 
     private void shootTowers() {
@@ -188,5 +194,4 @@ public class Game extends Thread {
             return level.getMoney();
         }
     }
-
 }

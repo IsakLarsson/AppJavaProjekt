@@ -67,18 +67,9 @@ public class Controller {
         synchronized (lock){
             try {
                 lock.wait();
-                startNewGame();
-                //TODO fix so we dont need this loop
-                while(true){
-                    if (newGame) {
-                        adapter = new ModelAdapter(gameWindow);
-                        game = new Game(adapter, updateInterval, this);
-                        game.start();
-                        break;
-                    }
-                }
-
-
+                adapter = new ModelAdapter(gameWindow);
+                game = new Game(adapter, updateInterval, this);
+                game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
             }
@@ -125,6 +116,6 @@ public class Controller {
     }
 
     public void startNewGame() {
-        newGame = true;
+        game.setNewGame(true);
     }
 }
