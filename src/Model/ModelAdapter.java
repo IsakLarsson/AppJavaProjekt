@@ -21,7 +21,6 @@ public class ModelAdapter {
         this.image = bi;
         gui.setBufferedImage(bi);
         gui.update();
-        System.out.println("updated window");
     }
 
     public BufferedImage getImage() {

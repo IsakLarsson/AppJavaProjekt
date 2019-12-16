@@ -62,9 +62,6 @@
             <Coordinates>9,9</Coordinates>
         </Tile>
         <Tile AreaType="Path">
-            <Coordinates>9,9</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
             <Coordinates>10,9</Coordinates>
         </Tile>
         <Tile AreaType="Path">

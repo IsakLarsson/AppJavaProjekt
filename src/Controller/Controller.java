@@ -26,7 +26,7 @@ public class Controller {
     private ModelAdapter adapter;
 
     //
-    private int updateInterval = 50;
+    private int updateInterval = 33;
 
     private int bank;
     //
@@ -34,14 +34,12 @@ public class Controller {
 
     //
     private Object lock;
-    private Object startObject;
 
     //
     private Boolean newGame = false;
 
     public Controller(){
         lock = new Object();
-        startObject = new Object();
 
         SwingUtilities.invokeLater(() -> {
 
@@ -113,7 +111,9 @@ public class Controller {
     }
 
     public void startNewGame() {
-        game.setGameState(true);
+        synchronized (lock){
+            game.setGameState(true);
+        }
     }
 
     public void restartLevel(){
