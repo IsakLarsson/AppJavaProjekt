@@ -133,6 +133,7 @@ public class XMLParser {
                     map.addPath((Tile) tileObject);
                     break;
                 default:
+                    System.out.println("Couldn't find specified tile");
                     map.addTile((Tile) tileObject);
             }
 

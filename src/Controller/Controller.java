@@ -8,7 +8,6 @@ import Model.*;
 import Model.Unit.Farmer;
 import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
-import Model.XML.XMLParser;
 
 
 import javax.swing.*;
@@ -29,9 +28,7 @@ public class Controller {
     //
     private int updateInterval = 50;
 
-    //
     private int bank;
-
     //
     private Game game;
 
@@ -42,15 +39,7 @@ public class Controller {
     //
     private Boolean newGame = false;
 
-    //
-    private String filePath;
-
-    public Controller(String filePath){
-
-        this.filePath = filePath;
-        XMLParser parser = new XMLParser(filePath);
-        parser.parseXML();
-
+    public Controller(){
         lock = new Object();
         startObject = new Object();
 
@@ -64,9 +53,7 @@ public class Controller {
             // A window gameFrame containing a menubar
             gameWindow = new GameWindow();
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
-                    menuListener, parser.getNumberOfLevels());
-
-            //
+                    menuListener);
             gameFrame.setupListeners(buttonListener);
 
             // Show the gui
@@ -79,14 +66,19 @@ public class Controller {
         synchronized (lock){
             try {
                 lock.wait();
-                adapter = new ModelAdapter(gameFrame);
-                game = new Game(adapter, updateInterval, filePath);
+                adapter = new ModelAdapter(gameWindow);
+                game = new Game(adapter, updateInterval, this);
                 game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel
             }
         }
     }
+
+    public void setMoney(int money){
+        gameFrame.getLabel().setText("€ " + money);
+    }
+
 
     public void openDialog(String title, String text) {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
@@ -123,7 +115,9 @@ public class Controller {
     public void startNewGame(String levelChoice) {
 
         game.setLevelName(levelChoice);
-        game.setGameState(true);
+        synchronized (lock){
+            game.setGameState(true);
+        }
     }
 
     public void restartLevel(){

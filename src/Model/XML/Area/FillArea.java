@@ -13,7 +13,7 @@ public class FillArea extends Tile {
         try {
             texture = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images" +
-                            "/GrassTile.png"));
+                            "/GrassTile2.png"));
             texture = texture.getScaledInstance(20,20,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();

@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-public class Path extends Tile {
+public class Path extends Tile{
     private Image texture;
 
     public Path(int xCoordinate, int yCoordinate, int size) {
@@ -27,4 +27,5 @@ public class Path extends Tile {
     public Image getTexture() {
         return texture;
     }
+
 }
