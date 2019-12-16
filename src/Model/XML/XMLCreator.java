@@ -14,8 +14,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.concurrent.ThreadLocalRandom;
 
-//TODO: Win conditions
-//TODO: Flera möjliga vägsträckor
 //TODO: Ska finnas banor med "växlar"
 //TODO: Speciella områden, ex. teleport
 
@@ -29,23 +27,26 @@ public class XMLCreator {
     public XMLCreator() {
     }
 
-    //Create file in specified String p (path)
-    public XMLCreator(String p) {
-        path = p;
-    }
-
     /**
      * Creates a new Levels.XML-file named Levels.xml
      * @throws ParserConfigurationException - Configuration error
      * @throws TransformerException - Error during transformation process
      */
+    //Fånga exceptions
     public void createLevels() throws ParserConfigurationException, TransformerException {
         //Create documentBuilder - Can create documents
         docBuildFactory = DocumentBuilderFactory.newInstance();
         docBuilder = docBuildFactory.newDocumentBuilder();
 
+        //Create root-document with documentBuilder and add a new element named Game to the document
+        doc = docBuilder.newDocument();
+        Element levels = doc.createElement("Levels");
+        doc.appendChild(levels);
+
         //Create first level
-        createLevel1();
+        createLevel1(levels);
+        //Create second level
+        createLevel2(levels);
 
         //Specify where the file should be created and the name of it
         path = "src\\Model\\XML\\Levels.xml";
@@ -61,12 +62,7 @@ public class XMLCreator {
     /**
      * Create level 1
      */
-    private void createLevel1() {
-        //Create root-document with documentBuilder and add a new element named Game to the document
-        doc = docBuilder.newDocument();
-        Element levels = doc.createElement("Levels");
-        doc.appendChild(levels);
-
+    private void createLevel1(Element levels) {
         //Root for level 1
         Element level1 = doc.createElement("Level1");
         levels.appendChild(level1);
@@ -82,24 +78,56 @@ public class XMLCreator {
 
         //Create needed area types
         createSpawnArea(level1,0,0);
-        createHorizontalPathArea(level1, 9, 0, 0);
-        createVerticalPathArea(level1, 9, 9, 0);
+        createHorizontalPathArea(level1, 9, 1, 0);
+        createVerticalPathArea(level1, 9, 9, 1);
         createHorizontalPathArea(level1, 10, 9, 9);
 
         createGoalArea(level1, 19, 9);
         createTowerArea(level1, 3, 2);
         createTowerArea(level1, 10, 4);
+        createTowerArea(level1, 16, 10);
 
     }
 
     /**
      * Create level 2
      */
-    private void createLevel2() {}
+    private void createLevel2(Element levels) {
+        //Root for level 1
+        Element level2 = doc.createElement("Level2");
+        levels.appendChild(level2);
+
+        //Sets mapSize of level 1
+        Element mapSize = doc.createElement("mapSize");
+        mapSize.appendChild(doc.createTextNode(mapSizeNr + ""));
+        level2.appendChild(mapSize);
+
+        //Set start money and win condition
+        setStartMoney(level2, 50);
+        setWinCondition(level2, 5);
+
+        //Create needed area types
+        createSpawnArea(level2,0,9);
+        createHorizontalPathArea(level2, 6, 1, 9);
+        createVerticalPathArea(level2, 3,6, 6);
+        createVerticalPathArea(level2, 3,6, 10);
+        createHorizontalPathArea(level2, 6, 7, 6);
+        createHorizontalPathArea(level2, 6, 7, 12);
+        createVerticalPathArea(level2, 3,13, 6);
+        createVerticalPathArea(level2, 3,13, 10);
+        createHorizontalPathArea(level2, 6, 13, 9);
+
+        createGoalArea(level2, 19, 9);
+        //createTowerArea(level2, 10, 4);
+        //createTowerArea(level2, 7, 8);
+        //createTowerArea(level2, 7, 10);
+        //createTowerArea(level2, 10, 13);
+
+    }
 
     /**
      * Starts at given StartX and StartY and produces nrArea numbers of areas
-     * in a horizontal direction.
+     * in a horizontal direction from the X-Coordinate StartX to StartX+nrArea.
      * @param nrArea Number of area tiles
      * @param dest Destination, where the area should be inserted as a sub-element
      */

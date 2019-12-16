@@ -8,9 +8,6 @@
             <Coordinates>0,0</Coordinates>
         </Tile>
         <Tile AreaType="Path">
-            <Coordinates>0,0</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
             <Coordinates>1,0</Coordinates>
         </Tile>
         <Tile AreaType="Path">
@@ -65,6 +62,9 @@
             <Coordinates>9,9</Coordinates>
         </Tile>
         <Tile AreaType="Path">
+            <Coordinates>9,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
             <Coordinates>10,9</Coordinates>
         </Tile>
         <Tile AreaType="Path">
@@ -100,5 +100,127 @@
         <Tile AreaType="TowerArea">
             <Coordinates>10,4</Coordinates>
         </Tile>
+        <Tile AreaType="TowerArea">
+            <Coordinates>16,10</Coordinates>
+        </Tile>
     </Level1>
+    <Level2>
+        <mapSize>20</mapSize>
+        <startMoney>50</startMoney>
+        <winCondition>5</winCondition>
+        <Tile AreaType="SpawnArea">
+            <Coordinates>0,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>1,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>2,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>3,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>4,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>5,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,7</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,8</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,10</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,11</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>6,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>7,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>8,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>9,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>10,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>11,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>12,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>7,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>8,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>9,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>10,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>11,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>12,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,6</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,7</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,8</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,10</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,11</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,12</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>13,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>14,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>15,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>16,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>17,9</Coordinates>
+        </Tile>
+        <Tile AreaType="Path">
+            <Coordinates>18,9</Coordinates>
+        </Tile>
+        <Tile AreaType="GoalArea">
+            <Coordinates>19,9</Coordinates>
+        </Tile>
+    </Level2>
 </Levels>

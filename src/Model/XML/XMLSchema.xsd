@@ -10,12 +10,23 @@
   <xs:complexType name="Level1Type">
     <xs:sequence>
       <xs:element type="xs:string" name="mapSize"/>
+      <xs:element type="xs:string" name="startMoney"/>
+      <xs:element type="xs:string" name="winCondition"/>
+      <xs:element type="TileType" name="Tile" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Level2Type">
+    <xs:sequence>
+      <xs:element type="xs:string" name="mapSize"/>
+      <xs:element type="xs:string" name="startMoney"/>
+      <xs:element type="xs:string" name="winCondition"/>
       <xs:element type="TileType" name="Tile" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="LevelsType">
     <xs:sequence>
       <xs:element type="Level1Type" name="Level1"/>
+      <xs:element type="Level2Type" name="Level2"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
