@@ -102,11 +102,6 @@ public class Soldier implements Unit {
         return queue;
     }
 
-    @Override
-    public void setGoal(Tile goal) {
-        this.goal = goal;
-    }
-
     public int getCost(){
         return cost;
     }
