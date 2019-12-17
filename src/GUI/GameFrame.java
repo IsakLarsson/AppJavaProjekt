@@ -31,18 +31,16 @@ public class GameFrame {
 
     private GameWindow gameWindow;
 
-    private int levelOptions;
+    private ArrayList<String> levels;
 
     public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener,
-                     MenuListener menuListener, int levelOptions){
+                     MenuListener menuListener, ArrayList<String> levels){
 
         frame = new JFrame(title);
 
         this.gameWindow = gameWindow;
-        this.levelOptions = levelOptions;
-
-        //
-        createLevelList();
+        this.levels = levels;
+        this.levelList = new ArrayList<>();
 
         // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setJMenuBar(buildMenuBar());
@@ -155,20 +153,15 @@ public class GameFrame {
         }
     }
 
-    private void createLevelList() {
-        levelList = new ArrayList<>();
-        for (int i=1; i <= levelOptions; i++) {
-            System.out.println("Level " + i);
-            levelList.add(new JMenuItem("Level" + i));
-        }
-    }
-
     private JMenu createLevelMenu() {
         JMenu levelMenu = new JMenu();
 
-        for (JMenuItem menuItem : levelList) {
+        int i = 0;
+        for (String s : levels) {
             System.out.println("Added level");
-            levelMenu.add(menuItem);
+            levelList.add(new JMenuItem(s));
+            levelMenu.add(levelList.get(i));
+            i++;
         }
 
         return levelMenu;

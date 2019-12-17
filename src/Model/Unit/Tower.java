@@ -14,7 +14,7 @@ import static java.awt.Color.red;
 
 public class Tower {
     private int size = 20;
-    private int dmg = 10;
+    private int dmg = 1;
     private int range = 50;
     private Image image;
     private Unit target;
@@ -57,7 +57,7 @@ public class Tower {
             graphics.setColor(RED);
             graphics.drawLine(xCord + 10 ,yCord + 10,target.getX() + 10,
                     target.getY() + 10);
-            target.setHp(target.getHp()-1);
+            target.setHp(target.getHp()-dmg);
 
             if (target.getHp() <= 0) {
                 target = null;

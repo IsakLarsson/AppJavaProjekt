@@ -14,12 +14,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 public class XMLParser {
 
     private int TILE_SIZE = 20;
     private int mapSize;
-    private int numberOfLevels;
+    private ArrayList<String> levels= new ArrayList<>();
     private Level map;
     private String levelName = "Level1";
     private String filePath = "src/Model/XML/Levels.xml";
@@ -27,6 +28,7 @@ public class XMLParser {
     public XMLParser (String filePath, String levelName) {
         this.filePath = filePath;
         this.levelName = levelName;
+
     }
 
     public XMLParser (String filePath) {
@@ -38,7 +40,6 @@ public class XMLParser {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            System.out.println("File: " + filePath);
             Document doc = builder.parse(filePath);
             Element element = doc.getDocumentElement();
 
@@ -47,7 +48,7 @@ public class XMLParser {
             for(int i=0; i<nodes.getLength(); i++) {
                 Node n = nodes.item(i);
                 if (n.getNodeType() == Node.ELEMENT_NODE) {
-                    numberOfLevels++;
+                    levels.add(n.getNodeName());
                 }
                 System.out.println("\t"+n.getNodeName());
 
@@ -171,7 +172,7 @@ public class XMLParser {
     public int getMapSize(){
         return mapSize;
     }
-    public int getNumberOfLevels(){
-        return numberOfLevels;
+    public ArrayList<String> getLevels(){
+        return levels;
     }
 }

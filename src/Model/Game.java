@@ -68,7 +68,6 @@ public class Game extends Thread {
                 // Shoot towers
                 shootTowers();
 
-
                 //
                 eachSecond();
 
@@ -77,8 +76,7 @@ public class Game extends Thread {
 
                 //
                 if (level.getWinCondition() <= 0) {
-                    setGameState(false);
-                    modelAdapter.levelWon();
+                    modelAdapter.levelWon(this);
                 }
             }
         });
@@ -180,8 +178,7 @@ public class Game extends Thread {
             level.addMoney(1);
             timeLimit--;
             if(timeLimit <= 0){
-                System.out.println("Out of time. Game Over");
-                //TODO: Do something when time is out.
+                modelAdapter.timeIsOut();
             }
 
             timeCounter = 0;
@@ -190,13 +187,6 @@ public class Game extends Thread {
             modelAdapter.setTime(timeLimit);
         }
         modelAdapter.setMoney(level.getMoney());
-    }
-
-    public void shootTowers(Graphics g, Unit u) {
-
-        for (Tower tower : towerList) {
-            tower.shoot(g,u);
-        }
     }
 
     /**
@@ -238,6 +228,16 @@ public class Game extends Thread {
 
     public void restart() {
         unitList = new ArrayList<>();
+        towerList = new ArrayList<>();
+        animator = new Animator(unitList);
+        mapIsDrawn = false;
+    }
+
+    public void nextLevel(String levelName) {
+        System.out.println("Next level: " + levelName);
+        setLevelName(levelName);
+        unitList = new ArrayList<>();
+        towerList = new ArrayList<>();
         animator = new Animator(unitList);
         mapIsDrawn = false;
     }

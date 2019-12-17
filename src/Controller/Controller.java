@@ -12,6 +12,7 @@ import Model.XML.XMLParser;
 
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -59,7 +60,7 @@ public class Controller {
             // A window gameFrame containing a menubar
             gameWindow = new GameWindow();
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
-                    menuListener, parser.getNumberOfLevels());
+                    menuListener, parser.getLevels());
             gameFrame.setupListeners(buttonListener);
 
             // Show the gui
@@ -72,7 +73,7 @@ public class Controller {
         synchronized (lock){
             try {
                 lock.wait();
-                adapter = new ModelAdapter(gameFrame);
+                adapter = new ModelAdapter(gameFrame, parser.getLevels());
                 game = new Game(adapter, updateInterval, filePath);
                 game.start();
             } catch (InterruptedException e) {
@@ -116,8 +117,8 @@ public class Controller {
     }
 
     public void startNewGame(String levelChoice) {
-
         synchronized (lock){
+            System.out.println(levelChoice);
             game.setLevelName(levelChoice);
             game.setGameState(true);
         }

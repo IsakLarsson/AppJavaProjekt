@@ -36,10 +36,9 @@ public class MenuListener implements ActionListener {
             case "About":
                 controller.openDialog(s, "About the game");
                 break;
-        }
-
-        if (s.startsWith("Level")) {
-            controller.startNewGame(s);
+            default:
+                controller.startNewGame(s);
+                break;
         }
     }
 }
