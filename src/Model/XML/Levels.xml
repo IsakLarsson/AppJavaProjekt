@@ -95,6 +95,9 @@
             <Coordinates>3,2</Coordinates>
         </Tile>
         <Tile AreaType="TowerArea">
+            <Coordinates>4,2</Coordinates>
+        </Tile>
+        <Tile AreaType="TowerArea">
             <Coordinates>10,4</Coordinates>
         </Tile>
         <Tile AreaType="TowerArea">
@@ -126,81 +129,82 @@
         <Tile AreaType="Path">
             <Coordinates>6,9</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>6,6</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>6,7</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>6,8</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
+            <Coordinates>6,7</Coordinates>
+        </Tile>
+        <Tile AreaType="AltPath1">
+            <Coordinates>6,6</Coordinates>
+        </Tile>
+        <Tile AreaType="AltPath2">
             <Coordinates>6,10</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>6,11</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>6,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>7,6</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>8,6</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>9,6</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>10,6</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>11,6</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath1">
             <Coordinates>12,6</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>7,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>8,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>9,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>10,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>11,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>12,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>13,6</Coordinates>
+        <Tile AreaType="AltPath2">
+            <Coordinates>13,12</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>13,7</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>13,8</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>13,10</Coordinates>
-        </Tile>
-        <Tile AreaType="Path">
+        <Tile AreaType="AltPath2">
             <Coordinates>13,11</Coordinates>
         </Tile>
-        <Tile AreaType="Path">
-            <Coordinates>13,12</Coordinates>
+        <Tile AreaType="AltPath2">
+            <Coordinates>13,10</Coordinates>
+        </Tile>
+        <Tile AreaType="AltPath1">
+            <Coordinates>13,6</Coordinates>
+        </Tile>
+        <Tile AreaType="AltPath1">
+            <Coordinates>13,7</Coordinates>
+        </Tile>
+        <Tile AreaType="AltPath1">
+            <Coordinates>13,8</Coordinates>
         </Tile>
         <Tile AreaType="Path">
             <Coordinates>13,9</Coordinates>
         </Tile>
+
         <Tile AreaType="Path">
             <Coordinates>14,9</Coordinates>
         </Tile>

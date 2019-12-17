@@ -22,7 +22,7 @@ public class ButtonListener implements ActionListener {
             case "Teleport":
                 controller.teleportUnit();
                 break;
-            case "Split":
+            case "Switch Path":
                 controller.splitPath();
                 break;
             default:

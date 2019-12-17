@@ -132,6 +132,11 @@ public class XMLParser {
                     map.addGoalArea((GoalArea) tileObject);
                     map.addPath((Tile) tileObject);
                     break;
+                case "AltPath1":
+                    map.addAltPath1((Tile) tileObject);
+                    break;
+                case "AltPath2":
+                    map.addAltPath2((Tile) tileObject);
                 default:
                     System.out.println("Couldn't find specified tile");
                     map.addTile((Tile) tileObject);

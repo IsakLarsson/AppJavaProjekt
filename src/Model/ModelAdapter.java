@@ -14,6 +14,7 @@ public class ModelAdapter {
     // The image to be sent to GUI
     private BufferedImage image;
 
+
     public ModelAdapter(GameFrame gui) {
         this.gui = gui;
     }
@@ -22,11 +23,15 @@ public class ModelAdapter {
         this.image = bi;
         gui.getGameWindow().setBufferedImage(bi);
         gui.getGameWindow().update();
-        System.out.println("updated window");
+        //System.out.println("updated window");
     }
 
     public void setMoney(int money) {
-        gui.getLabel().setText("€ " + money);
+        gui.getBank().setText("€ " + money);
+    }
+
+    public void setTime(int timeLimit){
+        gui.getTimer().setText(" Time:" + timeLimit);
     }
     public BufferedImage getImage() {
         return image;

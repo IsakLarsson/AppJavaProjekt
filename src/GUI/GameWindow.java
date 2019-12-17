@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 public class GameWindow extends JPanel {
 
     // Buttons
-    JButton button1;
-    JButton button2;
+    private JButton button1;
+    private JButton button2;
 
     // Model.Frame frame
     private BufferedImage image;
@@ -42,7 +42,8 @@ public class GameWindow extends JPanel {
         JToolBar toolBar = new JToolBar();
 
         button1 = new JButton("Teleport");
-        button2 = new JButton("Split");
+        button2 = new JButton("Switch Path");
+
 
         toolBar.add(button1);
         toolBar.add(button2);
@@ -66,9 +67,8 @@ public class GameWindow extends JPanel {
     }
 
     public static Dimension getDimension() {
-        Dimension frameDimension = new Dimension(CANVAS_WIDTH + 14,
+        return new Dimension(CANVAS_WIDTH + 14,
                 CANVAS_HEIGHT);
-        return frameDimension;
     }
 
     public JButton getButton1() {

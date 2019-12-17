@@ -9,6 +9,7 @@ public class Level {
 
     private Tile[][] tileMap;
     private LinkedList<Tile> path;
+    private LinkedList<Tile> path2;
     private SpawnArea spawnArea;
     private GoalArea goalArea;
     private ArrayList<TowerArea> towerAreas;
@@ -23,6 +24,8 @@ public class Level {
             }
         }
         path = new LinkedList<>();
+        path2 = new LinkedList<>();
+
         towerAreas = new ArrayList<>();
     }
 
@@ -34,9 +37,19 @@ public class Level {
 
     public void addPath(Tile tile){
         path.add(tile);
+        path2.add(tile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+    public void addAltPath1(Tile tile){
+        path.add(tile);
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public void addAltPath2(Tile tile){
+        path2.add(tile);
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
 
     //TODO kan vara onödig
     public void addSpawn(SpawnArea tile){
@@ -58,6 +71,14 @@ public class Level {
 
     public LinkedList<Tile> getPath() {
         return path;
+    }
+
+    public void changePath(){
+
+        LinkedList<Tile> temp;
+        temp = path;
+        path = path2;
+        path2 = temp;
     }
 
     public ArrayList<TowerArea> getTowerAreas(){
@@ -96,6 +117,7 @@ public class Level {
     public void dmgBase(int dmg){
         winCondition = winCondition - dmg;
     }
+
     public void setWinCondition(int winCondition){
         this.winCondition = winCondition;
     }

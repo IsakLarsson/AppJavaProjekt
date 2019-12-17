@@ -14,21 +14,22 @@ public class GameFrame {
     private MenuListener menuListener;
     private ArrayList<JMenuItem> levelList;
 
-    JMenu newGameMenu;
+    private JMenu newGameMenu;
 
-    JMenuItem menuItem1;
-    JMenuItem menuItem2;
-    JMenuItem menuItem3;
-    JMenuItem menuItem5;
-    JMenuItem menuItem6;
+    private JMenuItem menuItem1;
+    private JMenuItem menuItem2;
+    private JMenuItem menuItem3;
+    private JMenuItem menuItem5;
+    private JMenuItem menuItem6;
 
-    JButton button1;
-    JButton button2;
-    JButton button3;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
 
-    JLabel bank;
+    private JLabel bank;
+    private JLabel timer;
 
-    GameWindow gameWindow;
+    private GameWindow gameWindow;
 
     private int levelOptions;
 
@@ -109,12 +110,15 @@ public class GameFrame {
 
         bank = new JLabel("€: ");
 
+        timer = new JLabel(" Time: 00");
+
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
         menuBar.add(button1);
         menuBar.add(button2);
         menuBar.add(button3);
         menuBar.add(bank);
+        menuBar.add(timer);
 
 
         return menuBar;
@@ -174,8 +178,12 @@ public class GameFrame {
         return frame;
     }
 
-    public JLabel getLabel(){
+    public JLabel getBank(){
         return bank;
+    }
+
+    public JLabel getTimer(){
+        return timer;
     }
 
     public GameWindow getGameWindow() {

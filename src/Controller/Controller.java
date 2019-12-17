@@ -17,7 +17,7 @@ public class Controller {
 
     // The gameFrame of the game
     private GameFrame gameFrame;
-    GameWindow gameWindow;
+    private GameWindow gameWindow;
 
     //
     private MenuListener menuListener;
@@ -29,7 +29,6 @@ public class Controller {
     //
     private int updateInterval = 50;
 
-    private int bank;
     //
     private Game game;
 
@@ -83,10 +82,6 @@ public class Controller {
         }
     }
 
-    public void setMoney(int money){
-        gameFrame.getLabel().setText("€ " + money);
-    }
-
 
     public void openDialog(String title, String text) {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
@@ -97,25 +92,26 @@ public class Controller {
     }
 
     public void splitPath() {
-
+        game.changePath();
     }
 
     public void spawnUnit (String s) {
+        int bank;
         switch (s) {
             case "Farmer":
                 Farmer farmer = new Farmer();
                 bank = game.spawn(farmer, farmer.getCost());
-                gameFrame.getLabel().setText("€ " + bank);
+                gameFrame.getBank().setText("€ " + bank);
                 break;
             case "Soldier":
                 Soldier soldier = new Soldier();
                 bank = game.spawn(soldier, soldier.getCost());
-                gameFrame.getLabel().setText("€ " + bank);
+                gameFrame.getBank().setText("€ " + bank);
                 break;
             case "Teleporter":
                 Teleporter teleporter = new Teleporter();
                 bank = game.spawn(teleporter, teleporter.getCost());
-                gameFrame.getLabel().setText("€ " + bank);
+                gameFrame.getBank().setText("€ " + bank);
                 break;
         }
     }
@@ -147,4 +143,5 @@ public class Controller {
     public void quitGame(){
         System.exit(0);
     }
+
 }

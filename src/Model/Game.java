@@ -34,6 +34,7 @@ public class Game extends Thread {
     private Boolean mapIsDrawn = false;
     private String pathFile;
     private String levelName;
+    private int timeLimit = 30;
 
     public Game(ModelAdapter adapter, int updateInterval, String pathFile) {
 
@@ -178,7 +179,16 @@ public class Game extends Thread {
         timeCounter++;
         if(timeCounter == 20) {
             level.addMoney(1);
+            timeLimit--;
+            if(timeLimit <= 0){
+                System.out.println("Out of time. Game Over");
+                //TODO: Do something when time is out.
+            }
+
             timeCounter = 0;
+        }
+        if(timeLimit >= 0) {
+            modelAdapter.setTime(timeLimit);
         }
         modelAdapter.setMoney(level.getMoney());
     }
@@ -188,6 +198,10 @@ public class Game extends Thread {
         for (Tower tower : towerList) {
             tower.shoot(g,u);
         }
+    }
+
+    public void changePath(){
+        level.changePath();
     }
 
     private LinkedList<Tile> deepCopyList() {
