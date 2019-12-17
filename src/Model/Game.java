@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.Controller;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.Path;
@@ -69,8 +68,9 @@ public class Game extends Thread {
                 // Shoot towers
                 shootTowers();
 
+
                 //
-                income();
+                eachSecond();
 
                 //Send image to adapter
                 modelAdapter.setBufferedImage(updatedImage);
@@ -170,8 +170,11 @@ public class Game extends Thread {
         }
     }
 
-    //TODO: Pretty ugly solution but works
-    private void income(){
+    /**
+     * Increases money with 1 every 20 updates and decreases time with 1
+     * and updates sends updates to gui.
+     */
+    private void eachSecond(){
         timeCounter++;
         if(timeCounter == 20) {
             level.addMoney(1);
@@ -196,10 +199,18 @@ public class Game extends Thread {
         }
     }
 
+    /**
+     * Changes the path to the alternetiv  path if there is one.
+     */
     public void changePath(){
         level.changePath();
     }
 
+    /**
+     * Creates a deepcopy of the list of path tiles
+     * that then are used by the units.
+     * @return The copied list of tiles.
+     */
     private LinkedList<Tile> deepCopyList() {
         LinkedList<Tile> tilesCopy = new LinkedList<>();
         for (Tile t : level.getPath()) {
@@ -208,9 +219,14 @@ public class Game extends Thread {
         return tilesCopy;
     }
 
-    public int spawn (Unit unit, int cost) {
-        if (level.getMoney() >= cost) {
-            level.buyUnit(cost);
+    /**
+     * Spawn unit if you have enough money and set new money value.
+     * @param unit The type of unit to be spawned.
+     * @return New money value.
+     */
+    public int spawn (Unit unit) {
+        if (level.getMoney() >= unit.getCost()) {
+            level.buyUnit(unit.getCost());
             animator.addUnit(unit, deepCopyList());
             Destination destination = new Destination();
             animator.calculatePositionQueue(destination, unit);

@@ -99,17 +99,17 @@ public class Controller {
         switch (s) {
             case "Farmer":
                 Farmer farmer = new Farmer();
-                bank = game.spawn(farmer, farmer.getCost());
+                bank = game.spawn(farmer);
                 gameFrame.getBank().setText("€ " + bank);
                 break;
             case "Soldier":
                 Soldier soldier = new Soldier();
-                bank = game.spawn(soldier, soldier.getCost());
+                bank = game.spawn(soldier);
                 gameFrame.getBank().setText("€ " + bank);
                 break;
             case "Teleporter":
                 Teleporter teleporter = new Teleporter();
-                bank = game.spawn(teleporter, teleporter.getCost());
+                bank = game.spawn(teleporter);
                 gameFrame.getBank().setText("€ " + bank);
                 break;
         }

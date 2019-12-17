@@ -34,7 +34,7 @@ public class Destination {
         }
 
         if (secondTile == null) {
-            System.out.println("Game over??");
+            //System.out.println("Game over??");
             return q;
         }
 
