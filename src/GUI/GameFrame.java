@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * A window frame for the game
+ */
 public class GameFrame {
     private JFrame frame;
     private ButtonListener buttonListener;

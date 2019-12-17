@@ -4,21 +4,29 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * An action listener for the button objects
+ */
 public class ButtonListener implements ActionListener {
 
-    //
-    Controller controller;
+    // Controller
+    private Controller controller;
 
-    //
+    /**
+     * Constructor for the listener
+     * @param controller
+     */
     public ButtonListener(Controller controller) {
         this.controller = controller;
     }
 
+    /**
+     * Override the method to do something when pressed
+     * @param e the event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        System.out.println("Button pressed " + s);
-
         switch (s) {
             case "Teleport":
                 controller.teleportUnit();

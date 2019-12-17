@@ -5,16 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+/**
+ * A window inside the game frame, comes with a drawing canvas that
+ * updates when repaint() i called
+ */
 public class GameWindow extends JPanel {
 
     // Buttons
     private JButton button1;
     private JButton button2;
 
-    // Model.Frame frame
+    // An image
     private BufferedImage image;
 
-    // Define constants for the game
+    // Constants for the game window
     static final int CANVAS_WIDTH = 400;
     static final int CANVAS_HEIGHT = 400;
     static final Dimension dimension = new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -23,27 +27,32 @@ public class GameWindow extends JPanel {
     // Handler for the custom drawing panel
     private GameCanvas canvas;
 
-    // Constructor to initialize the UI components and game objects
+    /**
+     * Constructor for the window
+     */
     public GameWindow() {
 
-        //
+        // Set the layout
         setLayout(new BorderLayout());
 
-        // UI components
+        // Canvas to draw on
         canvas = new GameCanvas();
         canvas.setPreferredSize(dimension);
-        add(canvas);   // center of default BorderLayout
+        add(canvas);
 
         // Tool bar
         add(buildToolBar(), BorderLayout.NORTH);
     }
 
+    /**
+     * Builds a tool bar
+     * @return a tool bar
+     */
     private JToolBar buildToolBar() {
         JToolBar toolBar = new JToolBar();
 
         button1 = new JButton("Teleport");
         button2 = new JButton("Switch Path");
-
 
         toolBar.add(button1);
         toolBar.add(button2);
@@ -51,48 +60,70 @@ public class GameWindow extends JPanel {
         return toolBar;
     }
 
+    /**
+     * Sets the image
+     * @param bi a buffered image
+     */
     public void setBufferedImage(BufferedImage bi) {
         this.image = bi;
     }
 
-    // Refresh the display after each step.
-    // Use (Graphics g) as argument if you are not using Java 2D.
-    //Kanske ta in en buffered image och rita ut den
+    /**
+     * Draws a image on the canvas
+     */
     public void drawGame(Graphics g) {
         g.drawImage(image,0,0, Color.BLACK,null);
     }
 
+    /**
+     * Repaints the panel
+     */
     public void update() {
         repaint();
     }
 
+    /**
+     * @return the dimension of the canvas
+     */
     public static Dimension getDimension() {
         return new Dimension(CANVAS_WIDTH + 14,
                 CANVAS_HEIGHT);
     }
 
+    /**
+     * @return a button
+     */
     public JButton getButton1() {
         return button1;
     }
 
+    /**
+     * @return a button
+     */
     public JButton getButton2() {
         return button2;
     }
 
-    // Custom drawing panel, written as an inner class.
+    /**
+     * Custom drawing panel, written as an inner class.
+     */
     class GameCanvas extends JPanel {
-        // Constructor
+
+        /**
+         * Constructor for the canvas
+         */
         public GameCanvas() {
-            setFocusable(true);  // so that this can receive key-events
+            setFocusable(true);
             requestFocus();
         }
 
-        // Override paintComponent to do custom drawing.
-        // Called back by repaint().
+        /**
+         * Override paintComponent to do custom drawing.
+         * Called back by repaint()
+         */
         @Override
         public void paintComponent(Graphics g) {
-            super.paintComponent(g);       // paint background
-            // Draw the game objects
+            super.paintComponent(g);
             drawGame(g);
         }
     }

@@ -14,6 +14,9 @@ import Model.XML.XMLParser;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * A controller that controls the model and view
+ */
 public class Controller {
 
     // The frame of the game
@@ -67,7 +70,7 @@ public class Controller {
                     menuListener, parser.getLevels());
 
             // Set up the listeners
-            gameFrame.setupListeners(buttonListener);
+            gameFrame.setupListeners();
 
             // Show the gui
             gameFrame.show();

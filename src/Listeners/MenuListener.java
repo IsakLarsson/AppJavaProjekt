@@ -5,21 +5,29 @@ import Controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * An action listener for the menu objects
+ */
 public class MenuListener implements ActionListener {
 
-    //
+    // Controller
     private Controller controller;
 
+    /**
+     * Constructor for the listener
+     * @param controller
+     */
     public MenuListener(Controller controller){
         this.controller = controller;
     }
 
+    /**
+     * Override the method to do something when pressed
+     * @param e the event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Menu item pressed");
         String s = e.getActionCommand();
-        System.out.println(s);
-
         switch (s) {
             case "Restart level":
                 controller.restartLevel();

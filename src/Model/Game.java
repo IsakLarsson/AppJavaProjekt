@@ -7,7 +7,6 @@ import Model.XML.Area.Tile;
 import Model.XML.Area.TowerArea;
 import Model.XML.XMLParser;
 import Model.XML.Area.Destination;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,6 +17,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The game logic thread that handles all calculations and
+ * sends them to the view via a adapter
+ */
 public class Game extends Thread {
     private List<Unit> unitList;
     private List<Tower> towerList;
