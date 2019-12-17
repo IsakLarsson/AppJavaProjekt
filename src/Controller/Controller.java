@@ -16,32 +16,37 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    // The gameFrame of the game
+    // The frame of the game
     private GameFrame gameFrame;
 
-    //
+    // The window inside the frame
     private GameWindow gameWindow;
 
-    //
+    // The listeners
     private MenuListener menuListener;
     private ButtonListener buttonListener;
 
-    //
+    // Adapter between the model and view
     private ModelAdapter adapter;
 
-    //
+    // Interval for which the game should update
     private int updateInterval = 50;
 
-    //
+    // A game object
     private Game game;
 
     //
     private Object lock;
     private Object startObject;
 
-    //
+    // Path to the xml
     String filePath;
 
+    /**
+     * The controller creates two threads, one for the gui,
+     * and one for the game logic
+     * @param filePath is the path to the xml file
+     */
     public Controller(String filePath){
         lock = new Object();
         startObject = new Object();
@@ -52,19 +57,21 @@ public class Controller {
 
         SwingUtilities.invokeLater(() -> {
 
-            // An actionlistener for the spawn buttons
+            // Create action listeners
             buttonListener = new ButtonListener(this);
             menuListener = new MenuListener(this);
 
-            // A panel that you move on
-            // A window gameFrame containing a menubar
+            // Create a new game window and put it in the frame
             gameWindow = new GameWindow();
             gameFrame = new GameFrame("Game", gameWindow, buttonListener,
                     menuListener, parser.getLevels());
+
+            // Set up the listeners
             gameFrame.setupListeners(buttonListener);
 
             // Show the gui
             gameFrame.show();
+
             synchronized (lock){
                 lock.notify();
             }
@@ -82,7 +89,11 @@ public class Controller {
         }
     }
 
-
+    /**
+     * Opens a dialog
+     * @param title title of the dialog
+     * @param text text in the dialog
+     */
     public void openDialog(String title, String text) {
         JOptionPane.showMessageDialog(gameFrame.getFrame(),text,title,JOptionPane.PLAIN_MESSAGE);
     }
@@ -91,10 +102,17 @@ public class Controller {
 
     }
 
+    /**
+     * Makes units choose the other path available
+     */
     public void splitPath() {
         game.changePath();
     }
 
+    /**
+     * Spawn a unit
+     * @param s The name of the unit
+     */
     public void spawnUnit (String s) {
         int bank;
         switch (s) {
@@ -116,6 +134,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Starts a new game
+     * @param levelChoice the level that the user wants to play
+     */
     public void startNewGame(String levelChoice) {
         synchronized (lock){
             System.out.println(levelChoice);
@@ -124,10 +146,16 @@ public class Controller {
         }
     }
 
+    /**
+     * Tell the game to restart the game
+     */
     public void restartLevel(){
         game.restart();
     }
 
+    /**
+     * Set the game to paused, and show a dialog to the user
+     */
     public void pauseGame(){
         game.setGameState(false);
         int option = JOptionPane.showOptionDialog(null, "Game is paused. Press OK to continue",
@@ -140,6 +168,9 @@ public class Controller {
 
     }
 
+    /**
+     * Quits the game
+     */
     public void quitGame(){
         System.exit(0);
     }
