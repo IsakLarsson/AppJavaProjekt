@@ -27,14 +27,10 @@ public class FarmerTest {
         Assertions.assertEquals(50, farmer.getHp());
     }
 
-    @Test
-    public void testSpeed(){
-        Assertions.assertEquals(20, farmer.getSpeed());
-    }
 
-   @Test
-   public void testTakeDmg(){
-        farmer.takeDMG(10);
-        Assertions.assertEquals(40, farmer.getHp());
-   }
+     @Test
+    public void testTakeDmg(){
+         farmer.takeDMG(10);
+         Assertions.assertEquals(40, farmer.getHp());
+    }
 }

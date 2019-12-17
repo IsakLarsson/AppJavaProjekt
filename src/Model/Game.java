@@ -226,11 +226,11 @@ public class Game extends Thread {
      */
     public int spawn (Unit unit) {
         if (level.getMoney() >= unit.getCost()) {
-            level.buyUnit(unit.getCost());
+            int money = level.buyUnit(unit.getCost());
             animator.addUnit(unit, deepCopyList());
             Destination destination = new Destination();
             animator.calculatePositionQueue(destination, unit);
-            return level.getMoney();
+            return money;
         } else {
             return level.getMoney();
         }

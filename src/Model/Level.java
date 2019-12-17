@@ -1,3 +1,10 @@
+/**
+ *
+ * Level
+ * Version 1.0
+ *
+ */
+
 package Model;
 
 import Model.XML.Area.*;
@@ -16,6 +23,12 @@ public class Level {
     private int money;
     private int winCondition;
 
+
+    /**
+     * The constructor creates a tilemap of fill tiles and
+     * creates the path lists.
+     * @param mapSize The number of tiles vertically and horizontally.
+     */
     public Level(int mapSize){
         tileMap = new Tile[mapSize][mapSize];
         for(int i = 0; i < mapSize; i++){
@@ -30,42 +43,48 @@ public class Level {
     }
 
 
-
+    /**
+     * Add generic tile to tilemap.
+     * @param tile Tile to be added to tilemap.
+     */
     public void addTile(Tile tile){
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+    /**
+     * Adds path tiles to both path lists and adds path tile to tilemap.
+     * @param tile Tile to be added.
+     */
     public void addPath(Tile tile){
         path.add(tile);
         path2.add(tile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+    /**
+     * Add the alternative path tile to first path list and tilemap.
+     * @param tile TIle to be added.
+     */
     public void addAltPath1(Tile tile){
         path.add(tile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+    /**
+     * Add the alternative path tile to second path list and tilemap.
+     * @param tile TIle to be added.
+     */
     public void addAltPath2(Tile tile){
         path2.add(tile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
-    //TODO kan vara onödig
-    public void addSpawn(SpawnArea tile){
-        spawnArea = tile;
-        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
-    }
-
+    /**
+     * Add the tower tile to towerArea list.
+     * @param tile Tile to be added.
+     */
     public void addTowerArea(TowerArea tile){
         towerAreas.add(tile);
-        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
-    }
-
-
-    //TODO kan vara onödig
-    public void addGoalArea(GoalArea tile){
-        goalArea = tile;
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
@@ -73,6 +92,10 @@ public class Level {
         return path;
     }
 
+    /**
+     * Changes what path is returned with getPath().
+     * This is if there is an alternative path to take.
+     */
     public void changePath(){
 
         LinkedList<Tile> temp;
@@ -85,20 +108,12 @@ public class Level {
         return towerAreas;
     }
 
-    public GoalArea getGoalArea(){
-        return goalArea;
-    }
-
     public Tile getTile(int x, int y){
         return tileMap[x][y];
     }
 
     public int getMapSize(){
         return tileMap.length;
-    }
-
-    public Tile getSpawn(){
-        return spawnArea;
     }
 
     public void addMoney(int add){

@@ -1,3 +1,10 @@
+/**
+ *
+ * Farmer
+ * Version 1.0
+ *
+ */
+
 package Model.Unit;
 
 import Model.XML.Area.Tile;
@@ -10,13 +17,10 @@ import java.util.Queue;
 
 public class Farmer implements Unit {
 
-    private Boolean hit;
     private Image image;
     private int hp = 50;
     private int cost = 10;
-    private int speed = 20;
     private int dmg = 1;
-    private int size = 10;
     private LinkedList<Tile> path;
     private Queue<Integer> queue;
 
@@ -74,9 +78,6 @@ public class Farmer implements Unit {
         return image;
     }
 
-    public int getSpeed(){
-        return speed;
-    }
 
     public int getX() {
         return x;

@@ -29,11 +29,6 @@ public class SoldierTest {
     }
 
     @Test
-    public void testSpeed(){
-        Assertions.assertEquals(10, soldier.getSpeed());
-    }
-
-    @Test
     public void testTakeDmg(){
         soldier.takeDMG(10);
         Assertions.assertEquals(90, soldier.getHp());

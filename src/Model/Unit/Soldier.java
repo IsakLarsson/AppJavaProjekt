@@ -1,3 +1,10 @@
+/**
+ *
+ * Soldier
+ * Version 1.0
+ *
+ */
+
 package Model.Unit;
 
 import Model.XML.Area.Tile;
@@ -11,17 +18,20 @@ import java.util.Queue;
 public class Soldier implements Unit {
 
     private Image image;
-    private int speed = 10;
     private int hp = 100;
     private int dmg = 5;
     private int cost = 10;
     private Queue<Integer> queue;
     private LinkedList<Tile> path;
-    private Tile goal;
 
 
     private int x,y;
 
+
+    /**
+     * The constructor for the soldier-unit. The constructor sets the
+     * the image of the unit.
+     */
     public Soldier(){
         try {
             image = ImageIO.read(
@@ -32,15 +42,28 @@ public class Soldier implements Unit {
         }
     }
 
+    /**
+     * This method decreases the hp of the unit.
+     * @param DMG The amount of hp taken away.
+     */
     public void takeDMG(int DMG) {
         hp = hp - DMG;
     }
 
+    /**
+     * Sets units pathList so the unit konws where to move.
+     * @param path The list of path tiles.
+     */
     @Override
     public void setTileQueue(LinkedList<Tile> path) {
         this.path = path;
     }
 
+    /**
+     * Moves unit and draws unit at the new position.
+     * @param g Graphics unit is to be drawn on.
+     * @return Dmg to base if unit has reached goal.
+     */
     @Override
     public int move(Graphics g) {
         if (queue.size() > 1) {
@@ -52,7 +75,6 @@ public class Soldier implements Unit {
             return dmg;
         }
     }
-
     @Override
     public int getHp() {
         return hp;
@@ -73,15 +95,15 @@ public class Soldier implements Unit {
         return y;
     }
 
-    public int getSpeed(){
-        return speed;
-    }
-
     @Override
     public Image getImage(){
         return image;
     }
 
+    /**
+     * Set the queue that unit moves after.
+     * @param q Queue to be set.
+     */
     @Override
     public void setPixelPositionQueue(Queue q) {
         this.queue = q;
