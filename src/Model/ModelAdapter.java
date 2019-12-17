@@ -3,6 +3,7 @@ package Model;
 import GUI.GameFrame;
 import GUI.GameWindow;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.nio.Buffer;
 
@@ -25,10 +26,16 @@ public class ModelAdapter {
         System.out.println("updated window");
     }
 
+    public void levelWon() {
+        JOptionPane.showMessageDialog(gui.getFrame(),"You won the level. Continue to the next one","You won!",JOptionPane.PLAIN_MESSAGE);
+    }
+
     public void setMoney(int money) {
         gui.getLabel().setText("€ " + money);
     }
+
     public BufferedImage getImage() {
         return image;
     }
+
 }

@@ -55,12 +55,8 @@ public class Game extends Thread {
 
     @Override
     public void run() {
-        //TODO Spawn tower on tower area
-
-
 
         animator = new Animator(unitList);
-
 
         Timer t = new Timer(updateInterval, (e) -> {
 
@@ -83,7 +79,8 @@ public class Game extends Thread {
 
                 //
                 if (level.getWinCondition() <= 0) {
-                    System.out.println("YOU WON!!!");
+                    setGameState(false);
+                    modelAdapter.levelWon();
                 }
             }
         });
