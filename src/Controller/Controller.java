@@ -126,7 +126,7 @@ public class Controller {
     }
 
     public void restartLevel(){
-
+        game.restart();
     }
 
     public void pauseGame(){

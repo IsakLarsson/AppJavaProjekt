@@ -38,13 +38,10 @@ public class Game extends Thread {
     public Game(ModelAdapter adapter, int updateInterval, String pathFile) {
 
         this.pathFile = pathFile;
-        System.out.println("PATHFILE: " + pathFile);
 
         // Array lists
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
-
-
 
         // Adapter
         this.modelAdapter = adapter;
@@ -96,7 +93,9 @@ public class Game extends Thread {
         Iterator<Unit> iterator = unitList.iterator();
         while(iterator.hasNext()) {
             Unit unit = iterator.next();
-            shootTowers(updatedImage.getGraphics(),unit);
+            for (Tower tower : towerList) {
+                tower.shoot(updatedImage.getGraphics(),unit);
+            }
             if (unit.getHp() <= 0) {
                 iterator.remove();
             }
@@ -205,6 +204,12 @@ public class Game extends Thread {
         } else {
             return level.getMoney();
         }
+    }
+
+    public void restart() {
+        unitList = new ArrayList<>();
+        animator = new Animator(unitList);
+        mapIsDrawn = false;
     }
 
     public void setLevelName(String levelName) {

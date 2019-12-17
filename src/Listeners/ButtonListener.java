@@ -8,6 +8,7 @@ public class ButtonListener implements ActionListener {
 
     //
     Controller controller;
+
     //
     public ButtonListener(Controller controller) {
         this.controller = controller;
