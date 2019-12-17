@@ -17,7 +17,9 @@ public class Controller {
 
     // The gameFrame of the game
     private GameFrame gameFrame;
-    GameWindow gameWindow;
+
+    //
+    private GameWindow gameWindow;
 
     //
     private MenuListener menuListener;
@@ -29,16 +31,15 @@ public class Controller {
     //
     private int updateInterval = 50;
 
+    //
     private int bank;
+
     //
     private Game game;
 
     //
     private Object lock;
     private Object startObject;
-
-    //
-    private Boolean newGame = false;
 
     //
     String filePath;
@@ -81,10 +82,6 @@ public class Controller {
                 //Skriv lämpligt fel
             }
         }
-    }
-
-    public void setMoney(int money){
-        gameFrame.getLabel().setText("€ " + money);
     }
 
 
