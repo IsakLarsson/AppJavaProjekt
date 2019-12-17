@@ -17,6 +17,8 @@ public class Controller {
 
     // The gameFrame of the game
     private GameFrame gameFrame;
+
+    //
     private GameWindow gameWindow;
 
     //
@@ -35,9 +37,6 @@ public class Controller {
     //
     private Object lock;
     private Object startObject;
-
-    //
-    private Boolean newGame = false;
 
     //
     String filePath;
@@ -125,7 +124,7 @@ public class Controller {
     }
 
     public void restartLevel(){
-
+        game.restart();
     }
 
     public void pauseGame(){
@@ -143,5 +142,4 @@ public class Controller {
     public void quitGame(){
         System.exit(0);
     }
-
 }
