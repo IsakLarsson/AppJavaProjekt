@@ -6,8 +6,6 @@ public class Main {
         if (args.length > 0) {
             filePath = args[0];
         }
-        Controller controller = new Controller(filePath);
-        //ParseXML xmlparser = new ParseXML();
-        //xmlparser.parser();
+        new Controller(filePath);
     }
 }

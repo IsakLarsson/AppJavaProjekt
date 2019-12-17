@@ -33,6 +33,14 @@ public class GameFrame {
 
     private ArrayList<String> levels;
 
+    /**
+     * Creates a frame for the game and its menus
+     * @param title Title of the game
+     * @param gameWindow the window inside the frame
+     * @param buttonListener listener for the buttons
+     * @param menuListener listener for the menu items
+     * @param levels list of the levels
+     */
     public GameFrame(String title, GameWindow gameWindow, ButtonListener buttonListener,
                      MenuListener menuListener, ArrayList<String> levels){
 
@@ -42,7 +50,6 @@ public class GameFrame {
         this.levels = levels;
         this.levelList = new ArrayList<>();
 
-        // Set the content-pane of the JFrame to an instance of main JPanel
         frame.setJMenuBar(buildMenuBar());
         frame.setContentPane(gameWindow);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +63,7 @@ public class GameFrame {
 
 
     /**
-     * Helpmethod for showing the gui
+     * Showing the gui start view
      */
     public void show() {
         frame.setVisible(true);
@@ -123,11 +130,9 @@ public class GameFrame {
     }
 
     /**
-     * Sets up the button listener for the "calculatePostitionQueue tests" button.
-     *
-     * @param buttonListener
+     * Sets up the listener for the buttons.
      */
-    public void setupListeners(ButtonListener buttonListener) {
+    public void setupListeners() {
 
         //
         menuItem1.addActionListener(this.menuListener);
@@ -153,6 +158,10 @@ public class GameFrame {
         }
     }
 
+    /**
+     * Creates a sub menu for the levels
+     * @return a menu
+     */
     private JMenu createLevelMenu() {
         JMenu levelMenu = new JMenu();
 
@@ -167,18 +176,30 @@ public class GameFrame {
         return levelMenu;
     }
 
+    /**
+     * @return the frame
+     */
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * @return the bank label
+     */
     public JLabel getBank(){
         return bank;
     }
 
+    /**
+     * @return the timer label
+     */
     public JLabel getTimer(){
         return timer;
     }
 
+    /**
+     * @return the game window
+     */
     public GameWindow getGameWindow() {
         return gameWindow;
     }
