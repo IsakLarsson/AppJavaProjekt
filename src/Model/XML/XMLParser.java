@@ -122,14 +122,12 @@ public class XMLParser {
                     map.addPath((Path) tileObject);
                     break;
                 case "SpawnArea":
-                    map.addSpawn((SpawnArea) tileObject);
                     map.addPath((Tile) tileObject);
                     break;
                 case "TowerArea":
                     map.addTowerArea((TowerArea) tileObject);
                     break;
                 case "GoalArea":
-                    map.addGoalArea((GoalArea) tileObject);
                     map.addPath((Tile) tileObject);
                     break;
                 case "AltPath1":
