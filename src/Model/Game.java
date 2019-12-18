@@ -162,6 +162,7 @@ public class Game extends Thread {
         }
 
         mapIsDrawn = true;
+        teleported = true;
 
     }
 
