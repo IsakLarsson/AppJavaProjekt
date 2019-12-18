@@ -2,7 +2,7 @@
 <Levels>
     <Level1>
         <mapSize>20</mapSize>
-        <startMoney>100</startMoney>
+        <startMoney>101</startMoney>
         <winCondition>10</winCondition>
         <Tile AreaType="SpawnArea">
             <Coordinates>0,0</Coordinates>
