@@ -48,10 +48,13 @@ public class MenuListener implements ActionListener {
                 controller.quitGame();
                 break;
             case "Help":
-                controller.openDialog(s, "How to play the game");
+                controller.openDialog(s, "How to play the game:\nSpawn units by pressing the buttons. " +
+                        "Each unit costs differently, so be careful how much you spend. " +
+                        "When your money is out you can't buy more units");
                 break;
             case "About":
-                controller.openDialog(s, "About the game");
+                controller.openDialog(s, "This game is created by four students at " +
+                        "Umeå University during the period between the 18th november and 19th december");
                 break;
         }
     }
