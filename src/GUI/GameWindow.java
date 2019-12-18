@@ -15,6 +15,9 @@ public class GameWindow extends JPanel {
     private JButton button1;
     private JButton button2;
 
+    // Tool bar
+    JToolBar toolBar;
+
     // An image
     private BufferedImage image;
 
@@ -49,7 +52,7 @@ public class GameWindow extends JPanel {
      * @return a tool bar
      */
     private JToolBar buildToolBar() {
-        JToolBar toolBar = new JToolBar();
+        toolBar = new JToolBar();
 
         button1 = new JButton("Teleport");
         button2 = new JButton("Switch Path");
@@ -82,6 +85,13 @@ public class GameWindow extends JPanel {
         repaint();
     }
 
+    /**
+     * Disables or enables the toolbar
+     */
+    public void setToolBarState(Boolean state) {
+        button1.setEnabled(state);
+        button2.setEnabled(state);
+    }
     /**
      * @return the dimension of the canvas
      */

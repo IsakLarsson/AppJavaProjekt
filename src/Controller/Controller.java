@@ -75,6 +75,12 @@ public class Controller {
             // Set up the listeners
             gameFrame.setupListeners();
 
+            //Disable buttons
+            gameFrame.setButtonState(false);
+
+            // Disable tool bar
+            gameWindow.setToolBarState(false);
+
             // Show the gui
             gameFrame.show();
 
@@ -149,7 +155,9 @@ public class Controller {
             game.setUserName(uName);
             game.setLevelName(parser.getLevels().get(0));
             game.setGameState(true);
+            gameFrame.setButtonState(true);
             gameFrame.getNewGame().setText("Restart");
+            gameWindow.setToolBarState(true);
         }
     }
 
@@ -179,7 +187,9 @@ public class Controller {
      */
     public void pauseGame(){
         game.setGameState(false);
+        gameFrame.setButtonState(false);
         gameFrame.getPause().setText("Resume");
+        gameWindow.setToolBarState(false);
 
     }
 
@@ -188,7 +198,9 @@ public class Controller {
      */
     public void resumeGame() {
         game.setGameState(true);
+        gameFrame.setButtonState(true);
         gameFrame.getPause().setText("Pause");
+        gameWindow.setToolBarState(true);
     }
     /**
      * Quits the game
