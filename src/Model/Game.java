@@ -90,6 +90,7 @@ public class Game extends Thread {
                 //
                 if (level.getWinCondition() <= 0) {
                     modelAdapter.levelWon(this);
+
                 }
             }
         });

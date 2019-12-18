@@ -30,9 +30,9 @@ public class Tower {
 
         try {
             image = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images/Farmer" +
-                            ".png"));
-            image = image.getScaledInstance(30,40,Image.SCALE_SMOOTH);
+                    this.getClass().getResourceAsStream("/GUI/images/Tower" +
+                            ".jpg"));
+            image = image.getScaledInstance(40,40,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

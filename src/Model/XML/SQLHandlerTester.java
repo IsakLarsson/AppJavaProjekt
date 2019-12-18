@@ -3,7 +3,7 @@ package Model.XML;
 import org.junit.jupiter.api.*;
 
 //Runs tests in normal order
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SQLHandlerTester {
     SQLHandler sql;
 
