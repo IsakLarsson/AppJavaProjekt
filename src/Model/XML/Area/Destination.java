@@ -1,19 +1,27 @@
 package Model.XML.Area;
 
-import java.awt.geom.Area;
-import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * A class that acts a next destination for a unit to move to
+ */
 public class Destination {
     private Queue<Integer> q;
     private TeleportInArea teleArea;
 
+    /**
+     * Constructor, creates a new linked list
+     */
     public Destination() {
         q = new LinkedList<>();
     }
 
-    //TODO Path list måste innehålla spawnpoint då det är en den av pathen också
+    /**
+     * Calculates a queue of pixel positions to the next tile
+     * @param tiles a queue of tiles of the path
+     * @return a queue with positions between two tiles
+     */
     public Queue<Integer> calculateQueue(LinkedList<Tile> tiles) {
 
         if (tiles.isEmpty()) {
@@ -25,10 +33,8 @@ public class Destination {
         String direction = "";
         int dest = 0;
         int start = 0;
-        int i = 0;
 
         if (secondTile == null) {
-            //System.out.println("Game over??");
             return q;
         }
 
@@ -59,8 +65,6 @@ public class Destination {
 
         while (start < dest) {
 
-            //System.out.println("TEST1: " + start + " " + dest);
-
             if (direction.equals("horizontally")) {
                 q.add(start);
                 q.add(firstTile.getyCoordinate()*firstTile.getSize());
@@ -71,12 +75,9 @@ public class Destination {
             }
 
             start++;
-            i++;
         }
 
         while (start > dest) {
-
-            //System.out.println("TEST1: " + start + " " + dest);
 
             if (direction.equals("horizontally")) {
                 q.add(start);
@@ -88,7 +89,6 @@ public class Destination {
             }
 
             start--;
-            i++;
         }
 
         System.out.println("Returning: " + q);

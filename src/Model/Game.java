@@ -39,6 +39,12 @@ public class Game extends Thread {
     private int timeLimit = 200;
     private boolean teleported = true;
 
+    /**
+     * Constructor for the game object
+     * @param adapter adapter that handles coms between the model and view
+     * @param updateInterval the interval of which the window should update
+     * @param pathFile path to the xml file
+     */
     public Game(ModelAdapter adapter, int updateInterval, String pathFile) {
 
         this.pathFile = pathFile;
@@ -54,6 +60,9 @@ public class Game extends Thread {
         this.updateInterval = updateInterval;
     }
 
+    /**
+     * Overrides the thread function to do some tasks for each timer tick.
+     */
     @Override
     public void run() {
 
@@ -81,6 +90,7 @@ public class Game extends Thread {
                 //
                 if (level.getWinCondition() <= 0) {
                     modelAdapter.levelWon(this);
+
                 }
             }
         });
@@ -88,10 +98,17 @@ public class Game extends Thread {
         t.start();
     }
 
+    /**
+     * Sets the state of the game to false or true
+     * @param gameState a boolean
+     */
     public void setGameState(Boolean gameState) {
         this.gameState = gameState;
     }
 
+    /**
+     * Shoots the all the towers in the tower list at every unit in range
+     */
     private void shootTowers() {
         Iterator<Unit> iterator = unitList.iterator();
         while(iterator.hasNext()) {
@@ -105,6 +122,10 @@ public class Game extends Thread {
         }
     }
 
+    /**
+     * Draws the map, and the towers, once
+     * @param levelName name of the level to be drawn
+     */
     public void drawMap(String levelName) {
         if (mapIsDrawn) {
             return;
@@ -145,7 +166,11 @@ public class Game extends Thread {
 
     }
 
-
+    /**
+     * Deep copies a buffered image
+     * @param bi the image
+     * @return a deep copy of the image
+     */
     public static BufferedImage deepCopyImage(BufferedImage bi) {
         ColorModel cm = bi.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
@@ -153,7 +178,9 @@ public class Game extends Thread {
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 
-    //TODO needs iterator
+    /**
+     * Draws each unit on the map if the unit is alive
+     */
     public void drawUnits(){
         updatedImage = deepCopyImage(backgroundImage);
         Graphics newGraphics = updatedImage.getGraphics();
@@ -232,6 +259,10 @@ public class Game extends Thread {
         }
     }
 
+    /**
+     * Sets a new level
+     * @param levelName the name of the level
+     */
     public void nextLevel(String levelName) {
         System.out.println("Next level: " + levelName);
         setLevelName(levelName);
@@ -242,6 +273,9 @@ public class Game extends Thread {
         mapIsDrawn = false;
     }
 
+    /**
+     *
+     */
     public void teleport(){
         for (Unit unit : unitList) {
             if(unit instanceof Teleporter){
@@ -257,12 +291,25 @@ public class Game extends Thread {
         }
     }
 
+    /**
+     * Set the level name
+     * @param levelName the name
+     */
     public void setLevelName(String levelName) {
         this.levelName = levelName;
     }
+
+    /**
+     *
+     * @param bool
+     */
     public void setTeleported(boolean bool){
         teleported = bool;
     }
 
+    /**
+     * Gets the level's name
+     * @return the name
+     */
     public String getLevelName(){return this.levelName;}
 }
