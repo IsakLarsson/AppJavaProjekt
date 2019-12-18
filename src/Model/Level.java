@@ -20,18 +20,20 @@ public class Level {
     private ArrayList<TowerArea> towerAreas;
     private int money;
     private int winCondition;
-
+    private int TILE_SIZE;
 
     /**
      * The constructor creates a tilemap of fill tiles and
      * creates the path lists.
      * @param mapSize The number of tiles vertically and horizontally.
      */
-    public Level(int mapSize){
+    public Level(int mapSize, int TILE_SIZE){
         tileMap = new Tile[mapSize][mapSize];
+        this.TILE_SIZE = TILE_SIZE;
+
         for(int i = 0; i < mapSize; i++){
             for(int j = 0; j < mapSize; j++){
-                tileMap[i][j] = new FillArea(i,j,40);
+                tileMap[i][j] = new FillArea(i,j,TILE_SIZE);
             }
         }
         path = new LinkedList<>();
@@ -57,6 +59,27 @@ public class Level {
         path.add(tile);
         path2.add(tile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
+    }
+
+    public void addInTeleport(int steps, Tile tile){
+        TeleportInArea teleTile =
+                new TeleportInArea(tile.getxCoordinate(),
+                        tile.getyCoordinate(), TILE_SIZE);
+        path.remove(steps);
+        path.add(steps, teleTile);
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = teleTile;
+
+    }
+
+    public void addOutTeleport(int steps, Tile tile){
+        TeleportOutArea teleTile =
+                new TeleportOutArea(tile.getxCoordinate(),
+                        tile.getyCoordinate(), TILE_SIZE);
+
+        path.remove(steps);
+        path.add(steps, teleTile);
+        tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = teleTile;
+
     }
 
     /**

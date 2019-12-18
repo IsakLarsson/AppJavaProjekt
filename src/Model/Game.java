@@ -135,7 +135,7 @@ public class Game extends Thread {
             this.level = parser.parseXML();
         }
 
-        backgroundImage = new BufferedImage(800, 800,
+        backgroundImage = new BufferedImage(600, 600,
                 BufferedImage.TYPE_INT_ARGB);
         Graphics g = backgroundImage.getGraphics();
         modelAdapter.setMoney(level.getMoney());
@@ -152,8 +152,8 @@ public class Game extends Thread {
 
         ArrayList<TowerArea> towerAreas = level.getTowerAreas();
         for(int i = 0; i < towerAreas.size(); i++) {
-            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 40,
-                    towerAreas.get(i).getyCoordinate() * 40);
+            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 30,
+                    towerAreas.get(i).getyCoordinate() * 30, 30);
             towerList.add(tower);
         }
 
@@ -236,7 +236,19 @@ public class Game extends Thread {
     private LinkedList<Tile> deepCopyList() {
         LinkedList<Tile> tilesCopy = new LinkedList<>();
         for (Tile t : level.getPath()) {
-            tilesCopy.add(new Path(t));
+            if (t instanceof TeleportInArea){
+                tilesCopy.add(new TeleportInArea(t.getxCoordinate(),
+                        t.getyCoordinate(), t.getSize()));
+
+            } else if (t instanceof TeleportOutArea) {
+                tilesCopy.add(new TeleportOutArea(t.getxCoordinate(),
+                        t.getyCoordinate(), t.getSize()));
+            }
+            else{
+                tilesCopy.add(new Path(t));
+            }
+
+
         }
         return tilesCopy;
     }
@@ -279,14 +291,17 @@ public class Game extends Thread {
     public void teleport(){
         for (Unit unit : unitList) {
             if(unit instanceof Teleporter){
-                Tile tile = unit.getPath().getFirst();
-                TeleportInArea tele = new TeleportInArea(tile.getxCoordinate(), tile.getyCoordinate(), 40);
-                Tile tile1 = unit.getPath().get(5);
-                TeleportOutArea tele1 = new TeleportOutArea(tile1.getxCoordinate(), tile1.getyCoordinate(), 40);
-                level.addPath(tele);
-                level.addPath(tele1);
+
+                Tile inTile = unit.getPath().getFirst();
+
+                Tile outTile = unit.getPath().get(5);
+
+                level.addInTeleport(((Teleporter) unit).getSteps(), inTile);
+                level.addOutTeleport(((Teleporter) unit).getSteps() + 5,
+                        outTile);
                 mapIsDrawn = false;
                 teleported = false;
+                return;
             }
         }
     }

@@ -33,7 +33,7 @@ public class Controller {
     private ModelAdapter adapter;
 
     // Interval for which the game should update
-    private int updateInterval = 10;
+    private int updateInterval = 30;
 
     // A game object
     private Game game;

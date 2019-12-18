@@ -14,7 +14,7 @@ public class Path extends Tile{
             texture = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/PathTile" +
                             ".png"));
-            texture = texture.getScaledInstance(size,size,Image.SCALE_SMOOTH);
+            texture = texture.getScaledInstance(size,size,Image.SCALE_REPLICATE);
         } catch (IOException e) {
             e.printStackTrace();
         }

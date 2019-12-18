@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Unit.Teleporter;
 import Model.Unit.Unit;
 import Model.XML.Area.Destination;
 import Model.XML.Area.Tile;
@@ -30,8 +31,10 @@ public class Animator {
      */
     public void calculatePositionQueue(Destination destination, Unit unit) {
         synchronized (lock) {
-            Queue<Integer> queue = destination.calculateQueue(unit.getPath());
+            Queue<Integer> queue = destination.calculateQueue(unit);
             unit.setPixelPositionQueue(queue);
+            if(unit instanceof Teleporter)
+                ((Teleporter) unit).increaseSteps();
         }
     }
 

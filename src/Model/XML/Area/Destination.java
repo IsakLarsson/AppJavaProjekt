@@ -1,5 +1,7 @@
 package Model.XML.Area;
 
+import Model.Unit.Unit;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,10 +21,11 @@ public class Destination {
 
     /**
      * Calculates a queue of pixel positions to the next tile
-     * @param tiles a queue of tiles of the path
+     * @param unit a queue of tiles of the path
      * @return a queue with positions between two tiles
      */
-    public Queue<Integer> calculateQueue(LinkedList<Tile> tiles) {
+    public Queue<Integer> calculateQueue(Unit unit) {
+        LinkedList<Tile> tiles = unit.getPath();
 
         if (tiles.isEmpty()) {
             return q;
@@ -39,14 +42,13 @@ public class Destination {
         }
 
         //TODO här måste det till en big brain
-        if (firstTile instanceof AreaEffect){
-            teleArea = (TeleportInArea) firstTile;
-            teleArea.landOn(tiles);
-            start = firstTile.getxCoordinate()*firstTile.getSize();
-            for (Tile tile : tiles) {
-                if(tile instanceof TeleportOutArea){
-                }
+        if (firstTile instanceof TeleportInArea){
+            for(int i = 0; i < 4; i++){
+                tiles.removeFirst();
             }
+            unit.setTileQueue(tiles);
+            teleArea = (TeleportInArea) firstTile;
+            return teleArea.landOn(tiles);
         }
 
 
@@ -91,7 +93,6 @@ public class Destination {
             start--;
         }
 
-        System.out.println("Returning: " + q);
         return q;
     }
 }

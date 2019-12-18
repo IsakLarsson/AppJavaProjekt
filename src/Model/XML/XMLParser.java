@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class XMLParser {
 
-    private int TILE_SIZE = 40;
+    private int TILE_SIZE = 30;
     private int mapSize;
     private ArrayList<String> levels= new ArrayList<>();
     private Level map;
@@ -63,7 +63,7 @@ public class XMLParser {
 
             mapSize = getMapSize(level);
 
-            map = new Level(mapSize);
+            map = new Level(mapSize, TILE_SIZE);
 
             for (int i = 0; i < tileList.getLength(); i++){
                 getTile(tileList, i);

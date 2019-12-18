@@ -19,8 +19,8 @@ public class GameWindow extends JPanel {
     private BufferedImage image;
 
     // Constants for the game window
-    static final int CANVAS_WIDTH = 800;
-    static final int CANVAS_HEIGHT = 800;
+    static final int CANVAS_WIDTH = 600;
+    static final int CANVAS_HEIGHT = 600;
     static final Dimension dimension = new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
 
 

@@ -16,7 +16,7 @@ public class Teleporter implements Unit{
     private int dmg = 5;
     private LinkedList<Tile> path;
     private Queue<Integer> queue;
-
+    private int steps;
     private int x, y;
 
     public Teleporter(){
@@ -27,6 +27,7 @@ public class Teleporter implements Unit{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        steps = 0;
     }
 
     @Override
@@ -36,6 +37,7 @@ public class Teleporter implements Unit{
 
     @Override
     public int move(Graphics g) {
+
         if (!queue.isEmpty()) {
             x = queue.poll();
             y = queue.poll();
@@ -44,6 +46,14 @@ public class Teleporter implements Unit{
         } else {
             return dmg;
         }
+    }
+
+    public int getSteps() {
+        return steps;
+    }
+
+    public void increaseSteps(){
+        steps++;
     }
 
     @Override

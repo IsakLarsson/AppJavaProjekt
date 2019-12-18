@@ -12,7 +12,7 @@ public class LevelTest {
 
     @BeforeEach
     public void beforeEach(){
-        level = new Level(20);
+        level = new Level(20, 30);
     }
 
     @Test

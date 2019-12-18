@@ -13,8 +13,7 @@ import static java.awt.Color.RED;
 import static java.awt.Color.red;
 
 public class Tower {
-    private int size = 20;
-    private int dmg = 1;
+    private int dmg = 0;
     private int range = 100;
     private Image image;
     private Unit target;
@@ -24,7 +23,7 @@ public class Tower {
 
     public Tower() {}
 
-    public Tower(int x, int y) {
+    public Tower(int x, int y, int size) {
         this.xCord = x;
         this.yCord = y;
 
@@ -32,7 +31,7 @@ public class Tower {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Tower" +
                             ".jpg"));
-            image = image.getScaledInstance(40,40,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(size,size,Image.SCALE_REPLICATE);
         } catch (IOException e) {
             e.printStackTrace();
         }

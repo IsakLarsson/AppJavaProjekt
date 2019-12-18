@@ -63,6 +63,7 @@ public class GameFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(gameWindow.getDimension());
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.pack();
 
         this.menuListener = menuListener;
@@ -81,7 +82,8 @@ public class GameFrame {
 
         image.getGraphics().setColor(Color.BLACK);
         image.getGraphics().setFont(new Font("TimesRoman", Font.PLAIN, 200));
-        image.getGraphics().drawString("Press File -> New game, to start", 300, 400);
+        image.getGraphics().drawString("Press File -> New game, to start",
+                200, 300);
 
         GameWindow window = (GameWindow) frame.getContentPane();
 
