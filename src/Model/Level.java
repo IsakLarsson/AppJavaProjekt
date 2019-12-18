@@ -69,14 +69,20 @@ public class Level {
      * @param tile Tile to be added.
      */
     public void addInTeleport(int steps, Tile tile){
+        Tile tile2 = path2.get(steps);
+
         TeleportInArea teleTile =
                 new TeleportInArea(tile.getxCoordinate(),
                         tile.getyCoordinate(), TILE_SIZE);
+        TeleportInArea teleTile2 =
+                new TeleportInArea(tile2.getxCoordinate(),
+                        tile2.getyCoordinate(), TILE_SIZE);
         path.remove(steps);
         path.add(steps, teleTile);
         path2.remove(steps);
-        path2.add(steps, teleTile);
+        path2.add(steps, teleTile2);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = teleTile;
+        tileMap[tile2.getxCoordinate()][tile2.getyCoordinate()] = teleTile2;
 
     }
 
@@ -93,7 +99,7 @@ public class Level {
         path.remove(steps);
         path.add(steps, teleTile);
         path2.remove(steps);
-        path2.add(steps-1, teleTile2);
+        path2.add(steps, teleTile2);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = teleTile;
         tileMap[tile2.getxCoordinate()][tile2.getyCoordinate()] = teleTile2;
 
