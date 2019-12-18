@@ -156,6 +156,7 @@ public class Controller {
      */
     public void restartLevel(){
         game.setGameState(true);
+        game.setTeleported(true);
         game.nextLevel(game.getLevelName());
     }
 
@@ -164,6 +165,7 @@ public class Controller {
      */
     public void restartGame() {
         game.setGameState(true);
+        game.setTeleported(true);
         game.nextLevel(parser.getLevels().get(0));
         gameFrame.getNewGame().setText("New Game");
     }

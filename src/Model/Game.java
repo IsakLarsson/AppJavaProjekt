@@ -257,5 +257,9 @@ public class Game extends Thread {
     public void setLevelName(String levelName) {
         this.levelName = levelName;
     }
+    public void setTeleported(boolean bool){
+        teleported = bool;
+    }
+
     public String getLevelName(){return this.levelName;}
 }
