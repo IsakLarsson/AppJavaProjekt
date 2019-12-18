@@ -135,6 +135,13 @@ public class Game extends Thread {
         if(teleported) {
             XMLParser parser = new XMLParser(pathFile, levelName);
             this.level = parser.parseXML();
+
+            ArrayList<TowerArea> towerAreas = level.getTowerAreas();
+            for(int i = 0; i < towerAreas.size(); i++) {
+                Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 30,
+                        towerAreas.get(i).getyCoordinate() * 30, 30);
+                towerList.add(tower);
+            }
         }
 
         backgroundImage = new BufferedImage(600, 600,
@@ -150,13 +157,6 @@ public class Game extends Thread {
                 g.drawImage(tile.getTexture(), tile.getxCoordinate() + i * (tile.getSize() - 1),
                         tile.getyCoordinate() + j * (tile.getSize() - 1),null);
             }
-        }
-
-        ArrayList<TowerArea> towerAreas = level.getTowerAreas();
-        for(int i = 0; i < towerAreas.size(); i++) {
-            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 30,
-                    towerAreas.get(i).getyCoordinate() * 30, 30);
-            towerList.add(tower);
         }
 
         for(Tower tower : towerList){
