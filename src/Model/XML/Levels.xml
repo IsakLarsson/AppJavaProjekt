@@ -2,7 +2,7 @@
 <Levels>
     <Level1>
         <mapSize>20</mapSize>
-        <startMoney>101</startMoney>
+        <startMoney>100</startMoney>
         <winCondition>10</winCondition>
         <Tile AreaType="SpawnArea">
             <Coordinates>0,0</Coordinates>
@@ -88,20 +88,17 @@
         <Tile AreaType="Path">
             <Coordinates>18,9</Coordinates>
         </Tile>
-        <Tile AreaType="GoalArea">
-            <Coordinates>19,9</Coordinates>
-        </Tile>
         <Tile AreaType="TowerArea">
             <Coordinates>3,2</Coordinates>
-        </Tile>
-        <Tile AreaType="TowerArea">
-            <Coordinates>4,2</Coordinates>
         </Tile>
         <Tile AreaType="TowerArea">
             <Coordinates>10,4</Coordinates>
         </Tile>
         <Tile AreaType="TowerArea">
             <Coordinates>16,10</Coordinates>
+        </Tile>
+        <Tile AreaType="GoalArea">
+            <Coordinates>19,9</Coordinates>
         </Tile>
     </Level1>
     <Level2>
@@ -204,7 +201,6 @@
         <Tile AreaType="Path">
             <Coordinates>13,9</Coordinates>
         </Tile>
-
         <Tile AreaType="Path">
             <Coordinates>14,9</Coordinates>
         </Tile>
@@ -219,6 +215,18 @@
         </Tile>
         <Tile AreaType="Path">
             <Coordinates>18,9</Coordinates>
+        </Tile>
+        <Tile AreaType="TowerArea">
+            <Coordinates>10,5</Coordinates>
+        </Tile>
+        <Tile AreaType="TowerArea">
+            <Coordinates>7,8</Coordinates>
+        </Tile>
+        <Tile AreaType="TowerArea">
+            <Coordinates>7,10</Coordinates>
+        </Tile>
+        <Tile AreaType="TowerArea">
+            <Coordinates>10,13</Coordinates>
         </Tile>
         <Tile AreaType="GoalArea">
             <Coordinates>19,9</Coordinates>

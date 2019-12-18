@@ -1,18 +1,33 @@
 package Model.XML;
 import org.junit.jupiter.api.*;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ *  Tester for the class XMLCreator
+ *
+ * @version 1.0 18 December 2019
+ * @author Albin Jönsson <c18ajs@cs.umu.se>
+ */
 
 public class XMLCreatorTester {
-    XMLCreator xmlCreator;
+    /** XMLCreator which is used in every test **/
+    private XMLCreator xmlCreator;
 
+    /**
+     * Before each test XMLCreator is initiated
+     * and a XML is generated
+     */
     @BeforeEach
-    public void beforeEach() throws TransformerException, ParserConfigurationException {
+    public void beforeEach() {
         xmlCreator = new XMLCreator();
         xmlCreator.createLevels();
     }
 
+    /**
+     * Tests if the xmlCreator is not null
+     */
     @Test
     public void testCreate() {
         Assertions.assertNotNull(xmlCreator);

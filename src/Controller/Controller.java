@@ -9,10 +9,9 @@ import Model.Unit.Farmer;
 import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
 import Model.XML.XMLParser;
-
+import Model.XML.XMLSchemaValidator;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 /**
  * A controller that controls the model and view
@@ -54,6 +53,16 @@ public class Controller {
      * @param filePath is the path to the xml file
      */
     public Controller(String filePath){
+        //TODO: Möjliggöra xml-fil som inparameter i terminal
+        //TODO: Namnge .jar filen AntiTD.jar
+        //Validerar bara Levels.XML i src.model.xml
+        XMLSchemaValidator validator = new XMLSchemaValidator();
+        int validateValue = validator.validateXML();
+        if (validateValue < 0) {
+            JOptionPane.showMessageDialog(null, "Format of XML-file is incorrect");
+            System.exit(-1);
+        }
+
         lock = new Object();
         startObject = new Object();
 

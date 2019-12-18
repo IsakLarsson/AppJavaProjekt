@@ -2,11 +2,6 @@ package Model.XML.Area;
 
 import Model.Level;
 import Model.XML.XMLParser;
-import org.junit.jupiter.api.Test;
-
-import java.util.LinkedList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DestinationTest {
 

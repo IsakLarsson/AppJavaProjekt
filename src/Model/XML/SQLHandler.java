@@ -1,11 +1,9 @@
 package Model.XML;
 
 import GUI.HighScore;
-
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * 5DV135 - Application Development in Java
@@ -18,13 +16,20 @@ import java.util.Collections;
  */
 
 public class SQLHandler {
-    //"v135h19g2" is both username and name of database
-    final String databaseURL = "jdbc:mysql://mysql.cs.umu.se:3306/v135h19g2";
-    final String user = "v135h19g2";
-    final String password = "2riz6jDSDmhRlqMA";
-    Statement s;
-    Connection c;
+    /** Database URL**/
+    private final String databaseURL = "jdbc:mysql://mysql.cs.umu.se:3306/v135h19g2";
+    /** Username **/
+    private final String user = "v135h19g2";
+    /** Password **/
+    private final String password = "2riz6jDSDmhRlqMA";
+    /** Allows prepared statement **/
+    private Statement s;
+    /** Connection reachable from all methods **/
+    private Connection c;
 
+    /**
+     * Constructor for SQLHandler
+     */
     public SQLHandler() {
         //Try to load drivers
         try {
@@ -64,9 +69,9 @@ public class SQLHandler {
 
     /**
      * Insert a value into table G2Game
-     * @param name
-     * @param level
-     * @param score
+     * @param name Entry name
+     * @param level Current level
+     * @param score Score, number of seconds left.
      */
     public void insertTable(String name, String level, int score) {
         try {
@@ -126,7 +131,7 @@ public class SQLHandler {
      * @return A sorted Highscore-array
      */
     private ArrayList<HighScore> sortTable(ArrayList<HighScore> score) {
-        Collections.sort(score, HighScore.scoreComparator);
+        score.sort(HighScore.scoreComparator);
         return score;
     }
 

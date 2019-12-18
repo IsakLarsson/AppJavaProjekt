@@ -3,8 +3,6 @@ package Model.XML.Area;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class TeleportOutArea extends Tile {
     private Image texture;

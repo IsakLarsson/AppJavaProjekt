@@ -1,8 +1,5 @@
 package Model;
 
-import java.util.Objects;
-import java.util.Stack;
-
 public class Position {
     private int x;
     private int y;

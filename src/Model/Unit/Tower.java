@@ -5,12 +5,10 @@ import Model.XML.Area.Tile;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import static java.awt.Color.RED;
-import static java.awt.Color.red;
 
 public class Tower {
     private int dmg = 1;

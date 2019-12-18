@@ -2,51 +2,68 @@ package Model.XML;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.util.concurrent.ThreadLocalRandom;
 
-//TODO: Ska finnas banor med "växlar"
-//TODO: Speciella områden, ex. teleport
-//TODO: Altpath1/Altpath2
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * XML creator class. Creates a XML containing
+ * level1 and level2. Provides a simplified interface
+ * to ease the creation of a XML.
+ *
+ * @version 1.0 18 December 2019
+ * @author Albin Jönsson <c18ajs@cs.umu.se>
+ */
 
 public class XMLCreator {
+    /** String for path to file **/
     private String path;
+    /** DocumentBuilderFactory **/
     private DocumentBuilderFactory docBuildFactory;
+    /** DocumentBuilder **/
     private DocumentBuilder docBuilder;
+    /** Document **/
     private Document doc;
+    /** Size of the map **/
     private int mapSizeNr = 20;
 
-    public XMLCreator() {
-    }
+    /**
+     * Constructor for XMLCreator
+     */
+    public XMLCreator() {}
 
     /**
-     * Creates a new Levels.XML-file named Levels.xml
-     * @throws ParserConfigurationException - Configuration error
-     * @throws TransformerException - Error during transformation process
+     * Create a new XML-file named Levels.xml containing lvl1 and lvl2
      */
-    //Fånga exceptions
-    public void createLevels() throws ParserConfigurationException, TransformerException {
+    public void createLevels() {
         //Create documentBuilder - Can create documents
         docBuildFactory = DocumentBuilderFactory.newInstance();
-        docBuilder = docBuildFactory.newDocumentBuilder();
+        try {
+            docBuilder = docBuildFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            JOptionPane.showMessageDialog(null, "XML error: " +
+                    "Failed to Parse");
+        }
 
-        //Create root-document with documentBuilder and add a new element named Game to the document
+        //Create root-document with documentBuilder and
+        // add a new element named Game to the document
         doc = docBuilder.newDocument();
         Element levels = doc.createElement("Levels");
         doc.appendChild(levels);
 
-        //Create first level
+        //Create first and second level
         createLevel1(levels);
-        //Create second level
         createLevel2(levels);
 
         //Specify where the file should be created and the name of it
@@ -55,9 +72,23 @@ public class XMLCreator {
 
         //Transform code to Levels.XML-format and place it in given directory(see path)
         TransformerFactory transformerFac = TransformerFactory.newInstance();
-        Transformer transformer = transformerFac.newTransformer();
+        Transformer transformer = null;
+        try {
+            transformer = transformerFac.newTransformer();
+        } catch (TransformerConfigurationException e) {
+            JOptionPane.showMessageDialog(null, "XML error: " +
+                    "Failed to transform");
+        }
+
         DOMSource source = new DOMSource(doc);
-        transformer.transform(source, streamRes);
+        try {
+            if (transformer != null) {
+                transformer.transform(source, streamRes);
+            }
+        } catch (TransformerException e) {
+            JOptionPane.showMessageDialog(null, "XML error: " +
+                    "Failed to transform");
+        }
     }
 
     /**
@@ -79,14 +110,14 @@ public class XMLCreator {
 
         //Create needed area types
         createSpawnArea(level1,0,0);
-        createHorizontalPathArea(level1, 9, 1, 0);
-        createVerticalPathArea(level1, 9, 9, 1);
-        createHorizontalPathArea(level1, 10, 9, 9);
+        createHorizontalArea(level1, 9, 1, 0, "Path");
+        createVerticalArea(level1, 8, 9, 1, "Path");
+        createHorizontalArea(level1, 10, 9, 9, "Path");
 
-        createGoalArea(level1, 19, 9);
         createTowerArea(level1, 3, 2);
         createTowerArea(level1, 10, 4);
         createTowerArea(level1, 16, 10);
+        createGoalArea(level1, 19, 9);
 
     }
 
@@ -109,51 +140,103 @@ public class XMLCreator {
 
         //Create needed area types
         createSpawnArea(level2,0,9);
-        createHorizontalPathArea(level2, 6, 1, 9);
-        createVerticalPathArea(level2, 3,6, 6);
-        createVerticalPathArea(level2, 3,6, 10);
-        createHorizontalPathArea(level2, 6, 7, 6);
-        createHorizontalPathArea(level2, 6, 7, 12);
-        createVerticalPathArea(level2, 3,13, 6);
-        createVerticalPathArea(level2, 3,13, 10);
-        createHorizontalPathArea(level2, 6, 13, 9);
+        createHorizontalArea(level2, 6, 1, 9, "Path");
+        createVerticalArea(level2, -3,6, 8, "AltPath1");
+        createVerticalArea(level2, 3,6, 10, "AltPath2");
+        createHorizontalArea(level2, 6, 7, 6, "AltPath1");
+        createHorizontalArea(level2, 6, 7, 12, "AltPath2");
+        createVerticalArea(level2, -3,13, 12, "AltPath2");
+        createVerticalArea(level2, 3,13, 6, "AltPath1");
+        createHorizontalArea(level2, 6, 13, 9, "Path");
 
+        createTowerArea(level2, 10, 5);
+        createTowerArea(level2, 7, 8);
+        createTowerArea(level2, 7, 10);
+        createTowerArea(level2, 10, 13);
         createGoalArea(level2, 19, 9);
-        //createTowerArea(level2, 10, 4);
-        //createTowerArea(level2, 7, 8);
-        //createTowerArea(level2, 7, 10);
-        //createTowerArea(level2, 10, 13);
 
     }
 
     /**
-     * Starts at given StartX and StartY and produces nrArea numbers of areas
+     * Starts at given StartX and StartY and produces nrArea numbers of area tiles
      * in a horizontal direction from the X-Coordinate StartX to StartX+nrArea.
-     * @param nrArea Number of area tiles
+     * If nrArea is positive the area tiles are built right to left from start coordinates
+     * and if nrArea is negative the tiles are built left to right.
      * @param dest Destination, where the area should be inserted as a sub-element
+     * @param startX Start X-coordinate
+     * @param startY Start Y-coordinate
+     * @param nrArea Number of area tiles
+     * @param name Name of Area to be created
      */
-    private void createHorizontalPathArea(Element dest, int nrArea, int startX, int startY) {
+    private void createHorizontalArea(Element dest, int nrArea, int startX, int startY, String name) {
         int i = startX;
-        for (; i < (nrArea + startX); i++){
-            Element areaType = doc.createElement("Tile");
-            areaType.setAttribute("AreaType", "Path");
-            dest.appendChild(areaType);
-            Element coordinates = doc.createElement("Coordinates");
-            coordinates.appendChild(doc.createTextNode(i + "," + startY));
-            areaType.appendChild(coordinates);
+        //Build area tile, from coordinates, downwards
+        if (nrArea > 0) {
+            for (; i < (nrArea + startX); i++) {
+                Element areaType = doc.createElement("Tile");
+                areaType.setAttribute("AreaType", name);
+                dest.appendChild(areaType);
+                Element coordinates = doc.createElement("Coordinates");
+                coordinates.appendChild(doc.createTextNode(i + "," + startY));
+                areaType.appendChild(coordinates);
+            }
         }
+        //Build area tile, from coordinates, upwards
+        else {
+            for (; i > (nrArea + startX); i--) {
+                if (i <= 0) {
+                    break;
+                }
+                Element areaType = doc.createElement("Tile");
+                areaType.setAttribute("AreaType", name);
+                dest.appendChild(areaType);
+                Element coordinates = doc.createElement("Coordinates");
+                coordinates.appendChild(doc.createTextNode(i + "," + startY));
+                areaType.appendChild(coordinates);
+            }
+        }
+
     }
 
-    private void createVerticalPathArea(Element dest, int nrArea, int startX, int startY) {
+    /**
+     * Starts at given StartX and StartY and produces nrArea numbers of area tiles
+     * in a vertical direction from the X-Coordinate StartX to StartX+nrArea.
+     * If nrArea is positive the area tiles are built upwards from start coordinates
+     * and if nrArea is negative the tiles are built downwards.
+     * @param dest Destination, where the area should be inserted as a sub-element
+     * @param startX Start X-coordinate
+     * @param startY Start Y-coordinate
+     * @param nrArea Number of area tiles
+     * @param name Name of Area to be created
+     */
+    private void createVerticalArea(Element dest, int nrArea, int startX, int startY, String name) {
         int i = startY;
-        for (; i < (nrArea + startY); i++){
-            Element areaType = doc.createElement("Tile");
-            areaType.setAttribute("AreaType", "Path");
-            dest.appendChild(areaType);
-            Element coordinates = doc.createElement("Coordinates");
-            coordinates.appendChild(doc.createTextNode(startX + "," + i));
-            areaType.appendChild(coordinates);
+        //Build area tile, from coordinates, to the right
+        if (nrArea > 0) {
+            for (; i < (nrArea + startY); i++) {
+                Element areaType = doc.createElement("Tile");
+                areaType.setAttribute("AreaType", name);
+                dest.appendChild(areaType);
+                Element coordinates = doc.createElement("Coordinates");
+                coordinates.appendChild(doc.createTextNode(startX + "," + i));
+                areaType.appendChild(coordinates);
+            }
         }
+        //Build area tile, from coordinates, to the left
+        else {
+            for (; i > (nrArea + startY); i--) {
+                if (i <= 0) {
+                    break;
+                }
+                Element areaType = doc.createElement("Tile");
+                areaType.setAttribute("AreaType", name);
+                dest.appendChild(areaType);
+                Element coordinates = doc.createElement("Coordinates");
+                coordinates.appendChild(doc.createTextNode(startX + "," + i));
+                areaType.appendChild(coordinates);
+            }
+        }
+
     }
 
     /**
