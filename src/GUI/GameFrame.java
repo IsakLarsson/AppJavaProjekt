@@ -72,12 +72,12 @@ public class GameFrame {
     public void show() {
         frame.setVisible(true);
 
-        BufferedImage image = new BufferedImage(400, 400,
+        BufferedImage image = new BufferedImage(800, 800,
                 BufferedImage.TYPE_INT_ARGB);
 
         image.getGraphics().setColor(Color.BLACK);
         image.getGraphics().setFont(new Font("TimesRoman", Font.PLAIN, 200));
-        image.getGraphics().drawString("Press File -> New game, to start", 100, 150);
+        image.getGraphics().drawString("Press File -> New game, to start", 300, 400);
 
         GameWindow window = (GameWindow) frame.getContentPane();
 
