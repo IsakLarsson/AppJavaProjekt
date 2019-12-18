@@ -107,9 +107,14 @@ public class ModelAdapter {
      * @param game reference to the game object
      */
     public void timeIsOut (Game game) {
-        JOptionPane.showMessageDialog(gui.getFrame(), "Time is out fking noob",
+        JOptionPane.showMessageDialog(gui.getFrame(), "You died",
                 "lol", JOptionPane.PLAIN_MESSAGE);
         game.nextLevel(game.getLevelName());
+    }
+
+    public void errorMessage(String errorMessage){
+        JOptionPane.showMessageDialog(gui.getFrame(), errorMessage,
+                "ERROR", JOptionPane.PLAIN_MESSAGE);
     }
 
     /**

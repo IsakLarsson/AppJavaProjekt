@@ -1,16 +1,19 @@
-/**
- *
- * Level
- * Version 1.0
- *
- */
-
 package Model;
 
 import Model.XML.Area.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ *  This is the representation of the level.
+ *
+ * @version 1.0 18 December 2019
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ */
 
 public class Level {
 
@@ -61,24 +64,39 @@ public class Level {
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
+    /**
+     * Adds TeleportInArea tiles to both path lists and adds path tile to tilemap.
+     * @param tile Tile to be added.
+     */
     public void addInTeleport(int steps, Tile tile){
         TeleportInArea teleTile =
                 new TeleportInArea(tile.getxCoordinate(),
                         tile.getyCoordinate(), TILE_SIZE);
         path.remove(steps);
         path.add(steps, teleTile);
+        path2.remove(steps);
+        path2.add(steps, teleTile);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = teleTile;
 
     }
 
     public void addOutTeleport(int steps, Tile tile){
+        Tile tile2 = path2.get(steps);
+
         TeleportOutArea teleTile =
                 new TeleportOutArea(tile.getxCoordinate(),
                         tile.getyCoordinate(), TILE_SIZE);
+        TeleportOutArea teleTile2 =
+                new TeleportOutArea(tile2.getxCoordinate(),
+                        tile2.getyCoordinate(), TILE_SIZE);
 
         path.remove(steps);
         path.add(steps, teleTile);
+        path2.remove(steps);
+        path2.add(steps-1, teleTile2);
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = teleTile;
+        tileMap[tile2.getxCoordinate()][tile2.getyCoordinate()] = teleTile2;
+
 
     }
 

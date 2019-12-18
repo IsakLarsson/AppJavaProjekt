@@ -13,7 +13,7 @@ import static java.awt.Color.RED;
 import static java.awt.Color.red;
 
 public class Tower {
-    private int dmg = 0;
+    private int dmg = 1;
     private int range = 100;
     private Image image;
     private Unit target;
@@ -30,8 +30,8 @@ public class Tower {
         try {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Tower" +
-                            ".jpg"));
-            image = image.getScaledInstance(size,size,Image.SCALE_REPLICATE);
+                            ".png"));
+            image = image.getScaledInstance(size,size,Image.SCALE_AREA_AVERAGING);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,10 +52,10 @@ public class Tower {
                 target = unit;
 
             }
-
+            ((Graphics2D) graphics).setStroke(new BasicStroke(3));
             graphics.setColor(RED);
-            graphics.drawLine(xCord + 10 ,yCord + 10,target.getX() + 10,
-                    target.getY() + 10);
+            graphics.drawLine(xCord + 15 ,yCord + 15,target.getX() + 15,
+                    target.getY() + 15);
             target.setHp(target.getHp()-dmg);
 
             if (target.getHp() <= 0) {
