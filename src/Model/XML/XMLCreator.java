@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 //TODO: Ska finnas banor med "växlar"
 //TODO: Speciella områden, ex. teleport
+//TODO: Altpath1/Altpath2
 
 public class XMLCreator {
     private String path;

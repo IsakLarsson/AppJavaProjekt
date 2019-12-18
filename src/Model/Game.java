@@ -1,5 +1,6 @@
 package Model;
 
+import GUI.HighScoreWindow;
 import Model.Unit.Teleporter;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
