@@ -32,9 +32,11 @@ public class ModelAdapter {
     }
 
     public void levelWon(Game game) {
-        int option = JOptionPane.showOptionDialog(null, "You won this level. Continue to the next one",
+        String[] options = {"Next", "Restart"};
+        int option = JOptionPane.showOptionDialog(null,
+                "You won this level. Continue to the next one, or restart",
                 "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                null, null, null);
+                null, options, options[0]);
 
         if (option <= 0) {
             if (levels.peek() == null) {
@@ -44,11 +46,14 @@ public class ModelAdapter {
                 game.nextLevel(levels.poll());
             }
         }
+        else{
+            game.nextLevel(game.getLevelName());
+        }
     }
 
-    public void timeIsOut () {
+    public void timeIsOut (Game game) {
         JOptionPane.showMessageDialog(gui.getFrame(), "Time is out fking noob", "lol", JOptionPane.PLAIN_MESSAGE);
-        System.exit(0);
+        game.nextLevel(game.getLevelName());
     }
 
     public void setMoney(int money) {

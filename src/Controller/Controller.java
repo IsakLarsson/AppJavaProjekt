@@ -42,6 +42,9 @@ public class Controller {
     private Object lock;
     private Object startObject;
 
+    //
+    XMLParser parser;
+
     // Path to the xml
     String filePath;
 
@@ -55,7 +58,7 @@ public class Controller {
         startObject = new Object();
 
         this.filePath = filePath;
-        XMLParser parser = new XMLParser(filePath);
+        parser = new XMLParser(filePath);
         parser.parseXML();
 
         SwingUtilities.invokeLater(() -> {
@@ -139,13 +142,12 @@ public class Controller {
 
     /**
      * Starts a new game
-     * @param levelChoice the level that the user wants to play
      */
-    public void startNewGame(String levelChoice) {
+    public void startNewGame() {
         synchronized (lock){
-            System.out.println(levelChoice);
-            game.setLevelName(levelChoice);
+            game.setLevelName(parser.getLevels().get(0));
             game.setGameState(true);
+            gameFrame.getNewGame().setText("Restart");
         }
     }
 
@@ -153,7 +155,14 @@ public class Controller {
      * Tell the game to restart the game
      */
     public void restartLevel(){
-        game.restart();
+        game.nextLevel(game.getLevelName());
+    }
+
+    /**
+     *
+     */
+    public void restartGame() {
+        game.nextLevel(parser.getLevels().get(0));
     }
 
     /**

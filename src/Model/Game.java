@@ -181,7 +181,7 @@ public class Game extends Thread {
             level.addMoney(1);
             timeLimit--;
             if(timeLimit <= 0){
-                modelAdapter.timeIsOut();
+                modelAdapter.timeIsOut(this);
             }
 
             timeCounter = 0;
@@ -229,16 +229,10 @@ public class Game extends Thread {
         }
     }
 
-    public void restart() {
-        unitList = new ArrayList<>();
-        towerList = new ArrayList<>();
-        animator = new Animator(unitList);
-        mapIsDrawn = false;
-    }
-
     public void nextLevel(String levelName) {
         System.out.println("Next level: " + levelName);
         setLevelName(levelName);
+        timeLimit = 30;
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
         animator = new Animator(unitList);
@@ -248,4 +242,5 @@ public class Game extends Thread {
     public void setLevelName(String levelName) {
         this.levelName = levelName;
     }
+    public String getLevelName(){return this.levelName;}
 }

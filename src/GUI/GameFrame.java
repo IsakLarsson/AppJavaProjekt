@@ -22,6 +22,7 @@ public class GameFrame {
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
     private JMenuItem menuItem3;
+    private JMenuItem menuItem4;
     private JMenuItem menuItem5;
     private JMenuItem menuItem6;
 
@@ -92,17 +93,16 @@ public class GameFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
 
-        newGameMenu = new JMenu("New Game");
-        newGameMenu.add(createLevelMenu());
 
-        menuItem1 = new JMenuItem("Restart level");
-        menuItem2 = new JMenuItem("Pause");
-        menuItem3 = new JMenuItem("Quit");
+        menuItem1 = new JMenuItem("New Game");
+        menuItem2 = new JMenuItem("Restart level");
+        menuItem3 = new JMenuItem("Pause");
+        menuItem4 = new JMenuItem("Quit");
 
-        fileMenu.add(newGameMenu);
         fileMenu.add(menuItem1);
         fileMenu.add(menuItem2);
         fileMenu.add(menuItem3);
+        fileMenu.add(menuItem4);
 
         JMenu helpMenu = new JMenu("Help");
 
@@ -128,7 +128,6 @@ public class GameFrame {
         menuBar.add(bank);
         menuBar.add(timer);
 
-
         return menuBar;
     }
 
@@ -141,6 +140,7 @@ public class GameFrame {
         menuItem1.addActionListener(this.menuListener);
         menuItem2.addActionListener(this.menuListener);
         menuItem3.addActionListener(this.menuListener);
+        menuItem4.addActionListener(this.menuListener);
 
         //
         menuItem5.addActionListener(this.menuListener);
@@ -154,29 +154,6 @@ public class GameFrame {
         //
         gameWindow.getButton1().addActionListener(this.buttonListener);
         gameWindow.getButton2().addActionListener(this.buttonListener);
-
-        //
-        for (JMenuItem menuItem : levelList) {
-            menuItem.addActionListener(this.menuListener);
-        }
-    }
-
-    /**
-     * Creates a sub menu for the levels
-     * @return a menu
-     */
-    private JMenu createLevelMenu() {
-        JMenu levelMenu = new JMenu();
-
-        int i = 0;
-        for (String s : levels) {
-            System.out.println("Added level");
-            levelList.add(new JMenuItem(s));
-            levelMenu.add(levelList.get(i));
-            i++;
-        }
-
-        return levelMenu;
     }
 
     /**
@@ -205,5 +182,12 @@ public class GameFrame {
      */
     public GameWindow getGameWindow() {
         return gameWindow;
+    }
+
+    /**
+     *
+     */
+    public JMenuItem getNewGame() {
+        return menuItem1;
     }
 }
