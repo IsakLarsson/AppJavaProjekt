@@ -279,7 +279,6 @@ public class Game extends Thread {
      * @param levelName the name of the level
      */
     public void nextLevel(String levelName) {
-        System.out.println("Next level: " + levelName);
         setGameState(true);
         setLevelName(levelName);
         timeLimit = 200;
@@ -310,6 +309,13 @@ public class Game extends Thread {
                 return;
             }
         }
+    }
+
+    /**
+     *
+     */
+    public void refreshAdapter(ModelAdapter modelAdapter) {
+        this.modelAdapter = modelAdapter;
     }
 
     /**

@@ -40,6 +40,13 @@ public class ModelAdapter {
     }
 
     /**
+     *
+     */
+    public void refreshLevelQueue() {
+        levels = new LinkedList<>(levelsList);
+    }
+
+    /**
      * Sends the image to the gui
      * @param bi the image
      */
@@ -58,11 +65,12 @@ public class ModelAdapter {
         if (levels.peek() == null) {
             String[] options = {"Play again", "Quit", "High score"};
             int option = JOptionPane.showOptionDialog(null,
-                    "You won this level. Continue to the next one, or restart",
-                    "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    "Wow, you beaned the game!",
+                    "Gz!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     null, options, options[0]);
             if (option <= 0) {
-                game.nextLevel(levelsList.get(0));
+                refreshLevelQueue();
+                game.nextLevel(levels.poll());
             } else if (option == 1) {
                 System.exit(0);
             } else {

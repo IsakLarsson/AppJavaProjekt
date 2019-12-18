@@ -10,6 +10,7 @@ import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
 import Model.XML.XMLParser;
 import Model.XML.XMLSchemaValidator;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import javax.swing.*;
 
@@ -194,8 +195,9 @@ public class Controller {
         game.setUserName(uName);
         game.setGameState(true);
         game.setTeleported(true);
+        adapter = new ModelAdapter(gameFrame, parser.getLevels());
+        game.refreshAdapter(adapter);
         game.nextLevel(parser.getLevels().get(0));
-        gameFrame.getNewGame().setText("New Game");
     }
 
     /**
