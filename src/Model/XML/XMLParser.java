@@ -79,12 +79,8 @@ public class XMLParser {
             map.setWinCondition(Integer.valueOf(node.getTextContent()));
 
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            return null;
         }
 
         return map;

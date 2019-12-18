@@ -111,6 +111,7 @@ public class Game extends Thread {
      * Shoots the all the towers in the tower list at every unit in range
      */
     private void shootTowers() {
+        System.out.println("BITCH " + towerList.size());
         Iterator<Unit> iterator = unitList.iterator();
         while(iterator.hasNext()) {
             Unit unit = iterator.next();

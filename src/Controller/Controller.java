@@ -59,7 +59,14 @@ public class Controller {
 
         this.filePath = filePath;
         parser = new XMLParser(filePath);
-        parser.parseXML();
+        Level level = parser.parseXML();
+        if (level == null) {
+            JOptionPane.showOptionDialog(null,
+                    "There was something wrong with the XML parsing",
+                    "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    null, null,null);
+            System.exit(0);
+        }
 
         SwingUtilities.invokeLater(() -> {
 

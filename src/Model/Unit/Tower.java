@@ -43,15 +43,14 @@ public class Tower {
         double b = Math.abs(yCord-unit.getY());
         double distance = a*a + b*b;
 
-        distance = Math.sqrt(distance); //here’s the hypotenuse.
+        distance = Math.sqrt(distance);
 
         if (range >= distance) {
 
             if (target == null) {
-
                 target = unit;
-
             }
+
             ((Graphics2D) graphics).setStroke(new BasicStroke(3));
             graphics.setColor(RED);
             graphics.drawLine(xCord + 15 ,yCord + 15,target.getX() + 15,
