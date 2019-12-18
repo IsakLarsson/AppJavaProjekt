@@ -7,8 +7,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//TODO: FIXA PREPARED STATMENTS
-//TODO: Score i 00:00(tid), högre desto bättre score
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ *  Provides an interface to simplify SQL interaction.
+ *
+ * @version 1.0 18 December 2019
+ * @author Albin Jönsson <c18ajs@cs.umu.se>
+ */
 
 public class SQLHandler {
     //"v135h19g2" is both username and name of database
@@ -56,44 +63,13 @@ public class SQLHandler {
     }
 
     /**
-     * Update an element in table G2Game
-     * @param updateName Name of the element to be updated
-     * @param update The update for "updateName"
-     * @param conditionName Name of the condition variable. Determines the condition to be met.
-     * @param condition The condition itself.
-     * Note: update and condition can only be integers
-     */
-    /*public void updateTable(String updateName, int update, String conditionName, int condition) {
-        try {
-            PreparedStatement preparedStatement = c.prepareStatement("UPDATE G2Game set Score=? WHERE Score=?");
-            //preparedStatement.setString(1, updateName);
-            preparedStatement.setInt(1, update);
-            //preparedStatement.setString(3, conditionName);
-            preparedStatement.setInt(2, condition);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Database error: " +
-                    "Failed to update table");
-        }
-
-
-        try {
-            s.execute("UPDATE G2Game SET " + updateName + "=" + update +
-                    " WHERE " + conditionName + "=" + condition);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Database error: " +
-                    "Failed to update table");
-        }
-    }*/
-
-    /**
      * Insert a value into table G2Game
      */
-    public void insertTable(String name, int level, int score) {
+    public void insertTable(String name, String level, int score) {
         try {
             PreparedStatement preparedStatement = c.prepareStatement("INSERT into G2Game values(?,?,?)");
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, level);
+            preparedStatement.setString(2, level);
             preparedStatement.setInt(3, score);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -104,13 +80,11 @@ public class SQLHandler {
 
     /**
      * Delete a value from table G2Game
-     * @param conditionName Name of the condition variable. Determines the condition to be met.
      * @param condition The condition itself.
      */
-    public void deleteTable(String conditionName, int condition) {
+    public void deleteTable(int condition) {
         try {
-            PreparedStatement preparedStatement = c.prepareStatement("DELETE from G2Game where Level=?");
-            //preparedStatement.setString(1, conditionName);
+            PreparedStatement preparedStatement = c.prepareStatement("DELETE from G2Game where Score=?");
             preparedStatement.setInt(1, condition);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -133,7 +107,7 @@ public class SQLHandler {
             for (int i = 0; i < tableSize; i++) {
                 res.next();
                 score.get(i).setName(res.getString(1));
-                score.get(i).setLevel(res.getInt(2));
+                score.get(i).setLevel(res.getString(2));
                 score.get(i).setScore(res.getInt(3));
             }
         } catch (SQLException e) {

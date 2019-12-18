@@ -1,6 +1,9 @@
 package Model;
 
 import GUI.GameFrame;
+import GUI.HighScore;
+import Model.XML.SQLHandler;
+
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -52,7 +55,7 @@ public class ModelAdapter {
      * @param game a reference to the game object
      */
     public void levelWon(Game game) {
-        String[] options = {"Next", "Restart"};
+        String[] options = {"Next", "Restart", "High score"};
         int option = JOptionPane.showOptionDialog(null,
                 "You won this level. Continue to the next one, or restart",
                 "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -66,6 +69,12 @@ public class ModelAdapter {
                 game.nextLevel(levels.poll());
             }
         }
+        //Print top 3 scores
+        else if (option == 2) {
+            SQLHandler sql = new SQLHandler();
+            sql.insertTable(game.getUserName(), game.getLevelName(), game.getTimeLimit());
+            printHighScore();
+        }
         else{
             game.nextLevel(game.getLevelName());
         }
@@ -75,8 +84,26 @@ public class ModelAdapter {
      * Tell the user he/she lost the game
      * @param game reference to the game object
      */
+    /**
+     * Prints high score in a dialog window
+     */
+    public void printHighScore() {
+        SQLHandler sql = new SQLHandler();
+        ArrayList<HighScore> score = sql.selectTable();
+        StringBuilder strB = new StringBuilder();
+        strB.append(" ------- Top 5 Highscores -------\n");
+        for (int i = 0; i < 5; i++) {
+            strB.append(score.get(i).getName()).append(" - ");
+            strB.append(score.get(i).getLevel()).append(" - ");
+            strB.append(score.get(i).getScore()).append("\n");
+        }
+        JOptionPane.showMessageDialog(gui.getFrame(), strB, "High score",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
     public void timeIsOut (Game game) {
-        JOptionPane.showMessageDialog(gui.getFrame(), "Time is out fking noob", "lol", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(gui.getFrame(), "Time is out fking noob",
+                "lol", JOptionPane.PLAIN_MESSAGE);
         game.nextLevel(game.getLevelName());
     }
 

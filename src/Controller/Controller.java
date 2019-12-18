@@ -145,6 +145,8 @@ public class Controller {
      */
     public void startNewGame() {
         synchronized (lock){
+            String uName = JOptionPane.showInputDialog("Enter your name: ");
+            game.setUserName(uName);
             game.setLevelName(parser.getLevels().get(0));
             game.setGameState(true);
             gameFrame.getNewGame().setText("Restart");
@@ -164,6 +166,8 @@ public class Controller {
      *
      */
     public void restartGame() {
+        String uName = JOptionPane.showInputDialog("Enter your name: ");
+        game.setUserName(uName);
         game.setGameState(true);
         game.setTeleported(true);
         game.nextLevel(parser.getLevels().get(0));

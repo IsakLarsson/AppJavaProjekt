@@ -1,6 +1,5 @@
 package Model;
 
-import GUI.HighScoreWindow;
 import Model.Unit.Teleporter;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
@@ -38,6 +37,8 @@ public class Game extends Thread {
     private String levelName;
     private int timeLimit = 200;
     private boolean teleported = true;
+    /** Name entered by user **/
+    private String userName;
 
     /**
      * Constructor for the game object
@@ -328,4 +329,28 @@ public class Game extends Thread {
      * @return the name
      */
     public String getLevelName(){return this.levelName;}
+
+    /**
+     * Getter for timeLimit
+     * @return timeLimit
+     */
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+
+    /**
+     * Getter for username
+     * @return username
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Setter for username
+     * @param userName username to be set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

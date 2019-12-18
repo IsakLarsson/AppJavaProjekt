@@ -1,6 +1,9 @@
 package Model.XML;
 
+import GUI.HighScore;
 import org.junit.jupiter.api.*;
+
+import java.util.ArrayList;
 
 //Runs tests in normal order
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -17,23 +20,20 @@ public class SQLHandlerTester {
     public void createTableTest(){
         sql.createTable();
     }
+
     @Test
     public void insertTableTest(){
-        sql.insertTable("Albin1", 1, 0);
-        sql.insertTable("Albin2", 1, 32);
-        sql.insertTable("Albin1", 2, 5);
-
-
+        sql.insertTable("TheNoob", "Level 1", 0);
     }
 
-    /*@Test
+    @Test
     public void selectTableTest(){
-        String str = sql.selectTable("name");
-        Assertions.assertEquals("Albin1", str);
-    }*/
+        ArrayList<HighScore> arr = sql.selectTable();
+        Assertions.assertEquals("Zezima", arr.get(0).getName());
+    }
 
     @Test
     public void deleteTableTest(){
-        sql.deleteTable("Level", 1);
+        sql.deleteTable( 0);
     }
 }
