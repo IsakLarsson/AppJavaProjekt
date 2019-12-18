@@ -264,6 +264,7 @@ public class Game extends Thread {
      */
     public void nextLevel(String levelName) {
         System.out.println("Next level: " + levelName);
+        setGameState(true);
         setLevelName(levelName);
         timeLimit = 200;
         unitList = new ArrayList<>();
