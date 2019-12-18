@@ -246,8 +246,11 @@ public class Game extends Thread {
         for (Unit unit : unitList) {
             if(unit instanceof Teleporter){
                 Tile tile = unit.getPath().getFirst();
-                TeleportArea tele = new TeleportArea(tile.getxCoordinate(), tile.getyCoordinate(), 40);
-                level.addTile(tele);
+                TeleportInArea tele = new TeleportInArea(tile.getxCoordinate(), tile.getyCoordinate(), 40);
+                Tile tile1 = unit.getPath().get(5);
+                TeleportOutArea tele1 = new TeleportOutArea(tile1.getxCoordinate(), tile1.getyCoordinate(), 40);
+                level.addPath(tele);
+                level.addPath(tele1);
                 mapIsDrawn = false;
                 teleported = false;
             }

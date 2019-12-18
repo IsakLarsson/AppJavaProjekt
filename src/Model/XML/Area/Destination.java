@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class Destination {
     private Queue<Integer> q;
-    private TeleportArea teleArea;
+    private TeleportInArea teleArea;
 
     public Destination() {
         q = new LinkedList<>();
@@ -27,16 +27,22 @@ public class Destination {
         int start = 0;
         int i = 0;
 
-        //TODO här måste det till en big brain
-        if (firstTile instanceof AreaEffect){
-            teleArea = (TeleportArea) firstTile;
-            teleArea.landOn(tiles);
-        }
-
         if (secondTile == null) {
             //System.out.println("Game over??");
             return q;
         }
+
+        //TODO här måste det till en big brain
+        if (firstTile instanceof AreaEffect){
+            teleArea = (TeleportInArea) firstTile;
+            teleArea.landOn(tiles);
+            start = firstTile.getxCoordinate()*firstTile.getSize();
+            for (Tile tile : tiles) {
+                if(tile instanceof TeleportOutArea){
+                }
+            }
+        }
+
 
         if (firstTile.getxCoordinate() < secondTile.getxCoordinate()
                 || firstTile.getxCoordinate() > secondTile.getxCoordinate()) {
