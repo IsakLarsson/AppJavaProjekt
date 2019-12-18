@@ -64,6 +64,9 @@ public class SQLHandler {
 
     /**
      * Insert a value into table G2Game
+     * @param name
+     * @param level
+     * @param score
      */
     public void insertTable(String name, String level, int score) {
         try {

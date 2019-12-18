@@ -301,6 +301,8 @@ public class Game extends Thread {
                 level.addInTeleport(((Teleporter) unit).getSteps(), inTile);
                 level.addOutTeleport(((Teleporter) unit).getSteps() + 5,
                         outTile);
+
+
                 mapIsDrawn = false;
                 teleported = false;
                 return;
