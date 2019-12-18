@@ -15,9 +15,6 @@ public class GameFrame {
     private JFrame frame;
     private ButtonListener buttonListener;
     private MenuListener menuListener;
-    private ArrayList<JMenuItem> levelList;
-
-    private JMenu newGameMenu;
 
     private JMenuItem menuItem1;
     private JMenuItem menuItem2;
@@ -56,7 +53,6 @@ public class GameFrame {
 
         this.gameWindow = gameWindow;
         this.levels = levels;
-        this.levelList = new ArrayList<>();
 
         frame.setJMenuBar(buildMenuBar());
         frame.setContentPane(gameWindow);
@@ -166,6 +162,13 @@ public class GameFrame {
         //
         gameWindow.getButton1().addActionListener(this.buttonListener);
         gameWindow.getButton2().addActionListener(this.buttonListener);
+    }
+
+    public void setButtonState(Boolean state) {
+        button1.setEnabled(state);
+        button2.setEnabled(state);
+        button3.setEnabled(state);
+        menuItem2.setEnabled(state);
     }
 
     /**
