@@ -30,6 +30,10 @@ public class GameFrame {
     private JButton button2;
     private JButton button3;
 
+    private JLabel cost1;
+    private JLabel cost2;
+    private JLabel cost3;
+
     private JLabel bank;
     private JLabel timer;
 
@@ -116,15 +120,21 @@ public class GameFrame {
         button2 = new JButton("Soldier");
         button3 = new JButton("Teleporter");
 
+        cost1 = new JLabel("$5");
+        cost2 = new JLabel("$10");
+        cost3 = new JLabel("$20");
         bank = new JLabel("€: ");
-
         timer = new JLabel(" Time: 00");
 
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
         menuBar.add(button1);
+        menuBar.add(cost1);
         menuBar.add(button2);
+        menuBar.add(cost2);
         menuBar.add(button3);
+        menuBar.add(cost3);
+        menuBar.add(Box.createHorizontalGlue());
         menuBar.add(bank);
         menuBar.add(timer);
 
@@ -185,14 +195,14 @@ public class GameFrame {
     }
 
     /**
-     *
+     * @return the new menu menuitem
      */
     public JMenuItem getNewGame() {
         return menuItem1;
     }
 
     /**
-     *
+     * @return the pause menu menuitem
      */
     public JMenuItem getPause() {
         return menuItem3;
