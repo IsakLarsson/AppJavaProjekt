@@ -1,12 +1,12 @@
 package Model;
 
+import GUI.HighScoreWindow;
+import Model.Unit.Teleporter;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
-import Model.XML.Area.Path;
-import Model.XML.Area.Tile;
-import Model.XML.Area.TowerArea;
+import Model.XML.Area.*;
 import Model.XML.XMLParser;
-import Model.XML.Area.Destination;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * The game logic thread that handles all calculations and
- * sends them to the view via a adapter
+ * sends them to the view via an adapter
  */
 public class Game extends Thread {
     private List<Unit> unitList;
@@ -36,7 +36,8 @@ public class Game extends Thread {
     private Boolean mapIsDrawn = false;
     private String pathFile;
     private String levelName;
-    private int timeLimit = 30;
+    private int timeLimit = 200;
+    private boolean teleported = true;
 
     public Game(ModelAdapter adapter, int updateInterval, String pathFile) {
 
@@ -109,10 +110,12 @@ public class Game extends Thread {
             return;
         }
         // XML level
-        XMLParser parser = new XMLParser(pathFile, levelName);
-        this.level = parser.parseXML();
+        if(teleported) {
+            XMLParser parser = new XMLParser(pathFile, levelName);
+            this.level = parser.parseXML();
+        }
 
-        backgroundImage = new BufferedImage(400, 400,
+        backgroundImage = new BufferedImage(800, 800,
                 BufferedImage.TYPE_INT_ARGB);
         Graphics g = backgroundImage.getGraphics();
         modelAdapter.setMoney(level.getMoney());
@@ -129,8 +132,8 @@ public class Game extends Thread {
 
         ArrayList<TowerArea> towerAreas = level.getTowerAreas();
         for(int i = 0; i < towerAreas.size(); i++) {
-            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 20,
-                    towerAreas.get(i).getyCoordinate() * 20);
+            Tower tower = new Tower(towerAreas.get(i).getxCoordinate() * 40,
+                    towerAreas.get(i).getyCoordinate() * 40);
             towerList.add(tower);
         }
 
@@ -173,7 +176,7 @@ public class Game extends Thread {
 
     /**
      * Increases money with 1 every 20 updates and decreases time with 1
-     * and updates sends updates to gui.
+     * and sends updates to gui.
      */
     private void eachSecond(){
         timeCounter++;
@@ -232,11 +235,23 @@ public class Game extends Thread {
     public void nextLevel(String levelName) {
         System.out.println("Next level: " + levelName);
         setLevelName(levelName);
-        timeLimit = 30;
+        timeLimit = 200;
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();
         animator = new Animator(unitList);
         mapIsDrawn = false;
+    }
+
+    public void teleport(){
+        for (Unit unit : unitList) {
+            if(unit instanceof Teleporter){
+                Tile tile = unit.getPath().getFirst();
+                TeleportArea tele = new TeleportArea(tile.getxCoordinate(), tile.getyCoordinate(), 40);
+                level.addTile(tele);
+                mapIsDrawn = false;
+                teleported = false;
+            }
+        }
     }
 
     public void setLevelName(String levelName) {

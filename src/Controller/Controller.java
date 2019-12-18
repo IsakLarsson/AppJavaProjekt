@@ -33,7 +33,7 @@ public class Controller {
     private ModelAdapter adapter;
 
     // Interval for which the game should update
-    private int updateInterval = 50;
+    private int updateInterval = 10;
 
     // A game object
     private Game game;
@@ -105,7 +105,7 @@ public class Controller {
     }
 
     public void teleportUnit() {
-
+        game.teleport();
     }
 
     /**

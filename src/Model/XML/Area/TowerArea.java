@@ -14,7 +14,7 @@ public class TowerArea extends Tile {
             texture = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images" +
                             "/TowerArea.png"));
-            texture = texture.getScaledInstance(20,20,Image.SCALE_SMOOTH);
+            texture = texture.getScaledInstance(size, size, Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

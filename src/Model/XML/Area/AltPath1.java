@@ -14,7 +14,7 @@ public class AltPath1 extends Tile{
             texture = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/PathTile" +
                             ".png"));
-            texture = texture.getScaledInstance(20,20,Image.SCALE_SMOOTH);
+            texture = texture.getScaledInstance(size,size,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

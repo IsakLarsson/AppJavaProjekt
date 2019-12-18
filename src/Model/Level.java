@@ -17,8 +17,6 @@ public class Level {
     private Tile[][] tileMap;
     private LinkedList<Tile> path;
     private LinkedList<Tile> path2;
-    private SpawnArea spawnArea;
-    private GoalArea goalArea;
     private ArrayList<TowerArea> towerAreas;
     private int money;
     private int winCondition;
@@ -33,7 +31,7 @@ public class Level {
         tileMap = new Tile[mapSize][mapSize];
         for(int i = 0; i < mapSize; i++){
             for(int j = 0; j < mapSize; j++){
-                tileMap[i][j] = new FillArea(i,j,20);
+                tileMap[i][j] = new FillArea(i,j,40);
             }
         }
         path = new LinkedList<>();
@@ -88,10 +86,6 @@ public class Level {
         tileMap[tile.getxCoordinate()][tile.getyCoordinate()] = tile;
     }
 
-    public LinkedList<Tile> getPath() {
-        return path;
-    }
-
     /**
      * Changes what path is returned with getPath().
      * This is if there is an alternative path to take.
@@ -104,8 +98,21 @@ public class Level {
         path2 = temp;
     }
 
+    public int buyUnit(int unitCost){
+        money = money - unitCost;
+        return money;
+    }
+
+    public void dmgBase(int dmg){
+        winCondition = winCondition - dmg;
+    }
+
     public ArrayList<TowerArea> getTowerAreas(){
         return towerAreas;
+    }
+
+    public LinkedList<Tile> getPath() {
+        return path;
     }
 
     public Tile getTile(int x, int y){
@@ -120,17 +127,8 @@ public class Level {
         money = money + add;
     }
 
-    public int buyUnit(int unitCost){
-        money = money - unitCost;
-        return money;
-    }
-
     public int getMoney(){
         return money;
-    }
-
-    public void dmgBase(int dmg){
-        winCondition = winCondition - dmg;
     }
 
     public void setWinCondition(int winCondition){
