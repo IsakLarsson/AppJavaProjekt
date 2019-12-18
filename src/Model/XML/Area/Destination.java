@@ -8,7 +8,7 @@ import java.util.Queue;
  */
 public class Destination {
     private Queue<Integer> q;
-    private TeleportArea teleArea;
+    private TeleportInArea teleArea;
 
     /**
      * Constructor, creates a new linked list
@@ -34,14 +34,21 @@ public class Destination {
         int dest = 0;
         int start = 0;
 
-        if (firstTile instanceof AreaEffect){
-            teleArea = (TeleportArea) firstTile;
-            teleArea.landOn(tiles);
-        }
-
         if (secondTile == null) {
             return q;
         }
+
+        //TODO här måste det till en big brain
+        if (firstTile instanceof AreaEffect){
+            teleArea = (TeleportInArea) firstTile;
+            teleArea.landOn(tiles);
+            start = firstTile.getxCoordinate()*firstTile.getSize();
+            for (Tile tile : tiles) {
+                if(tile instanceof TeleportOutArea){
+                }
+            }
+        }
+
 
         if (firstTile.getxCoordinate() < secondTile.getxCoordinate()
                 || firstTile.getxCoordinate() > secondTile.getxCoordinate()) {

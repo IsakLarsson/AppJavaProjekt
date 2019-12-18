@@ -5,10 +5,10 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class TeleportArea extends Tile implements AreaEffect {
+public class TeleportInArea extends Tile implements AreaEffect {
     private Image texture;
 
-    public TeleportArea(int xCoordinate, int yCoordinate, int size) {
+    public TeleportInArea(int xCoordinate, int yCoordinate, int size) {
         super(xCoordinate, yCoordinate, size);
         setColor(Color.orange);
         try {
