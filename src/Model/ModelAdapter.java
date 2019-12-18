@@ -55,35 +55,36 @@ public class ModelAdapter {
      * @param game a reference to the game object
      */
     public void levelWon(Game game) {
-        String[] options = {"Next", "Restart", "High score"};
-        int option = JOptionPane.showOptionDialog(null,
-                "You won this level. Continue to the next one, or restart",
-                "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                null, options, options[0]);
-
-        if (option <= 0) {
-            if (levels.peek() == null) {
-                JOptionPane.showMessageDialog(gui.getFrame(), "Wow, did you just win the game? Cool.", "gz", JOptionPane.PLAIN_MESSAGE);
+        if (levels.peek() == null) {
+            String[] options = {"Play again", "Quit", "High score"};
+            int option = JOptionPane.showOptionDialog(null,
+                    "You won this level. Continue to the next one, or restart",
+                    "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    null, options, options[0]);
+            if (option <= 0) {
                 game.nextLevel(levelsList.get(0));
+            } else if (option == 1) {
+                System.exit(0);
             } else {
-                game.nextLevel(levels.poll());
+                game.displayHighscore();
             }
-        }
-        //Print top 3 scores
-        else if (option == 2) {
-            SQLHandler sql = new SQLHandler();
-            sql.insertTable(game.getUserName(), game.getLevelName(), game.getTimeLimit());
-            printHighScore();
-        }
-        else{
-            game.nextLevel(game.getLevelName());
+        } else {
+            String[] options = {"Next", "Restart", "High score"};
+            int option = JOptionPane.showOptionDialog(null,
+                    "You won this level. Continue to the next one, or restart",
+                    "You won!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    null, options, options[0]);
+            if (option <= 0) {
+                game.nextLevel(levels.poll());
+            } else if (option == 1) {
+                game.nextLevel(game.getLevelName());
+            } else {
+                game.displayHighscore();
+            }
+
         }
     }
 
-    /**
-     * Tell the user he/she lost the game
-     * @param game reference to the game object
-     */
     /**
      * Prints high score in a dialog window
      */
@@ -101,6 +102,10 @@ public class ModelAdapter {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * Tell the user he/she lost the game
+     * @param game reference to the game object
+     */
     public void timeIsOut (Game game) {
         JOptionPane.showMessageDialog(gui.getFrame(), "Time is out fking noob",
                 "lol", JOptionPane.PLAIN_MESSAGE);

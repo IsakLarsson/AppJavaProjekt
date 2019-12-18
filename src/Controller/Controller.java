@@ -190,7 +190,6 @@ public class Controller {
         gameFrame.setButtonState(false);
         gameFrame.getPause().setText("Resume");
         gameWindow.setToolBarState(false);
-
     }
 
     /**
@@ -202,6 +201,7 @@ public class Controller {
         gameFrame.getPause().setText("Pause");
         gameWindow.setToolBarState(true);
     }
+
     /**
      * Quits the game
      */

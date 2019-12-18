@@ -4,6 +4,7 @@ import Model.Unit.Teleporter;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.*;
+import Model.XML.SQLHandler;
 import Model.XML.XMLParser;
 
 import javax.swing.*;
@@ -308,6 +309,15 @@ public class Game extends Thread {
                 return;
             }
         }
+    }
+
+    /**
+     * Display the highscore dialog
+     */
+    public void displayHighscore() {
+        SQLHandler sql = new SQLHandler();
+        sql.insertTable(getUserName(), getLevelName(), getTimeLimit());
+        modelAdapter.printHighScore();
     }
 
     /**
