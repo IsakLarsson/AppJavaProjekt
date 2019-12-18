@@ -155,6 +155,7 @@ public class Controller {
      * Tell the game to restart the game
      */
     public void restartLevel(){
+        game.setGameState(true);
         game.nextLevel(game.getLevelName());
     }
 
@@ -162,7 +163,9 @@ public class Controller {
      *
      */
     public void restartGame() {
+        game.setGameState(true);
         game.nextLevel(parser.getLevels().get(0));
+        gameFrame.getNewGame().setText("New Game");
     }
 
     /**
@@ -170,16 +173,17 @@ public class Controller {
      */
     public void pauseGame(){
         game.setGameState(false);
-        int option = JOptionPane.showOptionDialog(null, "Game is paused. Press OK to continue",
-                "Pause", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                null, null, null);
-
-        if (option <= 0)  {
-            game.setGameState(true);
-        }
+        gameFrame.getPause().setText("Resume");
 
     }
 
+    /**
+     *
+     */
+    public void resumeGame() {
+        game.setGameState(true);
+        gameFrame.getPause().setText("Pause");
+    }
     /**
      * Quits the game
      */

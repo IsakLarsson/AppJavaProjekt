@@ -41,6 +41,9 @@ public class MenuListener implements ActionListener {
             case "Pause":
                 controller.pauseGame();
                 break;
+            case "Resume":
+                controller.resumeGame();
+                break;
             case "Quit":
                 controller.quitGame();
                 break;

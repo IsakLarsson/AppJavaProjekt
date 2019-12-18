@@ -190,4 +190,11 @@ public class GameFrame {
     public JMenuItem getNewGame() {
         return menuItem1;
     }
+
+    /**
+     *
+     */
+    public JMenuItem getPause() {
+        return menuItem3;
+    }
 }
