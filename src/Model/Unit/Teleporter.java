@@ -13,7 +13,6 @@ public class Teleporter implements Unit{
     private Image image;
     private int hp = 150;
     private int cost = 20;
-    private int speed = 20;
     private int dmg = 5;
     private LinkedList<Tile> path;
     private Queue<Integer> queue;
@@ -24,7 +23,7 @@ public class Teleporter implements Unit{
         try {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Teleporter.png"));
-            image = image.getScaledInstance(15,20,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(30,40,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

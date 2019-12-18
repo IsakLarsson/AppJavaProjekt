@@ -15,7 +15,7 @@ public class TeleportArea extends Tile implements AreaEffect {
             texture = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Portal" +
                             ".jpg"));
-            texture = texture.getScaledInstance(20,20,Image.SCALE_SMOOTH);
+            texture = texture.getScaledInstance(size,size,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class XMLParser {
 
-    private int TILE_SIZE = 20;
+    private int TILE_SIZE = 40;
     private int mapSize;
     private ArrayList<String> levels= new ArrayList<>();
     private Level map;
@@ -137,7 +137,6 @@ public class XMLParser {
                 case "AltPath2":
                     map.addAltPath2((Tile) tileObject);
                 default:
-                    System.out.println("Couldn't find specified tile");
                     map.addTile((Tile) tileObject);
             }
 
@@ -156,8 +155,8 @@ public class XMLParser {
 
     /**
      * Reads the size of the map from the XML file
-     * @param level
-     * @return an integer with the mapsize.
+     * @param level Element from which mapSize is gathered.
+     * @return an integer with the size of the map.
      */
     private int getMapSize(Element level) {
         NodeList sizeOfMap = level.getElementsByTagName("mapSize");
@@ -168,10 +167,6 @@ public class XMLParser {
         return Integer.valueOf(size);
     }
 
-
-    public int getMapSize(){
-        return mapSize;
-    }
     public ArrayList<String> getLevels(){
         return levels;
     }

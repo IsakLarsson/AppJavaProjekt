@@ -15,7 +15,7 @@ import static java.awt.Color.red;
 public class Tower {
     private int size = 20;
     private int dmg = 1;
-    private int range = 50;
+    private int range = 100;
     private Image image;
     private Unit target;
     //Position
@@ -32,7 +32,7 @@ public class Tower {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Farmer" +
                             ".png"));
-            image = image.getScaledInstance(20,20,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(30,40,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }
