@@ -1,6 +1,5 @@
 package Model.XML.Area;
 
-import Model.Logic.Position;
 
 import java.awt.*;
 
@@ -16,10 +15,11 @@ import java.awt.*;
 
 public class Tile {
 
-    private Position position;
     private int size;
     private Color color;
     private Image texture;
+    private int xCoordinate;
+    private int yCoordinate;
 
     /**
      * Constructor for the Tile.
@@ -28,17 +28,17 @@ public class Tile {
      * @param size Size of the tile representation.
      */
     public Tile(int xCoordinate, int yCoordinate, int size){
-
-        this.position = new Position(xCoordinate, yCoordinate);
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
         this.size = size;
     }
 
     public int getxCoordinate() {
-        return position.getX();
+        return xCoordinate;
     }
 
     public int getyCoordinate() {
-        return position.getY();
+        return yCoordinate;
     }
 
     public int getSize() {

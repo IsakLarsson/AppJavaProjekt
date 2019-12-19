@@ -113,11 +113,10 @@ public class XMLParser {
 
     /**
      * Gets objects from a list of nodes and creates tile objects via
-     * java reflection based on their atrribute names and returns a created
+     * java reflection based on their attribute names and returns a created
      * object
      * @param tileList the NodeList to read from
      * @param index the index to get the node from
-     * @return An object created from a Tile class
      */
     private void getTile(NodeList tileList, int index) {
         try {
@@ -134,7 +133,7 @@ public class XMLParser {
             int Y = Integer.valueOf(tokens[1]);
 
             Class<?> tileClass =
-                    Class.forName("Model.XML.Area."+ tileAttribute);
+                    Class.forName("Model.XML.Area." + tileAttribute);
             Constructor tileConstructor =
                     tileClass.getDeclaredConstructor(int.class, int.class
                             , int.class);
