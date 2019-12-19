@@ -18,9 +18,9 @@ import java.util.Queue;
 public class Farmer implements Unit {
 
     private Image image;
-    private int hp = 50;
-    private int cost = 10;
-    private int dmg = 1;
+    private int hp = 200;
+    private int cost = 5;
+    private int dmg = 3;
     private LinkedList<Tile> path;
     private Queue<Integer> queue;
 

@@ -19,7 +19,7 @@ import javax.swing.*;
  */
 public class Controller {
 
-    // The frame of the game
+    /**Gameframe*/
     private GameFrame gameFrame;
 
     // The window inside the frame
