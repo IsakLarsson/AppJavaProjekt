@@ -30,6 +30,7 @@ public class ButtonListener implements ActionListener {
         switch (s) {
             case "Teleport":
                 controller.teleportUnit();
+                controller.setTeleportButton(false);
                 break;
             case "Switch Path":
                 controller.splitPath();

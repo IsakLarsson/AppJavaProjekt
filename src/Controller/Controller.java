@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import javax.swing.text.StyledEditorKit;
 
 /**
  * 5DV135 - Application Development in Java
@@ -163,7 +164,11 @@ public class Controller {
                 game = new Game(adapter, updateInterval, stream, filePath);
                 game.start();
             } catch (InterruptedException e) {
-                //Skriv lämpligt fel
+                JOptionPane.showOptionDialog(null,
+                        "There was something wrong with the threading",
+                        "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                        null, null,null);
+                System.exit(0);
             }
         }
     }
@@ -209,7 +214,6 @@ public class Controller {
                 Teleporter teleporter = new Teleporter();
                 bank = game.spawn(teleporter);
                 gameFrame.getBank().setText("€ " + bank);
-                //gameFrame.getButton3().setEnabled(false);
                 break;
         }
     }
@@ -233,7 +237,7 @@ public class Controller {
      * Tell the game to restart the game
      */
     public void restartLevel(){
-        gameFrame.getButton3().setEnabled(true);
+        gameWindow.getButton1().setEnabled(true);
         game.setGameState(true);
         game.setTeleported(true);
         game.nextLevel(game.getLevelName());
@@ -244,7 +248,7 @@ public class Controller {
      */
     public void restartGame() {
         String uName = JOptionPane.showInputDialog("Enter your name: ");
-        gameFrame.getButton3().setEnabled(true);
+        gameWindow.getButton1().setEnabled(true);
         game.setUserName(uName);
         game.setGameState(true);
         game.setTeleported(true);
@@ -274,9 +278,16 @@ public class Controller {
     }
 
     /**
-     * Quits the game.
+     * Quits the game
      */
     public void quitGame(){
         System.exit(0);
+    }
+
+    /**
+     * Set teleport button state
+     */
+    public void setTeleportButton(Boolean state) {
+        gameWindow.getButton1().setEnabled(false);
     }
 }
