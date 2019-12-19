@@ -1,10 +1,3 @@
-/**
- *
- * Farmer
- * Version 1.0
- *
- */
-
 package Model.Unit;
 
 import Model.XML.Area.Tile;
@@ -14,6 +7,16 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * The farmer unit. An implementation of Unit.
+ *
+ * @version 1.0 18 December 2019
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ */
 
 public class Farmer implements Unit {
 
@@ -27,6 +30,11 @@ public class Farmer implements Unit {
     //Position
     private int x,y;
 
+
+    /**
+     * The constructor for the farmer-unit. The constructor sets the
+     * the image of the unit.
+     */
     public Farmer() {
         try {
             image = ImageIO.read(
@@ -36,12 +44,20 @@ public class Farmer implements Unit {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Sets units pathList so the unit konws where to move.
+     * @param path The list of path tiles.
+     */
     @Override
     public void setTileQueue(LinkedList<Tile> path) {
         this.path = path;
     }
 
+    /**
+     * Moves unit and draws unit at the new position.
+     * @param g Graphics unit is to be drawn on.
+     * @return Dmg to base if unit has reached goal.
+     */
     @Override
     public int move(Graphics g) {
         if (!queue.isEmpty()) {
@@ -54,11 +70,19 @@ public class Farmer implements Unit {
         }
     }
 
+    /**
+     * Set the queue that unit moves after.
+     * @param queue Queue to be set.
+     */
     @Override
     public void setPixelPositionQueue(Queue queue) {
         this.queue = queue;
     }
 
+    /**
+     * This method decreases the hp of the unit.
+     * @param DMG The amount of hp taken away.
+     */
     public void takeDMG(int DMG) {
         hp = hp - DMG;
     }

@@ -1,10 +1,3 @@
-/**
- *
- * Soldier
- * Version 1.0
- *
- */
-
 package Model.Unit;
 
 import Model.XML.Area.Tile;
@@ -24,6 +17,15 @@ public class Soldier implements Unit {
     private Queue<Integer> queue;
     private LinkedList<Tile> path;
 
+    /**
+     * 5DV135 - Application Development in Java
+     * Department of Computing Science, Umeå University
+     *
+     * The soldier unit. An implementation of Unit.
+     *
+     * @version 1.0 18 December 2019
+     * @author Axel Jakobsson <c18ajn@cs.umu.se>
+     */
 
     private int x,y;
 

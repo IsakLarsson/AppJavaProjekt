@@ -17,10 +17,21 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+
 /**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
  * The game logic thread that handles all calculations and
  * sends them to the view via an adapter
+ *
+ * @version 1.0 18 December 2019
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ * @author Isak Larsson <@cs.umu.se>
+ * @author Joel Bystedt <@cs.umu.se>
+ * @author Albin Jönsson <@cs.umu.se>
  */
+
 public class Game extends Thread {
     private List<Unit> unitList;
     private List<Tower> towerList;
@@ -108,7 +119,7 @@ public class Game extends Thread {
     }
 
     /**
-     * Shoots the all the towers in the tower list at every unit in range
+     * Shoots the all the towers in the tower list at every unit in range.
      */
     private void shootTowers() {
         Iterator<Unit> iterator = unitList.iterator();
@@ -124,8 +135,8 @@ public class Game extends Thread {
     }
 
     /**
-     * Draws the map, and the towers, once
-     * @param levelName name of the level to be drawn
+     * Draws the map, and spawns the towers.
+     * @param levelName name of the level to be drawn.
      */
     public void drawMap(String levelName) {
         if (mapIsDrawn) {
@@ -169,9 +180,9 @@ public class Game extends Thread {
     }
 
     /**
-     * Deep copies a buffered image
-     * @param bi the image
-     * @return a deep copy of the image
+     * Deep copies a bufferedimage.
+     * @param bi the image.
+     * @return a deep copy of the image.
      */
     public static BufferedImage deepCopyImage(BufferedImage bi) {
         ColorModel cm = bi.getColorModel();
@@ -181,7 +192,7 @@ public class Game extends Thread {
     }
 
     /**
-     * Draws each unit on the map if the unit is alive
+     * Draws each unit on the map if the unit is alive.
      */
     public void drawUnits(){
         updatedImage = deepCopyImage(backgroundImage);
@@ -225,7 +236,7 @@ public class Game extends Thread {
     }
 
     /**
-     * Changes the path to the alternetiv  path if there is one.
+     * Changes the path to the alternative  path if there is one.
      */
     public void changePath(){
         level.changePath();
@@ -274,8 +285,8 @@ public class Game extends Thread {
     }
 
     /**
-     * Sets a new level
-     * @param levelName the name of the level
+     * Sets a new level.
+     * @param levelName the name of the level.
      */
     public void nextLevel(String levelName) {
         setGameState(true);
@@ -288,7 +299,8 @@ public class Game extends Thread {
     }
 
     /**
-     *
+     *  The first teleportUnit in the list spawns a teleportInArea and teleportOutArea
+     *  if there is an teleportUnit out on the map.
      */
     public void teleport(){
         for (Unit unit : unitList) {
@@ -310,14 +322,14 @@ public class Game extends Thread {
     }
 
     /**
-     *
+     * Refreshes the adapter.
      */
     public void refreshAdapter(ModelAdapter modelAdapter) {
         this.modelAdapter = modelAdapter;
     }
 
     /**
-     * Display the highscore dialog
+     * Display the highscore dialog.
      */
     public void displayHighscore() {
         SQLHandler sql = new SQLHandler();
@@ -334,7 +346,8 @@ public class Game extends Thread {
     }
 
     /**
-     *
+     *  Set teleported bool so that drawmap() dose'nt reads in map from xml again
+     *  or spawns additional towers.
      * @param bool
      */
     public void setTeleported(boolean bool){

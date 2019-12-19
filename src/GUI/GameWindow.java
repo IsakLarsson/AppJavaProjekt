@@ -4,10 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+
 /**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
  * A window inside the game frame, comes with a drawing canvas that
  * updates when repaint() i called
+ *
+ * @version 1.0 19 December 2019
+ * @author Joel Bystedt <@cs.umu.se>
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
  */
+
 public class GameWindow extends JPanel {
 
     // Buttons
@@ -91,24 +100,16 @@ public class GameWindow extends JPanel {
         button1.setEnabled(state);
         button2.setEnabled(state);
     }
-    /**
-     * @return the dimension of the canvas
-     */
+
     public static Dimension getDimension() {
         return new Dimension(CANVAS_WIDTH + 14,
                 CANVAS_HEIGHT);
     }
 
-    /**
-     * @return a button
-     */
     public JButton getButton1() {
         return button1;
     }
 
-    /**
-     * @return a button
-     */
     public JButton getButton2() {
         return button2;
     }

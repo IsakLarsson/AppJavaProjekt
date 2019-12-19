@@ -9,8 +9,18 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * A window frame for the game
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * A window frame for the game.
+ *
+ * @version 1.0 19 December 2019
+ * @author Joel Bystedt <@cs.umu.se>
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ * @author Isak Larsson <@cs.umu.se>
+ * @author Albin Jönsson <@cs.umu.se>
  */
+
 public class GameFrame {
     private JFrame frame;
     private ButtonListener buttonListener;
@@ -164,6 +174,11 @@ public class GameFrame {
         gameWindow.getButton2().addActionListener(this.buttonListener);
     }
 
+
+    /**
+     * Set buttons to disable or enabled.
+     * @param state Which state buttons are to be set to.
+     */
     public void setButtonState(Boolean state) {
         button1.setEnabled(state);
         button2.setEnabled(state);
@@ -171,46 +186,29 @@ public class GameFrame {
         menuItem2.setEnabled(state);
     }
 
-    /**
-     * @return the frame
-     */
     public JFrame getFrame() {
         return frame;
     }
 
-    /**
-     * @return the bank label
-     */
     public JLabel getBank(){
         return bank;
     }
 
-    /**
-     * @return the timer label
-     */
     public JLabel getTimer(){
         return timer;
     }
 
-    /**
-     * @return the game window
-     */
     public GameWindow getGameWindow() {
         return gameWindow;
     }
 
-    /**
-     * @return the new menu menuitem
-     */
     public JMenuItem getNewGame() {
         return menuItem1;
     }
 
-    /**
-     * @return the pause menu menuitem
-     */
     public JMenuItem getPause() {
         return menuItem3;
     }
+
     public JButton getButton3(){return button3;}
 }

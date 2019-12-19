@@ -10,13 +10,22 @@ import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
 import Model.XML.XMLParser;
 import Model.XML.XMLSchemaValidator;
-//import org.junit.jupiter.params.provider.EnumSource;
 
 import javax.swing.*;
 
 /**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
  * A controller that controls the model and view
+ *
+ * @version 1.0 18 December 2019
+ * @author Joel Bystedt <@cs.umu.se>
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ * @author Isak Larsson <@cs.umu.se>
+ * @author Albin Jönsson <@cs.umu.se>
  */
+
 public class Controller {
 
     /**Gameframe*/
@@ -43,10 +52,10 @@ public class Controller {
     private Object startObject;
 
     //
-    XMLParser parser;
+    private XMLParser parser;
 
     // Path to the xml
-    String filePath;
+    private String filePath;
 
     /**
      * The controller creates two threads, one for the gui,
@@ -190,7 +199,7 @@ public class Controller {
     }
 
     /**
-     *
+     * Restarts the game.
      */
     public void restartGame() {
         String uName = JOptionPane.showInputDialog("Enter your name: ");
@@ -204,7 +213,7 @@ public class Controller {
     }
 
     /**
-     * Set the game to paused, and show a dialog to the user
+     * Set the game to paused, and show a dialog to the user.
      */
     public void pauseGame(){
         game.setGameState(false);
@@ -214,7 +223,7 @@ public class Controller {
     }
 
     /**
-     *
+     * Resumes game.
      */
     public void resumeGame() {
         game.setGameState(true);
@@ -224,7 +233,7 @@ public class Controller {
     }
 
     /**
-     * Quits the game
+     * Quits the game.
      */
     public void quitGame(){
         System.exit(0);
