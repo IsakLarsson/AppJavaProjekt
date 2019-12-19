@@ -76,8 +76,6 @@ public class XMLCreator {
         try {
             transformer = transformerFac.newTransformer();
         } catch (TransformerConfigurationException e) {
-            JOptionPane.showMessageDialog(null, "XML error: " +
-                    "Failed to transform");
         }
 
         DOMSource source = new DOMSource(doc);
@@ -86,8 +84,6 @@ public class XMLCreator {
                 transformer.transform(source, streamRes);
             }
         } catch (TransformerException e) {
-            JOptionPane.showMessageDialog(null, "XML error: " +
-                    "Failed to transform");
         }
     }
 
