@@ -18,7 +18,7 @@ import java.util.Queue;
 public class Soldier implements Unit {
 
     private Image image;
-    private int hp = 100;
+    private int hp = 1000;
     private int dmg = 3;
     private int cost = 10;
     private Queue<Integer> queue;

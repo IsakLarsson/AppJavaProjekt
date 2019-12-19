@@ -23,7 +23,7 @@ public class Teleporter implements Unit{
         try {
             image = ImageIO.read(
                     this.getClass().getResourceAsStream("/GUI/images/Teleporter.png"));
-            image = image.getScaledInstance(30,40,Image.SCALE_SMOOTH);
+            image = image.getScaledInstance(20,30,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();
         }

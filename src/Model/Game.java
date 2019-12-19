@@ -302,7 +302,6 @@ public class Game extends Thread {
                 level.addOutTeleport(((Teleporter) unit).getSteps() + 5,
                         outTile);
 
-
                 mapIsDrawn = false;
                 teleported = false;
                 return;
