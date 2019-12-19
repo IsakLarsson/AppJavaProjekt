@@ -9,7 +9,7 @@ import java.io.IOException;
  * 5DV135 - Application Development in Java
  * Department of Computing Science, Umeå University
  *
- * Tile to fill unused areas.
+ * Tile for GaolArea.
  *
  * @version 1.0 18 December 2019
  * @author Isak Larsson <id17iln@cs.umu.se>
