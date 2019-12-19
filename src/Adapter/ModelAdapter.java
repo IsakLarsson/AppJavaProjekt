@@ -1,7 +1,9 @@
-package Model.Logic;
+package Adapter;
 
+import Model.Logic.Game;
+import Model.Logic.HighScore;
+import Model.Logic.SQLHandler;
 import View.GameFrame;
-import Model.XML.SQLHandler;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;

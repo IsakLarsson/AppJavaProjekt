@@ -1,7 +1,7 @@
 package Test;
 
 import Model.Logic.HighScore;
-import Model.XML.SQLHandler;
+import Model.Logic.SQLHandler;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
