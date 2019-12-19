@@ -183,6 +183,7 @@ public class Controller {
      * Tell the game to restart the game
      */
     public void restartLevel(){
+        gameFrame.getButton3().setEnabled(true);
         game.setGameState(true);
         game.setTeleported(true);
         game.nextLevel(game.getLevelName());
@@ -193,6 +194,7 @@ public class Controller {
      */
     public void restartGame() {
         String uName = JOptionPane.showInputDialog("Enter your name: ");
+        gameFrame.getButton3().setEnabled(true);
         game.setUserName(uName);
         game.setGameState(true);
         game.setTeleported(true);
