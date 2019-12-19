@@ -58,7 +58,7 @@ public class Controller {
         //TODO: Namnge .jar filen AntiTD.jar
         //Validerar bara Levels.XML i src.model.xml
         XMLSchemaValidator validator = new XMLSchemaValidator();
-        int validateValue = validator.validateXML();
+        int validateValue = validator.validateXML(filePath);
         if (validateValue < 0) {
             JOptionPane.showMessageDialog(null, "Format of XML-file is incorrect");
             System.exit(-1);

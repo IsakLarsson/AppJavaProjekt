@@ -35,16 +35,17 @@ public class XMLSchemaValidator {
 
     /**
      * Method to validate Levels.xml using XMLSchema.xsd
+     * @return Returns 0 on success and -1 on failure
      */
-    public int validateXML() {
+    public int validateXML(String filePath) {
         try {
-            schema = factory.newSchema(new StreamSource("src\\Model\\XML\\XMLSchema.xsd"));
+            schema = factory.newSchema(new StreamSource("src/Model/XML/XMLSchema.xsd"));
             Validator val = null;
             if (schema != null) {
                 val = schema.newValidator();
             }
             if (val != null) {
-                val.validate(new StreamSource("src\\Model\\XML\\Levels.xml"));
+                val.validate(new StreamSource(filePath));
             }
         }
         catch (SAXException | IOException e) {
