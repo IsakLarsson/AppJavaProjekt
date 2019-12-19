@@ -1,6 +1,6 @@
 package Model.XML.Area;
 
-import Model.Level;
+import Model.Logic.Level;
 import Model.XML.XMLParser;
 
 class DestinationTest {

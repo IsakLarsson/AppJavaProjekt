@@ -1,7 +1,6 @@
-package Model;
+package Model.Logic;
 
-import GUI.GameFrame;
-import GUI.HighScore;
+import View.GameFrame;
 import Model.XML.SQLHandler;
 
 import javax.swing.*;
@@ -15,10 +14,10 @@ import java.util.Queue;
  */
 public class ModelAdapter {
 
-    // GUI canvas
+    // View canvas
     private GameFrame gui;
 
-    // The image to be sent to GUI
+    // The image to be sent to View
     private BufferedImage image;
 
     //

@@ -1,4 +1,4 @@
-package GUI;
+package Model.Logic;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package Model;
+package Model.Logic;
 
 import Model.Unit.Teleporter;
 import Model.Unit.Unit;

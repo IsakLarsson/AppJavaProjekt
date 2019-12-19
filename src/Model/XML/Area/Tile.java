@@ -1,6 +1,6 @@
 package Model.XML.Area;
 
-import Model.Position;
+import Model.Logic.Position;
 
 import java.awt.*;
 

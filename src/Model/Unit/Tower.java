@@ -27,7 +27,7 @@ public class Tower {
 
         try {
             image = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images/Tower" +
+                    this.getClass().getResourceAsStream("/View/images/Tower" +
                             ".png"));
             image = image.getScaledInstance(size,size,Image.SCALE_AREA_AVERAGING);
         } catch (IOException e) {

@@ -37,7 +37,7 @@ public class Soldier implements Unit {
     public Soldier(){
         try {
             image = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images/Gubbe.png"));
+                    this.getClass().getResourceAsStream("/View/images/Gubbe.png"));
             image = image.getScaledInstance(20,30,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();

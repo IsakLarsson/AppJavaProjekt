@@ -27,7 +27,7 @@ public class FillArea extends Tile {
             super(xCoordinate, yCoordinate, size);
         try {
             texture = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images" +
+                    this.getClass().getResourceAsStream("/View/images" +
                             "/GrassTile2.png"));
             texture = texture.getScaledInstance(size, size, Image.SCALE_SMOOTH);
         } catch (IOException e) {

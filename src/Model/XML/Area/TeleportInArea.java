@@ -15,7 +15,7 @@ public class TeleportInArea extends Tile implements AreaEffect {
         setColor(Color.orange);
         try {
             texture = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images" +
+                    this.getClass().getResourceAsStream("/View/images" +
                             "/TeleportIn.png"));
             texture = texture.getScaledInstance(size,size,Image.SCALE_SMOOTH);
         } catch (IOException e) {

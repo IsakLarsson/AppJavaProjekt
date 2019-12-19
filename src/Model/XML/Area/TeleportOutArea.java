@@ -12,7 +12,7 @@ public class TeleportOutArea extends Tile {
         setColor(Color.orange);
         try {
             texture = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images" +
+                    this.getClass().getResourceAsStream("/View/images" +
                             "/TeleportOut.png"));
             texture = texture.getScaledInstance(size,size,Image.SCALE_SMOOTH);
         } catch (IOException e) {
