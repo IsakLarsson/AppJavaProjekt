@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *  Provides an interface to simplify SQL interaction.
  *
  * @version 1.0 18 December 2019
- * @author Albin Jönsson <c18ajs@cs.umu.se>
+ * @author Albin Jönsson c18ajs@cs.umu.se
  */
 
 public class SQLHandler {

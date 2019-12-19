@@ -12,7 +12,7 @@ import java.util.LinkedList;
  *  This is the representation of the level.
  *
  * @version 1.0 18 December 2019
- * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ * @author Axel Jakobsson c18ajn@cs.umu.se
  */
 
 public class Level {

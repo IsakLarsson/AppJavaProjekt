@@ -8,8 +8,18 @@ import Model.XML.Area.Tile;
 import java.util.*;
 
 /**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
  * Animator that handles the calculations, positions, and units.
+ *
+ * @version 1.0 18 December 2019
+ * @author Axel Jakobsson, c18ajn@cs.umu.se
+ * @author Isak Larsson, id17@ian@cs.umu.se
+ * @author Joel Bystedt, id17jbt@cs.umu.se
+ * @author Albin Jönsson, c18ajs@cs.umu.se
  */
+
 public class Animator {
     private List<Unit> unitList;
     private Object lock;

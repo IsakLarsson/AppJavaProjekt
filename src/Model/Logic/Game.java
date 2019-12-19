@@ -30,10 +30,10 @@ import java.util.List;
  * sends them to the view via an adapter
  *
  * @version 1.0 18 December 2019
- * @author Axel Jakobsson <c18ajn@cs.umu.se>
- * @author Isak Larsson <@cs.umu.se>
- * @author Joel Bystedt <@cs.umu.se>
- * @author Albin Jönsson <@cs.umu.se>
+ * @author Axel Jakobsson, c18ajn@cs.umu.se
+ * @author Isak Larsson, id17@ian@cs.umu.se
+ * @author Joel Bystedt, id17jbt@cs.umu.se
+ * @author Albin Jönsson, c18ajs@cs.umu.se
  */
 
 public class Game extends Thread {
