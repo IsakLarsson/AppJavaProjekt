@@ -1,6 +1,7 @@
-package Model.XML;
+package Test;
 
-import GUI.HighScore;
+import Model.HighScore;
+import Model.XML.SQLHandler;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;

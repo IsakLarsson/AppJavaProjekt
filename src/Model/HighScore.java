@@ -1,4 +1,4 @@
-package GUI;
+package Model;
 
 import java.util.Comparator;
 

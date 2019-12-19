@@ -1,6 +1,7 @@
-package Model.Unit;
+package Test;
 
 
+import Model.Unit.Farmer;
 import org.junit.jupiter.api.*;
 
 public class FarmerTest {

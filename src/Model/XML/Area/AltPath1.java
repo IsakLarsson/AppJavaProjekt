@@ -12,7 +12,7 @@ public class AltPath1 extends Tile{
         setColor(Color.orange);
         try {
             texture = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images/PathTile" +
+                    this.getClass().getResourceAsStream("/View/images/PathTile" +
                             ".png"));
             texture = texture.getScaledInstance(size,size,Image.SCALE_SMOOTH);
         } catch (IOException e) {

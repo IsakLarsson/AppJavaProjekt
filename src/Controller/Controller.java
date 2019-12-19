@@ -1,7 +1,7 @@
 package Controller;
 
-import GUI.GameFrame;
-import GUI.GameWindow;
+import View.GameFrame;
+import View.GameWindow;
 import Listeners.ButtonListener;
 import Listeners.MenuListener;
 import Model.*;

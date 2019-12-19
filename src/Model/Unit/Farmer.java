@@ -38,7 +38,7 @@ public class Farmer implements Unit {
     public Farmer() {
         try {
             image = ImageIO.read(
-                    this.getClass().getResourceAsStream("/GUI/images/Farmer.png"));
+                    this.getClass().getResourceAsStream("/View/images/Farmer.png"));
             image = image.getScaledInstance(20,30,Image.SCALE_SMOOTH);
         } catch (IOException e) {
             e.printStackTrace();

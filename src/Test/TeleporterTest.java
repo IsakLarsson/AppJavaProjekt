@@ -1,5 +1,6 @@
-package Model.Unit;
+package Test;
 
+import Model.Unit.Teleporter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

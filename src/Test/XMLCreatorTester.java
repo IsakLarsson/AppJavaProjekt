@@ -1,4 +1,5 @@
-package Model.XML;
+package Test;
+import Model.XML.XMLCreator;
 import org.junit.jupiter.api.*;
 
 /**
