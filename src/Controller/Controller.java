@@ -10,10 +10,16 @@ import Listeners.MenuListener;
 import Model.Unit.Farmer;
 import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
+import Model.XML.XMLCreator;
 import Model.XML.XMLParser;
 import Model.XML.XMLSchemaValidator;
 
 import javax.swing.*;
+import javax.xml.transform.stream.StreamSource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * 5DV135 - Application Development in Java
@@ -68,18 +74,41 @@ public class Controller {
         //TODO: Möjliggöra xml-fil som inparameter i terminal
         //TODO: Namnge .jar filen AntiTD.jar
         //Validerar bara Levels.XML i src.model.xml
+
+        InputStream stream = null;
+        if (filePath != null) {
+            try {
+                stream = new FileInputStream(new File(filePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            stream = ClassLoader.getSystemResourceAsStream("res/Levels.xml");
+        }
+
         XMLSchemaValidator validator = new XMLSchemaValidator();
-        int validateValue = validator.validateXML(filePath);
+        int validateValue = validator.validateXML(new StreamSource(stream));
         if (validateValue < 0) {
             JOptionPane.showMessageDialog(null, "Format of XML-file is incorrect");
             System.exit(-1);
+        }
+
+        if (filePath != null) {
+            try {
+                stream = new FileInputStream(new File(filePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            stream = ClassLoader.getSystemResourceAsStream("res/Levels.xml");
         }
 
         lock = new Object();
         startObject = new Object();
 
         this.filePath = filePath;
-        parser = new XMLParser(filePath);
+        parser = new XMLParser(stream);
+
         Level level = parser.parseXML();
         if (level == null) {
             JOptionPane.showOptionDialog(null,
@@ -121,7 +150,17 @@ public class Controller {
             try {
                 lock.wait();
                 adapter = new ModelAdapter(gameFrame, parser.getLevels());
-                game = new Game(adapter, updateInterval, filePath);
+
+                if (filePath != null) {
+                    try {
+                        stream = new FileInputStream(new File(filePath));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    stream = ClassLoader.getSystemResourceAsStream("res/Levels.xml");
+                }
+                game = new Game(adapter, updateInterval, stream, filePath);
                 game.start();
             } catch (InterruptedException e) {
                 //Skriv lämpligt fel

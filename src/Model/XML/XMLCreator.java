@@ -67,7 +67,7 @@ public class XMLCreator {
         createLevel2(levels);
 
         //Specify where the file should be created and the name of it
-        path = "src\\Model\\XML\\Levels.xml";
+        path = "src/Model/XML/Levels.xml";
         StreamResult streamRes = new StreamResult(new File(path));
 
         //Transform code to Levels.XML-format and place it in given directory(see path)

@@ -11,7 +11,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -35,15 +37,15 @@ public class XMLParser {
     private ArrayList<String> levels= new ArrayList<>();
     private Level map;
     private String levelName = "Level1";
-    private String filePath = "src/Model/XML/Levels.xml";
+    private InputStream inputStream;
 
     /**
      * Constructor for xmlParser.
      * @param filePath Path to xml file.
      * @param levelName Name of the level to be parsed.
      */
-    public XMLParser (String filePath, String levelName) {
-        this.filePath = filePath;
+    public XMLParser (InputStream streamSource, String levelName) {
+        this.inputStream = streamSource;
         this.levelName = levelName;
 
     }
@@ -52,8 +54,8 @@ public class XMLParser {
      * Constructor for xmlParser.
      * @param filePath Path to xml file.
      */
-    public XMLParser (String filePath) {
-        this.filePath = filePath;
+    public XMLParser (InputStream streamSource) {
+        this.inputStream = streamSource;
     }
 
     /**
@@ -65,7 +67,7 @@ public class XMLParser {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(filePath);
+            Document doc = builder.parse(inputStream);
             Element element = doc.getDocumentElement();
 
             NodeList nodes = element.getChildNodes();

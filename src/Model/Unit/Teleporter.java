@@ -21,7 +21,7 @@ import java.util.Queue;
 public class Teleporter implements Unit{
 
     private Image image;
-    private int hp = 150;
+    private int hp = 1500;
     private int cost = 20;
     private int dmg = 5;
     private LinkedList<Tile> path;

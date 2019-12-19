@@ -12,6 +12,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -45,22 +49,24 @@ public class Game extends Thread {
     private int timeCounter;
     private Boolean gameState = false;
     private Boolean mapIsDrawn = false;
-    private String pathFile;
+    private InputStream inputStream;
     private String levelName;
     private int timeLimit = 200;
     private boolean teleported = true;
     /** Name entered by user **/
     private String userName;
+    private String filePath;
 
     /**
      * Constructor for the game object
      * @param adapter adapter that handles coms between the model and view
      * @param updateInterval the interval of which the window should update
-     * @param pathFile path to the xml file
+     * @param inputStream path to the xml file
      */
-    public Game(ModelAdapter adapter, int updateInterval, String pathFile) {
+    public Game(ModelAdapter adapter, int updateInterval, InputStream inputStream, String filePath) {
 
-        this.pathFile = pathFile;
+        this.filePath = filePath;
+        this.inputStream = inputStream;
 
         // Array lists
         unitList = new ArrayList<>();
@@ -144,7 +150,20 @@ public class Game extends Thread {
         }
         // XML level
         if(teleported) {
-            XMLParser parser = new XMLParser(pathFile, levelName);
+            inputStream = null;
+            if (filePath != null) {
+                try {
+                    inputStream = new FileInputStream(new File(filePath));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                 inputStream = ClassLoader.getSystemResourceAsStream("res/Levels.xml");
+            }
+
+
+
+            XMLParser parser = new XMLParser(inputStream, levelName);
             this.level = parser.parseXML();
 
             ArrayList<TowerArea> towerAreas = level.getTowerAreas();

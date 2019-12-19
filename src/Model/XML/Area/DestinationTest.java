@@ -6,7 +6,7 @@ import Model.XML.XMLParser;
 class DestinationTest {
 
     private Destination destination = new Destination();
-    private XMLParser parser = new XMLParser("src/Model/XML/Levels.xml");
+    private XMLParser parser = new XMLParser(ClassLoader.getSystemResourceAsStream("src/Model/XML/Levels.xml"));
     private Level level = parser.parseXML();
 /*
     @Test
