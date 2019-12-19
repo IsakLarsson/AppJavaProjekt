@@ -8,6 +8,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -158,16 +159,13 @@ public class XMLParser {
                     map.addTile((Tile) tileObject);
             }
 
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (InstantiationException | InvocationTargetException |
+                IllegalAccessException | NoSuchMethodException | ClassNotFoundException e) {
+            String string  = "Something went wrong with the xml extraction " + e.getMessage();
+            JOptionPane.showOptionDialog(null,
+                    string, "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                    null, null,null);
+            System.exit(0);
         }
     }
 
