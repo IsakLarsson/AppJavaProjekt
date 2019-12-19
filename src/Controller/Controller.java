@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Logic.Game;
 import Model.Logic.Level;
-import Model.Logic.ModelAdapter;
+import Adapter.ModelAdapter;
 import View.GameFrame;
 import View.GameWindow;
 import Listeners.ButtonListener;

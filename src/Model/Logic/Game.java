@@ -1,10 +1,10 @@
 package Model.Logic;
 
+import Adapter.ModelAdapter;
 import Model.Unit.Teleporter;
 import Model.Unit.Tower;
 import Model.Unit.Unit;
 import Model.XML.Area.*;
-import Model.XML.SQLHandler;
 import Model.XML.XMLParser;
 
 import javax.swing.*;

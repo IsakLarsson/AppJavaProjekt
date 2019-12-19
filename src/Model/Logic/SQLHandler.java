@@ -1,4 +1,4 @@
-package Model.XML;
+package Model.Logic;
 
 import Model.Logic.HighScore;
 import javax.swing.*;
