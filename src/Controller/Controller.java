@@ -124,7 +124,11 @@ public class Controller {
                 game = new Game(adapter, updateInterval, filePath);
                 game.start();
             } catch (InterruptedException e) {
-                //Skriv lämpligt fel
+                JOptionPane.showOptionDialog(null,
+                        "There was something wrong with the threading",
+                        "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                        null, null,null);
+                System.exit(0);
             }
         }
     }
