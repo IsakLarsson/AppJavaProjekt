@@ -4,6 +4,16 @@ import Model.Logic.Position;
 
 import java.awt.*;
 
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * The abstract class from which every Area extends.
+ *
+ * @version 1.0 18 December 2019
+ * @author Isak Larsson <id17iln@cs.umu.se>
+ */
+
 public class Tile {
 
     private Position position;
@@ -11,8 +21,12 @@ public class Tile {
     private Color color;
     private Image texture;
 
-    //add more attributes like path, towerarea, goal, start etc
-
+    /**
+     * Constructor for the Tile.
+     * @param xCoordinate x coordinate where tile should spawn.
+     * @param yCoordinate y coordinate where tile should spawn.
+     * @param size Size of the tile representation.
+     */
     public Tile(int xCoordinate, int yCoordinate, int size){
 
         this.position = new Position(xCoordinate, yCoordinate);

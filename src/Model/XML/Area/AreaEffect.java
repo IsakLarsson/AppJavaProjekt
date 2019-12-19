@@ -5,5 +5,6 @@ import java.util.Queue;
 
 public interface AreaEffect {
 
-    public Queue<Integer> landOn(LinkedList<Tile> tileList);
+
+    Queue<Integer> landOn(LinkedList<Tile> tileList);
 }

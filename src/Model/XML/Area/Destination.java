@@ -6,8 +6,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * A class that acts a next destination for a unit to move to
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * A class that acts a next destination for a unit to move to.
+ *
+ * @version 1.0 18 December 2019
+ * @author Joel Bystedt <id17@cs.umu.se>
  */
+
 public class Destination {
     private Queue<Integer> q;
     private TeleportInArea teleArea;
@@ -27,6 +34,7 @@ public class Destination {
     public Queue<Integer> calculateQueue(Unit unit) {
         LinkedList<Tile> tiles = unit.getPath();
 
+        // Return empty queue if path is empty.
         if (tiles.isEmpty()) {
             return q;
         }
@@ -37,11 +45,12 @@ public class Destination {
         int dest = 0;
         int start = 0;
 
+        // if secondTile is null end is reached and return empty queue.
         if (secondTile == null) {
             return q;
         }
 
-        //TODO här måste det till en big brain
+        //If tile is a teleportInArea teleport
         if (firstTile instanceof TeleportInArea){
             for(int i = 0; i < 4; i++){
                 tiles.removeFirst();
