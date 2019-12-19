@@ -44,14 +44,11 @@ public class XMLParser {
             Element element = doc.getDocumentElement();
 
             NodeList nodes = element.getChildNodes();
-            System.out.println(element.getNodeName() + " has "+nodes.getLength()+" children");
             for(int i=0; i<nodes.getLength(); i++) {
                 Node n = nodes.item(i);
                 if (n.getNodeType() == Node.ELEMENT_NODE) {
                     levels.add(n.getNodeName());
                 }
-                System.out.println("\t"+n.getNodeName());
-
             }
 
 

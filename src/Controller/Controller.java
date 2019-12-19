@@ -10,7 +10,7 @@ import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
 import Model.XML.XMLParser;
 import Model.XML.XMLSchemaValidator;
-import org.junit.jupiter.params.provider.EnumSource;
+//import org.junit.jupiter.params.provider.EnumSource;
 
 import javax.swing.*;
 
@@ -159,6 +159,7 @@ public class Controller {
                 Teleporter teleporter = new Teleporter();
                 bank = game.spawn(teleporter);
                 gameFrame.getBank().setText("€ " + bank);
+                gameFrame.getButton3().setEnabled(false);
                 break;
         }
     }

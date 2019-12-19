@@ -212,4 +212,5 @@ public class GameFrame {
     public JMenuItem getPause() {
         return menuItem3;
     }
+    public JButton getButton3(){return button3;}
 }
