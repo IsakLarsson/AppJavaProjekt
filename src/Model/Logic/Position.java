@@ -1,4 +1,4 @@
-package Model;
+package Model.Logic;
 
 public class Position {
     private int x;

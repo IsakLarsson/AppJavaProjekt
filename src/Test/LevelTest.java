@@ -1,6 +1,6 @@
 package Test;
 
-import Model.Level;
+import Model.Logic.Level;
 import Model.XML.Area.*;
 import Model.XML.XMLParser;
 import org.junit.jupiter.api.Assertions;

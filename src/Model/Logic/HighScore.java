@@ -1,4 +1,4 @@
-package Model;
+package Model.Logic;
 
 import java.util.Comparator;
 

@@ -1,6 +1,6 @@
 package Test;
 
-import Model.HighScore;
+import Model.Logic.HighScore;
 import Model.XML.SQLHandler;
 import org.junit.jupiter.api.*;
 

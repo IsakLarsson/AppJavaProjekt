@@ -1,4 +1,4 @@
-package Model;
+package Model.Logic;
 
 import View.GameFrame;
 import Model.XML.SQLHandler;

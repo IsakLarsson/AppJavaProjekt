@@ -1,6 +1,6 @@
 package Model.XML;
 
-import Model.HighScore;
+import Model.Logic.HighScore;
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;

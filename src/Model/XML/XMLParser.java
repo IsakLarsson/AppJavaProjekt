@@ -1,6 +1,6 @@
 package Model.XML;
 
-import Model.Level;
+import Model.Logic.Level;
 import Model.XML.Area.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

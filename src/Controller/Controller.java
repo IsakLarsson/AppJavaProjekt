@@ -1,10 +1,12 @@
 package Controller;
 
+import Model.Logic.Game;
+import Model.Logic.Level;
+import Model.Logic.ModelAdapter;
 import View.GameFrame;
 import View.GameWindow;
 import Listeners.ButtonListener;
 import Listeners.MenuListener;
-import Model.*;
 import Model.Unit.Farmer;
 import Model.Unit.Soldier;
 import Model.Unit.Teleporter;
