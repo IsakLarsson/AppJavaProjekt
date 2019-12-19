@@ -291,6 +291,7 @@ public class Game extends Thread {
     public void nextLevel(String levelName) {
         setGameState(true);
         setLevelName(levelName);
+        modelAdapter.setTeleportAbility(true);
         timeLimit = 200;
         unitList = new ArrayList<>();
         towerList = new ArrayList<>();

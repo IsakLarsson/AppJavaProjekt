@@ -41,7 +41,14 @@ public class ModelAdapter {
     }
 
     /**
-     *
+     * Enable/disble the teleport button
+     */
+    public void setTeleportAbility(Boolean state) {
+        gui.getGameWindow().getButton1().setEnabled(state);
+    }
+
+    /**
+     * Recreates the queue
      */
     public void refreshLevelQueue() {
         levels = new LinkedList<>(levelsList);
