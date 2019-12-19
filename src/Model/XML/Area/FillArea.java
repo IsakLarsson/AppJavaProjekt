@@ -11,7 +11,7 @@ import java.io.IOException;
  * Tile to fill unused areas.
  *
  * @version 1.0 18 December 2019
- * @author Isak Larsson <id17iln@cs.umu.se>
+ * @author Isak Larsson <id17ian@cs.umu.se>
  */
 
 public class FillArea extends Tile {

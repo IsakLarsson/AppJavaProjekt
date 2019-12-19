@@ -23,9 +23,5 @@ public class TowerTest {
         Assertions.assertEquals(10, tower.getDmg());
     }
 
-    @Test
-    public void testHp(){
-        Assertions.assertEquals(0, tower.getHp());
-    }
 
 }

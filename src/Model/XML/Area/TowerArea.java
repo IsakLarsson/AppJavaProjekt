@@ -11,7 +11,7 @@ import java.io.IOException;
  * The towerArea where towers spawn.
  *
  * @version 1.0 18 December 2019
- * @author Isak Larsson <id17iln@cs.umu.se>
+ * @author Isak Larsson <id17ian@cs.umu.se>
  * @author Axel Jakobsson <c18ajn@cs.umu.se>
  */
 public class TowerArea extends Tile {

@@ -16,6 +16,18 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * The towerArea where towers spawn.
+ *
+ * @version 1.0 18 December 2019
+ * @author Isak Larsson <id17ian@cs.umu.se>
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ * @author Joel Bystedt <c17jbt@cs.umu.se>
+ */
+
 public class XMLParser {
 
     private int TILE_SIZE = 30;
@@ -25,16 +37,29 @@ public class XMLParser {
     private String levelName = "Level1";
     private String filePath = "src/Model/XML/Levels.xml";
 
+    /**
+     * Constructor for xmlParser.
+     * @param filePath Path to xml file.
+     * @param levelName Name of the level to be parsed.
+     */
     public XMLParser (String filePath, String levelName) {
         this.filePath = filePath;
         this.levelName = levelName;
 
     }
 
+    /**
+     * Constructor for xmlParser.
+     * @param filePath Path to xml file.
+     */
     public XMLParser (String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Parses the xml file.
+     * @return a level object with the map in it.
+     */
     public Level parseXML() {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

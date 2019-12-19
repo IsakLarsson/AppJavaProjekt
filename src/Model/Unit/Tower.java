@@ -1,14 +1,21 @@
 package Model.Unit;
 
-import Model.XML.Area.Tile;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
-
 import static java.awt.Color.RED;
+
+/**
+ * 5DV135 - Application Development in Java
+ * Department of Computing Science, Umeå University
+ *
+ * Tower that shoots the units.
+ *
+ * @version 1.0 18 December 2019
+ * @author Joel Bystedt <id17jbt@cs.umu.se>
+ * @author Axel Jakobsson <c18ajn@cs.umu.se>
+ * @author Isak Larsson <id17ian@cs.umu.se>
+ */
 
 public class Tower {
     private int dmg = 1;
@@ -19,8 +26,17 @@ public class Tower {
     private int xCord;
     private int yCord;
 
+    /**
+     * Constructor used in tests
+     */
     public Tower() {}
 
+    /**
+     * Constructor for the tower.
+     * @param x Coordinate.
+     * @param y Coordinate.
+     * @param size Size of representation.
+     */
     public Tower(int x, int y, int size) {
         this.xCord = x;
         this.yCord = y;
@@ -35,7 +51,11 @@ public class Tower {
         }
     }
 
-
+    /**
+     * Method that is used to shot at the unit.
+     * @param graphics graphics to be set.
+     * @param unit The unit to be shot.
+     */
     public void shoot(Graphics graphics, Unit unit) {
         double a = Math.abs(xCord-unit.getX());
         double b = Math.abs(yCord-unit.getY());
@@ -65,16 +85,12 @@ public class Tower {
         }
     }
 
-
-
-
-
+    /**
+     * Draw graphics.
+     * @param g graphics to be drawn.
+     */
     public void draw(Graphics g) {
         g.drawImage(image, xCord, yCord, null);
-    }
-
-    public int getHp() {
-        return 0;
     }
 
     public int getDmg() {
@@ -82,22 +98,14 @@ public class Tower {
     }
 
     public int getX() {
-        return 0;
+        return xCord;
     }
 
     public int getY() {
-        return 0;
+        return yCord;
     }
 
     public Image getImage() {
-        return null;
-    }
-
-    public void move(Queue q) {
-
-    }
-
-    public LinkedList<Tile> getTiles() {
-        return null;
+        return image;
     }
 }
