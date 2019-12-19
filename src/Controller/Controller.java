@@ -159,7 +159,7 @@ public class Controller {
                 Teleporter teleporter = new Teleporter();
                 bank = game.spawn(teleporter);
                 gameFrame.getBank().setText("€ " + bank);
-                gameFrame.getButton3().setEnabled(false);
+                //gameFrame.getButton3().setEnabled(false);
                 break;
         }
     }
