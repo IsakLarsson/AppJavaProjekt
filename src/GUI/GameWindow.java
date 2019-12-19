@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  * updates when repaint() i called
  *
  * @version 1.0 19 December 2019
- * @author Joel Bystedt <@cs.umu.se>
+ * @author Joel Bystedt <id17jbt@cs.umu.se>
  * @author Axel Jakobsson <c18ajn@cs.umu.se>
  */
 

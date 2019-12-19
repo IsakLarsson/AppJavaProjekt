@@ -20,10 +20,10 @@ import javax.swing.*;
  * A controller that controls the model and view
  *
  * @version 1.0 18 December 2019
- * @author Joel Bystedt <@cs.umu.se>
+ * @author Joel Bystedt <id17jbt@cs.umu.se>
  * @author Axel Jakobsson <c18ajn@cs.umu.se>
- * @author Isak Larsson <@cs.umu.se>
- * @author Albin Jönsson <@cs.umu.se>
+ * @author Isak Larsson <id17iln@cs.umu.se>
+ * @author Albin Jönsson <c18ajs@cs.umu.se>
  */
 
 public class Controller {
